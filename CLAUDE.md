@@ -1,0 +1,42 @@
+# REGLAS DEL PROYECTO — CONNEXA SERVICES
+# Claude debe leer este archivo antes de cualquier cambio
+
+## DESIGN SYSTEM BLOQUEADO
+Estos valores no se modifican bajo ninguna circunstancia:
+- Color primario: #172554
+- Color secundario: #F3F4F6
+- Color acento: #71B136
+- Tipografía headings: Plus Jakarta Sans
+- Tipografía body: Inter
+
+## REGLAS DE MODIFICACIÓN
+1. Cada prompt modifica ÚNICAMENTE lo que se indica explícitamente
+2. NUNCA tocar navbar ni footer salvo que se indique expresamente
+3. NUNCA cambiar colores, tipografías ni espaciados existentes
+4. NUNCA reorganizar secciones existentes
+5. NUNCA eliminar contenido existente
+6. Antes de cada cambio: leer el archivo afectado completo
+7. Después de cada cambio: verificar que solo se modificó lo solicitado
+
+## ARCHIVOS DEL PROYECTO
+- index.html — Home
+- productos.html — Landing productos
+- fsmtool.html — Detalle FSMTOOL
+- workflow-builder.html — Detalle Workflow Builder
+- css/variables.css — Design tokens (NO MODIFICAR)
+- css/base.css — Estilos base (NO MODIFICAR sin indicación)
+- css/components.css — Componentes compartidos
+- css/animations.css — Animaciones
+- js/nav.js — Navbar
+- js/animations.js — Intersection Observer
+- js/carousel.js — Carrusel clientes
+- assets/logos/ — Logos clientes
+- assets/screenshots/ — Capturas productos
+- assets/videos/ — Videos casos de uso
+
+## PROTOCOLO ANTES DE CADA CAMBIO
+1. Confirmar qué archivo se va a modificar
+2. Confirmar qué sección específica se toca
+3. Confirmar qué NO se va a tocar
+4. Hacer el cambio
+5. Reportar exactamente qué se modificó

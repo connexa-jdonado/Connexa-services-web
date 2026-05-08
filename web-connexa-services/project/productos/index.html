@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos — Connexa Services</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="image-slot.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:     #172554;
+      --secondary:   #F3F4F6;
+      --accent:      #71B136;
+      --accent-dark: #5a9229;
+      --white:       #FFFFFF;
+      --text-body:   #374151;
+      --text-muted:  #6B7280;
+      --max-w:       1280px;
+      --section-py:  120px;
+      --card-radius: 16px;
+      --btn-radius:  8px;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text-body);
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    h1,h2,h3,h4,h5,h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--btn-radius);
+      border: 2px solid var(--accent); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--primary);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--btn-radius);
+      border: 2px solid var(--primary); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { background: var(--primary); color: #fff; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--btn-radius);
+      border: 2px solid rgba(255,255,255,0.7); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: #fff; transform: translateY(-1px); }
+
+    .btn-outline-accent {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--accent);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--btn-radius);
+      border: 2px solid var(--accent); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-outline-accent:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+
+    /* ── UTILS ── */
+    .section-label {
+      display: inline-block;
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(.22,1,.36,1), transform 0.65s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+
+    /* ─────────────────────────────────────────
+       NAVBAR (identical to home)
+    ───────────────────────────────────────── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000; height: 72px;
+      display: flex; align-items: center;
+      transition: background 0.35s, box-shadow 0.35s;
+      background: var(--primary);
+    }
+    #navbar.scrolled {
+      background: var(--primary);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.18);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 20px; color: #fff; letter-spacing: -0.01em; }
+    .nav-logo-dot { color: var(--accent); }
+    .nav-badges { display: flex; align-items: center; gap: 6px; margin-left: 4px; }
+    .nav-badge {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.9); font-family: 'Inter', sans-serif; white-space: nowrap;
+    }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+    .nav-cta { margin-left: 16px; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 8px; background: none; border: none;
+    }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 960px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-badges { display: none; }
+    }
+    .mobile-nav {
+      display: none; position: fixed; top: 72px; left: 0; right: 0;
+      background: var(--primary); padding: 24px 20px 32px;
+      z-index: 999; flex-direction: column; gap: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: #fff; }
+    .mobile-nav .btn-primary { margin-top: 20px; width: 100%; justify-content: center; }
+
+    /* ─────────────────────────────────────────
+       PAGE HERO (~50vh)
+    ───────────────────────────────────────── */
+    #page-hero {
+      background: var(--primary);
+      min-height: 52vh;
+      display: flex; align-items: center;
+      padding: 120px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    #page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    #page-hero::after {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      top: -120px; right: -80px;
+      background: radial-gradient(circle, rgba(113,177,54,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-inner {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .page-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(113,177,54,0.15); border: 1px solid rgba(113,177,54,0.3);
+      border-radius: 20px; padding: 6px 14px; margin-bottom: 28px;
+    }
+    .page-hero-eyebrow-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .page-hero-eyebrow span { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--accent); }
+    .page-hero-headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 52px; font-weight: 800; color: #fff;
+      line-height: 1.1; letter-spacing: -0.025em;
+      margin-bottom: 20px; max-width: 720px; text-wrap: pretty;
+    }
+    .page-hero-headline em { font-style: normal; color: var(--accent); }
+    .page-hero-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px; color: rgba(255,255,255,0.68);
+      line-height: 1.7; max-width: 540px; text-wrap: pretty;
+    }
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .breadcrumb a {
+      font-family: 'Inter', sans-serif; font-size: 13px;
+      color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: rgba(255,255,255,0.8); }
+    .breadcrumb-sep { color: rgba(255,255,255,0.25); font-size: 13px; }
+    .breadcrumb-cur { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 768px) {
+      .page-hero-headline { font-size: 34px; }
+      .page-hero-sub { font-size: 15px; }
+    }
+
+    /* ─────────────────────────────────────────
+       PRODUCT SHOWCASE CARDS
+    ───────────────────────────────────────── */
+    #product-cards { background: #fff; }
+
+    .product-showcase {
+      padding: var(--section-py) 0;
+      border-bottom: 1px solid #F0F0F0;
+    }
+    .product-showcase:last-child { border-bottom: none; }
+
+    /* alternating bg */
+    .product-showcase.alt { background: var(--secondary); }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .showcase-grid.mirror { direction: rtl; }
+    .showcase-grid.mirror > * { direction: ltr; }
+
+    @media (max-width: 960px) {
+      .showcase-grid { grid-template-columns: 1fr; gap: 48px; }
+      .showcase-grid.mirror { direction: ltr; }
+    }
+
+    /* LEFT: text col */
+    .showcase-text { display: flex; flex-direction: column; gap: 0; }
+
+    .product-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(113,177,54,0.1); border: 1px solid rgba(113,177,54,0.25);
+      border-radius: 20px; padding: 5px 13px; margin-bottom: 20px; width: fit-content;
+    }
+    .product-badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .product-badge span {
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.07em;
+    }
+
+    .showcase-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 38px; font-weight: 800;
+      color: var(--primary); line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .showcase-tagline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 21px; font-weight: 600;
+      color: var(--primary); line-height: 1.3;
+      margin-bottom: 18px; opacity: 0.8;
+    }
+    .showcase-desc {
+      font-family: 'Inter', sans-serif; font-size: 16px;
+      color: var(--text-muted); line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    /* use-case chips */
+    .use-case-chips {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
+    }
+    .chip {
+      background: rgba(23,37,84,0.06);
+      border: 1px solid rgba(23,37,84,0.12);
+      border-radius: 20px; padding: 6px 14px;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+      color: var(--primary);
+    }
+
+    /* benefits */
+    .benefits-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .benefit-row {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .benefit-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(113,177,54,0.1); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .benefit-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--accent); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .benefit-content { display: flex; flex-direction: column; gap: 3px; }
+    .benefit-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 700; color: var(--primary);
+    }
+    .benefit-desc {
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      color: var(--text-muted); line-height: 1.55;
+    }
+
+    /* CTAs */
+    .showcase-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* RIGHT: browser mockup */
+    .showcase-visual {
+      position: relative;
+    }
+
+    /* browser chrome wrapper */
+    .browser-frame {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .browser-toolbar {
+      background: #F3F4F6;
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    .browser-dots { display: flex; gap: 6px; }
+    .browser-dots span {
+      width: 11px; height: 11px; border-radius: 50%;
+    }
+    .browser-dots span:nth-child(1) { background: #FF5F57; }
+    .browser-dots span:nth-child(2) { background: #FFBD2E; }
+    .browser-dots span:nth-child(3) { background: #28C840; }
+    .browser-address {
+      flex: 1;
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-family: 'Inter', sans-serif; font-size: 12px; color: #9CA3AF;
+    }
+    .browser-content {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* image-slot inside browser */
+    .browser-content image-slot {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Decorative float badges */
+    .visual-badge {
+      position: absolute;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      z-index: 10;
+    }
+    .visual-badge-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .visual-badge-icon svg {
+      width: 18px; height: 18px; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .visual-badge-text { display: flex; flex-direction: column; gap: 2px; }
+    .visual-badge-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); }
+    .visual-badge-sub { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-muted); }
+
+    .badge-top-right {
+      top: -18px; right: -18px;
+    }
+    .badge-bottom-left {
+      bottom: -18px; left: -18px;
+    }
+    .badge-top-left {
+      top: -18px; left: -18px;
+    }
+    .badge-bottom-right {
+      bottom: -18px; right: -18px;
+    }
+
+    @media (max-width: 768px) {
+      .showcase-name { font-size: 28px; }
+      .showcase-tagline { font-size: 17px; }
+      .visual-badge { display: none; }
+    }
+
+    /* ─────────────────────────────────────────
+       COMPARISON TABLE
+    ───────────────────────────────────────── */
+    #comparison {
+      background: var(--secondary);
+      padding: var(--section-py) 0;
+    }
+    .comparison-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .comparison-header h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 38px; font-weight: 700;
+      color: var(--primary); line-height: 1.15; margin-bottom: 14px;
+    }
+    .comparison-header p {
+      font-family: 'Inter', sans-serif; font-size: 17px;
+      color: var(--text-muted); max-width: 540px; margin: 0 auto; line-height: 1.65;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) { .comparison-grid { grid-template-columns: 1fr; } }
+
+    .comparison-card {
+      background: #fff;
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      border: 1px solid #E5E7EB;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .comparison-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+      transform: translateY(-3px);
+    }
+    .comparison-card-header {
+      background: var(--primary);
+      padding: 28px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .comparison-card-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px; font-weight: 700; color: #fff;
+    }
+    .comparison-card-tag {
+      background: rgba(113,177,54,0.2); border: 1px solid rgba(113,177,54,0.3);
+      border-radius: 20px; padding: 4px 12px;
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+      color: var(--accent);
+    }
+
+    .comparison-card-body { padding: 32px; }
+    .comparison-section-title {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-muted); margin-bottom: 12px; margin-top: 24px;
+    }
+    .comparison-section-title:first-child { margin-top: 0; }
+    .comparison-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #F3F4F6;
+    }
+    .comparison-row:last-child { border-bottom: none; }
+    .comparison-check {
+      width: 20px; height: 20px; flex-shrink: 0;
+      background: rgba(113,177,54,0.1); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .comparison-check::after {
+      content: '✓'; font-size: 10px; color: var(--accent); font-weight: 700;
+    }
+    .comparison-text {
+      font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-body); line-height: 1.5;
+    }
+    .comparison-card-footer {
+      padding: 24px 32px;
+      border-top: 1px solid #F3F4F6;
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+
+    /* ─────────────────────────────────────────
+       CTA FINAL
+    ───────────────────────────────────────── */
+    #cta-final {
+      background: linear-gradient(135deg, #0f1c42 0%, var(--primary) 60%, #1e3a6e 100%);
+      padding: var(--section-py) 0;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #cta-final::before {
+      content: '';
+      position: absolute; width: 700px; height: 700px; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      background: radial-gradient(circle, rgba(113,177,54,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-inner-wrap { position: relative; z-index: 2; }
+    .cta-headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 44px; font-weight: 800; color: #fff;
+      line-height: 1.15; margin-bottom: 20px; text-wrap: pretty;
+    }
+    .cta-headline em { font-style: normal; color: var(--accent); }
+    .cta-sub {
+      font-family: 'Inter', sans-serif; font-size: 18px;
+      color: rgba(255,255,255,0.65); margin-bottom: 40px;
+      max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.6;
+    }
+    .cta-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    @media (max-width: 768px) { .cta-headline { font-size: 30px; } }
+
+    /* ─────────────────────────────────────────
+       FOOTER (identical to home)
+    ───────────────────────────────────────── */
+    #footer {
+      background: var(--primary);
+      padding: 72px 0 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 48px; margin-bottom: 56px;
+    }
+    @media (max-width: 960px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    .footer-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 20px; color: #fff; margin-bottom: 14px; }
+    .footer-logo span { color: var(--accent); }
+    .footer-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 24px; max-width: 260px; }
+    .footer-partner-logos { display: flex; gap: 10px; flex-wrap: wrap; }
+    .footer-partner-badge { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 12px; }
+    .footer-partner-badge .check { width: 14px; height: 14px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .footer-partner-badge .check::after { content: '✓'; font-size: 8px; color: #fff; font-weight: 700; }
+    .footer-partner-badge span { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); }
+
+    .footer-col-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.9); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.52); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+    .footer-contact-item { display: flex; flex-direction: column; gap: 3px; margin-bottom: 12px; }
+    .footer-contact-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); }
+    .footer-contact-val { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.65); }
+    .footer-contact-val a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .footer-contact-val a:hover { color: var(--accent); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
+
+    /* scroll to top */
+    .scroll-top {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 44px; height: 44px; background: var(--accent);
+      border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 4px 16px rgba(113,177,54,0.45);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.3s, transform 0.3s; z-index: 900;
+    }
+    .scroll-top.show { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { background: var(--accent-dark); }
+    .scroll-top svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* anchor offset for fixed nav */
+    .section-anchor { scroll-margin-top: 90px; }
+  </style>
+</head>
+<body>
+
+  <!-- ───── NAVBAR ───── -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo">
+          <img src="../assets/connexaAzulP.png" alt="Connexa Services" style="height:36px;width:auto;display:block;" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#services">Servicios</a></li>
+          <li><a href="#fsmtool" class="active">Productos</a></li>
+          <li><a href="../index.html#partnerships">Partnerships</a></li>
+          <li><a href="#">Casos de éxito</a></li>
+          <li><a href="#">Nosotros</a></li>
+        </ul>
+        <a href="#cta-final" class="btn-primary nav-cta">Hablar con un experto</a>
+        <button class="nav-hamburger" id="hamburgerBtn" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="../index.html#services" onclick="closeMobileNav()">Servicios</a>
+    <a href="#fsmtool" onclick="closeMobileNav()">Productos</a>
+    <a href="../index.html#partnerships" onclick="closeMobileNav()">Partnerships</a>
+    <a href="#" onclick="closeMobileNav()">Casos de éxito</a>
+    <a href="#" onclick="closeMobileNav()">Nosotros</a>
+    <a href="#cta-final" class="btn-primary" onclick="closeMobileNav()">Hablar con un experto</a>
+  </div>
+
+  <!-- ───── PAGE HERO ───── -->
+  <section id="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <nav class="breadcrumb fade-up" aria-label="breadcrumb">
+          <a href="../index.html">Inicio</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="breadcrumb-cur">Productos</span>
+        </nav>
+        <div class="page-hero-eyebrow fade-up delay-1">
+          <div class="page-hero-eyebrow-dot"></div>
+          <span>Soluciones propias · Desarrolladas por Connexa</span>
+        </div>
+        <h1 class="page-hero-headline fade-up delay-2">
+          Herramientas que potencian<br/>tu plataforma <em>OFSC</em>
+        </h1>
+        <p class="page-hero-sub fade-up delay-3">
+          Apps web nativas construidas sobre Oracle Field Service Cloud para resolver los desafíos operacionales más complejos del Field Service, sin fricciones y sin código adicional.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── PRODUCT CARDS ───── -->
+  <div id="product-cards">
+
+    <!-- ── FSMTOOL ── -->
+    <div class="product-showcase" id="fsmtool">
+      <div class="container">
+        <div class="showcase-grid">
+
+          <!-- Text -->
+          <div class="showcase-text section-anchor">
+            <div class="product-badge fade-up">
+              <div class="product-badge-dot"></div>
+              <span>Solución propia</span>
+            </div>
+            <h2 class="showcase-name fade-up delay-1">FSMTool</h2>
+            <p class="showcase-tagline fade-up delay-2">Operaciones masivas en OFSC, sin complejidad</p>
+            <p class="showcase-desc fade-up delay-2">
+              FSMTool es una suite de administración y monitoreo de operaciones construida nativamente sobre Oracle Field Service Cloud. Permite a los equipos de operaciones ejecutar acciones masivas, visualizar el estado en tiempo real y automatizar los procesos del día a día desde una interfaz clara y veloz.
+            </p>
+
+            <div class="use-case-chips fade-up delay-3">
+              <span class="chip">Reasignación masiva de órdenes</span>
+              <span class="chip">Cierre automático de actividades</span>
+              <span class="chip">Monitoreo de SLA en vivo</span>
+            </div>
+
+            <div class="benefits-list fade-up delay-3">
+              <div class="benefit-row">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <div class="benefit-content">
+                  <div class="benefit-title">Eficiencia operacional x3</div>
+                  <div class="benefit-desc">Ejecutá acciones sobre miles de órdenes en segundos desde una sola pantalla.</div>
+                </div>
+              </div>
+              <div class="benefit-row">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div class="benefit-content">
+                  <div class="benefit-title">Visibilidad en tiempo real</div>
+                  <div class="benefit-desc">Dashboard operacional con KPIs, estado de técnicos y alertas automáticas.</div>
+                </div>
+              </div>
+              <div class="benefit-row">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="benefit-content">
+                  <div class="benefit-title">Sin riesgo de errores humanos</div>
+                  <div class="benefit-desc">Validaciones integradas y confirmaciones antes de cada acción masiva.</div>
+                </div>
+              </div>
+              <div class="benefit-row">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <div class="benefit-content">
+                  <div class="benefit-title">Reportería exportable</div>
+                  <div class="benefit-desc">Exportá cualquier vista a Excel o PDF con un clic para auditoría y gestión.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="showcase-ctas fade-up delay-4">
+              <a href="#cta-final" class="btn-primary">
+                Ver demo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </a>
+              <a href="#cta-final" class="btn-secondary">Solicitar acceso</a>
+            </div>
+          </div>
+
+          <!-- Visual -->
+          <div class="showcase-visual fade-up delay-2">
+            <div class="browser-frame">
+              <div class="browser-toolbar">
+                <div class="browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="browser-address">app.connexaservices.com/fsmtool</div>
+              </div>
+              <div class="browser-content">
+                <image-slot
+                  id="fsmtool-screenshot"
+                  placeholder="Captura de pantalla de FSMTool"
+                  shape="rect"
+                  style="width:100%;height:100%;display:block;">
+                </image-slot>
+              </div>
+            </div>
+
+            <!-- Float badge: metric -->
+            <div class="visual-badge badge-bottom-left">
+              <div class="visual-badge-icon" style="background:rgba(113,177,54,0.12);">
+                <svg viewBox="0 0 24 24" stroke="var(--accent)"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              </div>
+              <div class="visual-badge-text">
+                <div class="visual-badge-label">+60% velocidad</div>
+                <div class="visual-badge-sub">en operaciones masivas</div>
+              </div>
+            </div>
+
+            <!-- Float badge: native -->
+            <div class="visual-badge badge-top-right">
+              <div class="visual-badge-icon" style="background:rgba(23,37,84,0.07);">
+                <svg viewBox="0 0 24 24" stroke="var(--primary)"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+              </div>
+              <div class="visual-badge-text">
+                <div class="visual-badge-label">100% nativo OFSC</div>
+                <div class="visual-badge-sub">Sin instalación adicional</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WORKFLOW BUILDER ── -->
+    <div class="product-showcase alt" id="workflow-builder">
+      <div class="container">
+        <div class="showcase-grid mirror">
+
+          <!-- Visual (left thanks to mirror) -->
+          <div class="showcase-visual fade-up delay-2">
+            <div class="browser-frame">
+              <div class="browser-toolbar">
+                <div class="browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="browser-address">app.connexaservices.com/workflow-builder</div>
+              </div>
+              <div class="browser-content">
+                <image-slot
+                  id="wb-screenshot"
+                  placeholder="Captura de pantalla de Workflow Builder"
+                  shape="rect"
+                  style="width:100%;height:100%;display:block;">
+                </image-slot>
+              </div>
+            </div>
+
+            <div class="visual-badge badge-bottom-right">
+              <div class="visual-badge-icon" style="background:rgba(113,177,54,0.12);">
+                <svg viewBox="0 0 24 24" stroke="var(--accent)"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="visual-badge-text">
+                <div class="visual-badge-label">Sin código</div>
+                <div class="visual-badge-sub">Drag &amp; drop nativo</div>
+              </div>
+            </div>
+
+            <div class="visual-badge badge-top-left">
+              <div class="visual-badge-icon" style="background:rgba(23,37,84,0.07);">
+                <svg viewBox="0 0 24 24" stroke="var(--primary)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="visual-badge-text">
+                <div class="visual-badge-label">Deploy en minutos</div>
+                <div class="visual-badge-sub">Publica workflows al instante</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text (right thanks to mirror) -->
+          <div class="showcase-text section-anchor">
+            <div class="product-badge fade-up">
+              <div class="product-badge-dot"></div>
+              <span>Solución propia</span>
+            </div>
+            <h2 class="showcase-name fade-up delay-1">Workflow Builder</h2>
+            <p class="showcase-tagline fade-up delay-2">Automatizá tus procesos OFSC sin código</p>
+            <p class="showcase-desc fade-up delay-2">
+              Workflow Builder es un constructor visual de flujos de trabajo para Oracle Field Service Cloud. Permite a equipos operativos y de negocio diseñar, testear y publicar procesos de campo complejos sin escribir una línea de código, reduciendo el time-to-market de nuevas configuraciones a minutos en lugar de semanas.
+            </p>
+
+            <div class="use-case-chips fade-up delay-3">
+              <span class="chip">Flujos de diagnóstico guiado</span>
+              <span class="chip">Checklists de cierre de órdenes</span>
+              <span class="chip">Escalados automáticos</span>
+            </div>
+
+            <div class="benefits-list fade-up delay-3">
+              <div class="benefit-row">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <div class="benefit-content">
+                  <div class="benefit-title">Editor drag &amp; drop</div>
+                  <div class="benefit-desc">Arrastrá nodos, condiciones y acciones para construir cualquier flujo en minutos.</div>
+                </div>
+              </div>
+              <div class="benefit-row">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <div class="benefit-content">
+                  <div class="benefit-title">Integración nativa con OFSC</div>
+                  <div class="benefit-desc">Acceso directo a todos los datos y APIs de Oracle Field Service sin configuración adicional.</div>
+                </div>
+              </div>
+              <div class="benefit-row">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div class="benefit-content">
+                  <div class="benefit-title">Sandbox de testing</div>
+                  <div class="benefit-desc">Simulá y testeá cada workflow antes de publicarlo en producción con datos reales.</div>
+                </div>
+              </div>
+              <div class="benefit-row">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="benefit-content">
+                  <div class="benefit-title">Autonomía para el negocio</div>
+                  <div class="benefit-desc">Los equipos de operaciones modifican procesos sin depender de IT o desarrollo.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="showcase-ctas fade-up delay-4">
+              <a href="#cta-final" class="btn-primary">
+                Ver demo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </a>
+              <a href="#cta-final" class="btn-secondary">Solicitar acceso</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#product-cards -->
+
+  <!-- ───── COMPARISON ───── -->
+  <section id="comparison" class="section-anchor">
+    <div class="container">
+      <div class="comparison-header">
+        <span class="section-label fade-up">Comparativa</span>
+        <h2 class="fade-up delay-1">¿Cuál necesitás?</h2>
+        <p class="fade-up delay-2">Cada producto resuelve un problema específico. Usalos juntos o por separado según tu madurez operacional.</p>
+      </div>
+
+      <div class="comparison-grid">
+        <!-- FSMTool -->
+        <div class="comparison-card fade-up delay-1">
+          <div class="comparison-card-header">
+            <span class="comparison-card-name">FSMTool</span>
+            <span class="comparison-card-tag">Operaciones</span>
+          </div>
+          <div class="comparison-card-body">
+            <div class="comparison-section-title">Ideal para</div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Equipos de operaciones que gestionan grandes volúmenes de órdenes diarias</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Supervisores que necesitan visibilidad en tiempo real del campo</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Empresas con procesos masivos repetitivos en OFSC</span>
+            </div>
+
+            <div class="comparison-section-title">Principales casos de uso</div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Reasignación o cancelación masiva de actividades</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Monitoreo de SLA y alertas tempranas</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Reportería operacional diaria exportable</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Auditoría y trazabilidad de cambios</span>
+            </div>
+          </div>
+          <div class="comparison-card-footer">
+            <a href="#cta-final" class="btn-primary" style="font-size:14px; padding:11px 22px;">Ver demo</a>
+            <a href="#cta-final" class="btn-secondary" style="font-size:14px; padding:11px 22px;">Solicitar acceso</a>
+          </div>
+        </div>
+
+        <!-- Workflow Builder -->
+        <div class="comparison-card fade-up delay-2">
+          <div class="comparison-card-header">
+            <span class="comparison-card-name">Workflow Builder</span>
+            <span class="comparison-card-tag">Automatización</span>
+          </div>
+          <div class="comparison-card-body">
+            <div class="comparison-section-title">Ideal para</div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Equipos que quieren automatizar procesos sin depender de IT</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Empresas en expansión que cambian flujos frecuentemente</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Operaciones que requieren guías dinámicas para técnicos de campo</span>
+            </div>
+
+            <div class="comparison-section-title">Principales casos de uso</div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Checklists y formularios de cierre de órdenes</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Flujos de diagnóstico y resolución guiada</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Escalados automáticos por condición</span>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-check"></div>
+              <span class="comparison-text">Integración de datos externos al flujo de campo</span>
+            </div>
+          </div>
+          <div class="comparison-card-footer">
+            <a href="#cta-final" class="btn-primary" style="font-size:14px; padding:11px 22px;">Ver demo</a>
+            <a href="#cta-final" class="btn-secondary" style="font-size:14px; padding:11px 22px;">Solicitar acceso</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── CTA FINAL ───── -->
+  <section id="cta-final">
+    <div class="container cta-inner-wrap">
+      <span class="section-label fade-up" style="color:var(--accent);">Demo en vivo</span>
+      <h2 class="cta-headline fade-up delay-1">¿Querés ver los productos<br/><em>en acción</em>?</h2>
+      <p class="cta-sub fade-up delay-2">Agendá una demo personalizada con nuestro equipo y mostramos FSMTool y Workflow Builder con tus propios datos y casos de uso.</p>
+      <div class="cta-btns fade-up delay-3">
+        <a href="mailto:contacto@connexaservices.com?subject=Demo%20Productos%20Connexa" class="btn-primary" style="font-size:16px;padding:16px 36px;">
+          Agendar demo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </a>
+        <a href="../index.html#services" class="btn-ghost" style="font-size:16px;padding:16px 36px;">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── FOOTER ───── -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo"><img src="../assets/connexaAzulP.png" alt="Connexa Services" style="height:40px;width:auto;display:block;margin-bottom:4px;" /></div>
+          <p class="footer-desc">Expertos en Field Service Management. Implementamos, optimizamos y soportamos Oracle Field Service Cloud y Zinier para empresas líderes en América Latina y el mundo.</p>
+          <div class="footer-partner-logos">
+            <div class="footer-partner-badge"><img src="../assets/OFSC.png" alt="Oracle" style="width:18px;height:18px;border-radius:4px;object-fit:cover;" /><span>Oracle Partner</span></div>
+            <div class="footer-partner-badge"><img src="../assets/zinier.webp" alt="Zinier" style="width:18px;height:18px;border-radius:4px;object-fit:cover;background:#fff;" /><span>Zinier Partner</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Servicios</div>
+          <ul class="footer-links">
+            <li><a href="../index.html#services">Implementación OFSC</a></li>
+            <li><a href="../index.html#services">Implementación Zinier</a></li>
+            <li><a href="../index.html#services">Consultoría FSM</a></li>
+            <li><a href="../index.html#services">Soporte Post Go-Live</a></li>
+            <li><a href="../index.html#services">Desarrollo a medida</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Productos</div>
+          <ul class="footer-links">
+            <li><a href="#fsmtool">FSMTool</a></li>
+            <li><a href="#workflow-builder">Workflow Builder</a></li>
+          </ul>
+          <div class="footer-col-title" style="margin-top:28px;">Empresa</div>
+          <ul class="footer-links">
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Partnerships</a></li>
+            <li><a href="#">Casos de éxito</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contacto</div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Email</span>
+            <div class="footer-contact-val"><a href="mailto:contacto@connexaservices.com">contacto@connexaservices.com</a></div>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Website</span>
+            <div class="footer-contact-val"><a href="https://www.connexaservices.com">www.connexaservices.com</a></div>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">LinkedIn</span>
+            <div class="footer-contact-val"><a href="#">Connexa Services</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Connexa Services. Todos los derechos reservados.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacidad</a>
+          <a href="#">Términos</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- Tweaks -->
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS_PROD = /*EDITMODE-BEGIN*/{
+      "accentColor": "#71B136"
+    }/*EDITMODE-END*/;
+
+    function TweaksAppProd() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS_PROD);
+      React.useEffect(() => {
+        document.documentElement.style.setProperty('--accent', t.accentColor);
+      }, [t.accentColor]);
+      return (
+        <TweaksPanel title="Tweaks">
+          <TweakSection label="Marca">
+            <TweakColor id="accentColor" label="Color de acento"
+              value={t.accentColor}
+              options={['#71B136','#2563EB','#DC2626','#7C3AED']}
+              onChange={v => setTweak('accentColor', v)} />
+          </TweakSection>
+        </TweaksPanel>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('tweaks-root-prod')).render(<TweaksAppProd />);
+  </script>
+  <div id="tweaks-root-prod"></div>
+
+  <script>
+    // navbar scroll
+    const navbar = document.getElementById('navbar');
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+        scrollTopBtn.classList.add('show');
+      } else {
+        navbar.classList.remove('scrolled');
+        scrollTopBtn.classList.remove('show');
+      }
+    }, { passive: true });
+    scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    // hamburger
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburgerBtn.addEventListener('click', () => { mobileNav.classList.toggle('open'); });
+    function closeMobileNav() { mobileNav.classList.remove('open'); }
+
+    // fade-up observer
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+    // hero immediately
+    setTimeout(() => {
+      document.querySelectorAll('#page-hero .fade-up').forEach(el => el.classList.add('visible'));
+    }, 80);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexa Services — Field Service Excellence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #172554; --secondary: #F3F4F6;
+      --accent: #71B136; --accent-dark: #5a9229;
+      --text-body: #374151; --text-muted: #6B7280;
+      --max-w: 1280px; --section-py: 120px;
+      --card-radius: 16px; --btn-radius: 8px;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-body); background: #fff; overflow-x: hidden; }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--btn-radius);
+      border: 2px solid var(--accent); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--primary);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--btn-radius);
+      border: 2px solid var(--primary); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { background: var(--primary); color: #fff; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--btn-radius);
+      border: 2px solid rgba(255,255,255,0.6); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-1px); }
+
+    /* ── UTILITIES ── */
+    .section-label { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 700; color: var(--primary); line-height: 1.15; margin-bottom: 16px; }
+    .section-subtitle { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--text-muted); line-height: 1.7; max-width: 600px; }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(.22,1,.36,1), transform 0.65s cubic-bezier(.22,1,.36,1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.d1{transition-delay:.1s} .fade-up.d2{transition-delay:.2s} .fade-up.d3{transition-delay:.3s} .fade-up.d4{transition-delay:.4s} .fade-up.d5{transition-delay:.5s}
+
+    /* ── PAGE SYSTEM ── */
+    .page { display: none; opacity: 0; transition: opacity 0.3s ease; }
+    .page.active { display: block; opacity: 1; }
+    .page.fade-in { opacity: 1; }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 80px; display: flex; align-items: center;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      background: transparent;
+      padding: 0 60px;
+    }
+    @media (max-width: 768px) { #navbar { padding: 0 24px; } }
+    #navbar.scrolled { background: var(--primary); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+    #navbar.solid { background: var(--primary); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+    .nav-inner {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      width: 100%; max-width: var(--max-w); margin: 0 auto;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; cursor: pointer; flex-shrink: 0; }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500;
+      color: rgba(255,255,255,0.80); text-decoration: none;
+      transition: color 0.2s ease; cursor: pointer;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,1); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+    .nav-cta { flex-shrink: 0; }
+    .nav-cta .btn-primary { padding: 12px 28px; font-size: 15px; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .nav-hamburger { display: flex; } }
+    .mobile-nav {
+      display: none; position: fixed; top: 80px; left: 0; right: 0;
+      background: var(--primary); padding: 16px 24px 32px;
+      z-index: 999; flex-direction: column;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer; transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: #fff; }
+    .mobile-nav a:last-of-type { border-bottom: none; }
+    .mobile-nav .btn-primary { margin-top: 20px; width: 100%; justify-content: center; }
+
+    /* ─────────────────────────────
+       HOME: HERO
+    ───────────────────────────── */
+    #hero {
+      height: 100vh; min-height: 700px;
+      background: #0a1628; display: flex; flex-direction: column;
+      justify-content: center; position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(100deg,rgba(10,22,40,0.97) 0%,rgba(10,22,40,0.90) 40%,rgba(10,22,40,0.50) 70%,rgba(10,22,40,0.08) 100%);
+      z-index: 1; pointer-events: none;
+    }
+    #hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(220deg,#172554 0%,#0a1628 50%,#0d1f3c 100%);
+      background-size: 300% 300%; animation: heroGrad 12s ease infinite; z-index: -1;
+    }
+    @keyframes heroGrad { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .hero-inner {
+      position: relative; z-index: 4; display: flex; flex-direction: column;
+      align-items: flex-start; padding: 80px 40px 100px 80px;
+      max-width: 1440px; margin: 0 auto; width: 100%;
+    }
+    @media (max-width: 960px) { .hero-inner { padding: 96px 32px 100px; } }
+    @media (max-width: 600px) { .hero-inner { padding: 96px 20px 100px; } }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(113,177,54,0.13); border: 1px solid rgba(113,177,54,0.35); border-radius: 20px; padding: 6px 16px; margin-bottom: 32px; }
+    .hero-eyebrow-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    .hero-eyebrow span { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--accent); }
+    .hero-headline { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(40px, 5.5vw, 76px); font-weight: 700; color: #fff; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 28px; max-width: 58vw; }
+    @media (max-width: 960px) { .hero-headline { max-width: 100%; font-size: clamp(36px,7vw,52px); } }
+    .hero-headline em { font-style: normal; color: var(--accent); }
+    .hero-subheadline { font-family: 'Inter', sans-serif; font-size: 18px; color: rgba(255,255,255,0.70); line-height: 1.65; max-width: 480px; margin-bottom: 40px; }
+    @media (max-width: 600px) { .hero-subheadline { font-size: 16px; } }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; }
+    .hero-trust-bar {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 64px;
+      background: rgba(0,0,0,0.50); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255,255,255,0.13);
+      display: flex; align-items: center; justify-content: center; gap: 32px; z-index: 5; flex-wrap: wrap; padding: 0 40px;
+    }
+    .trust-sep { width: 1px; height: 28px; background: rgba(255,255,255,0.2); }
+    .trust-label-text { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.48); text-transform: uppercase; letter-spacing: 0.14em; white-space: nowrap; }
+    .trust-partner { display: flex; align-items: center; gap: 10px; }
+    .trust-partner img { height: 32px; width: 32px; border-radius: 7px; object-fit: cover; }
+    .trust-partner-text { display: flex; flex-direction: column; gap: 1px; }
+    .trust-partner-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.92); }
+    .trust-partner-caption { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,255,255,0.48); }
+    @media (max-width: 600px) { .trust-sep{display:none} .hero-trust-bar{gap:16px;height:auto;padding:12px 20px} }
+
+    /* ── HOME: METRICS ROW ── */
+    #hero-metrics-row { background: var(--primary); padding: 52px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .metrics-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: center; }
+    @media (max-width: 600px) { .metrics-inner { padding: 0 20px; flex-wrap: wrap; gap: 32px; } }
+    .metric-item { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+    .metric-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 56px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .metric-num span { color: var(--accent); }
+    .metric-label { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.55); text-align: center; }
+    .metric-divider { width: 1px; height: 64px; background: rgba(255,255,255,0.15); flex-shrink: 0; margin: 0 40px; }
+    @media (max-width: 600px) { .metric-num{font-size:40px} .metric-divider{display:none} }
+
+    /* ── HOME: CLIENTS CAROUSEL ── */
+    #clients-carousel { background: #fff; padding: 60px 0; position: relative; overflow: hidden; }
+    .clients-eyebrow { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 40px; }
+    .carousel-container { position: relative; width: 100%; height: 100px; overflow: hidden; }
+    @media (max-width: 768px) { .carousel-container { height: 70px; } }
+    
+    /* Fade edges */
+    .carousel-container::before,
+    .carousel-container::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+    }
+    .carousel-container::before {
+      left: 0; background: linear-gradient(to right, #fff 0%, transparent 100%);
+    }
+    .carousel-container::after {
+      right: 0; background: linear-gradient(to left, #fff 0%, transparent 100%);
+    }
+    
+    .carousel-track { display: flex; align-items: center; animation: scroll 40s linear infinite; }
+    .carousel-track:hover { animation-play-state: paused; }
+    
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    .carousel-logo { height: 40px; width: auto; margin: 0 60px; flex-shrink: 0; filter: grayscale(100%); opacity: 0.5; transition: filter 0.3s, opacity 0.3s; }
+    .carousel-logo:hover { filter: grayscale(0%); opacity: 1; }
+    @media (max-width: 768px) { .carousel-logo { height: 30px; margin: 0 40px; } }
+    
+    .clients-separator { width: 100%; height: 1px; background: rgba(23,37,84,0.08); margin-top: 60px; }
+
+    /* ── HOME: PARTNERSHIPS ── */
+    #partnerships { background: var(--secondary); padding: var(--section-py) 0; }
+    .partnerships-header { text-align: center; margin-bottom: 56px; }
+    .partnerships-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 768px) { .partnerships-grid { grid-template-columns: 1fr; } }
+    .partnership-card { background: #fff; border-radius: var(--card-radius); box-shadow: var(--card-shadow); padding: 40px; display: flex; flex-direction: column; gap: 20px; border: 1px solid transparent; transition: box-shadow 0.25s, transform 0.25s; position: relative; overflow: hidden; }
+    .partnership-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(.22,1,.36,1); }
+    .partnership-card:hover::before { transform: scaleX(1); }
+    .partnership-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.13); transform: translateY(-3px); }
+    .partner-logo-area { display: flex; align-items: center; justify-content: space-between; }
+    .partner-logo-img { height: 44px; display: flex; align-items: center; }
+    .partner-logo-img img { height: 44px; width: 44px; border-radius: 10px; object-fit: cover; }
+    .partner-verified { display: flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.1); border: 1px solid rgba(113,177,54,0.25); border-radius: 20px; padding: 5px 12px; }
+    .partner-verified-icon { width: 16px; height: 16px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .partner-verified-icon::after { content: '✓'; font-size: 9px; color: #fff; font-weight: 700; }
+    .partner-verified-text { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--accent); }
+    .partner-name-large { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; color: var(--primary); }
+    .partner-desc { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+    .partner-stats { display: flex; gap: 24px; padding-top: 16px; border-top: 1px solid #E5E7EB; flex-wrap: wrap; }
+    .partner-stat-item { display: flex; flex-direction: column; gap: 3px; }
+    .partner-stat-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; color: var(--primary); }
+    .partner-stat-lbl { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); }
+
+    /* ── HOME: SERVICES ── */
+    #services { background: #fff; padding: var(--section-py) 0; }
+    .services-header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 56px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 960px) { .services-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 580px) { .services-grid { grid-template-columns: 1fr; } }
+    .service-card { background: #fff; border: 1px solid #E5E7EB; border-radius: var(--card-radius); padding: 32px; display: flex; flex-direction: column; gap: 14px; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(.22,1,.36,1); }
+    .service-card:hover { border-color: transparent; box-shadow: 0 12px 32px rgba(0,0,0,0.1); transform: translateY(-4px); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { width: 48px; height: 48px; background: rgba(23,37,84,0.06); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .service-icon svg { width: 24px; height: 24px; stroke: var(--primary); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .service-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 700; color: var(--primary); }
+    .service-card p { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-muted); line-height: 1.65; flex: 1; }
+    .service-link { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s; cursor: pointer; }
+    .service-link:hover { gap: 10px; }
+
+    /* ── HOME: METODOLOGÍA ── */
+    #metodologia { background: var(--secondary); padding: var(--section-py) 0; }
+    .metodologia-header { text-align: center; margin-bottom: 72px; }
+    .metodologia-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .metodologia-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 700; color: var(--primary); line-height: 1.15; margin-bottom: 16px; }
+    .metodologia-subtitle { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--text-muted); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+    
+    .timeline-container { position: relative; max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
+    .timeline-line { position: absolute; top: 24px; left: 60px; right: 60px; height: 2px; background: rgba(23,37,84,0.2); transform-origin: left; transform: scaleX(0); transition: transform 1.2s ease-out; }
+    .timeline-line.visible { transform: scaleX(1); }
+    .timeline-phases { display: flex; justify-content: space-between; position: relative; }
+    
+    .timeline-phase { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; opacity: 0; transform: scale(0.8) translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .timeline-phase.visible { opacity: 1; transform: scale(1) translateY(0); }
+    .timeline-phase:nth-child(1).visible { transition-delay: 0s; }
+    .timeline-phase:nth-child(2).visible { transition-delay: 0.1s; }
+    .timeline-phase:nth-child(3).visible { transition-delay: 0.2s; }
+    .timeline-phase:nth-child(4).visible { transition-delay: 0.3s; }
+    .timeline-phase:nth-child(5).visible { transition-delay: 0.4s; }
+    .timeline-phase:nth-child(6).visible { transition-delay: 0.5s; }
+    .timeline-phase:nth-child(7).visible { transition-delay: 0.6s; }
+    .timeline-phase:nth-child(8).visible { transition-delay: 0.7s; }
+    
+    .phase-badge { position: absolute; top: -28px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; color: var(--accent); background: rgba(113,177,54,0.1); border: 1px solid rgba(113,177,54,0.3); border-radius: 12px; padding: 3px 10px; white-space: nowrap; }
+    
+    .phase-circle { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); border: 3px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; cursor: pointer; transition: background 0.2s, transform 0.2s; flex-shrink: 0; z-index: 2; }
+    .phase-circle:hover { background: var(--accent); transform: scale(1.1); }
+    
+    .phase-content { margin-top: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .phase-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+    .phase-divider { width: 20px; height: 2px; background: var(--accent); margin-bottom: 10px; }
+    .phase-desc { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); line-height: 1.5; max-width: 120px; }
+    
+    .metodologia-cta { text-align: center; margin-top: 40px; }
+    .metodologia-cta-text { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--text-body); margin-bottom: 24px; }
+    .metodologia-cta-text strong { color: var(--primary); font-weight: 600; }
+    
+    @media (max-width: 960px) {
+      .timeline-phases { flex-wrap: wrap; justify-content: center; gap: 48px; }
+      .timeline-phase { flex: 0 0 calc(50% - 24px); max-width: 200px; }
+      .timeline-line { display: none; }
+      .phase-desc { max-width: 160px; }
+    }
+    @media (max-width: 580px) {
+      .timeline-phase { flex: 0 0 100%; max-width: 280px; }
+    }
+
+    /* ── HOME: PRODUCTS PREVIEW ── */
+    #products { background: var(--primary); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+    #products::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    #products::after { content: ''; position: absolute; width: 500px; height: 500px; top: -100px; right: -80px; background: radial-gradient(circle,rgba(113,177,54,0.1) 0%,transparent 70%); pointer-events: none; }
+    .products-inner { position: relative; z-index: 2; }
+    .products-header { text-align: center; margin-bottom: 56px; }
+    .products-grid { display: flex; flex-direction: column; gap: 24px; }
+    .product-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--card-radius); padding: 40px 48px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; transition: background 0.25s, border-color 0.25s, transform 0.25s; cursor: pointer; }
+    .product-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(113,177,54,0.35); transform: translateY(-2px); }
+    @media (max-width: 768px) { .product-card { grid-template-columns: 1fr; padding: 32px; } }
+    .product-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.15); border: 1px solid rgba(113,177,54,0.3); border-radius: 20px; padding: 4px 12px; margin-bottom: 14px; }
+    .product-badge span { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+    .product-badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .product-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .product-desc { font-family: 'Inter', sans-serif; font-size: 15px; color: rgba(255,255,255,0.62); line-height: 1.65; margin-bottom: 20px; max-width: 500px; }
+    .product-bullets { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+    .product-bullet { display: flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.78); }
+    .product-bullet::before { content: ''; display: block; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .product-cta { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; cursor: pointer; background: none; border: none; }
+    .product-cta:hover { gap: 12px; }
+    .product-visual { width: 180px; height: 180px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .product-visual svg { width: 72px; height: 72px; stroke: rgba(113,177,54,0.5); fill: none; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+    @media (max-width: 768px) { .product-visual { display: none; } }
+
+    /* ── HOME: CTA SECTION ── */
+    #cta-section { background: linear-gradient(135deg,#0f1c42 0%,var(--primary) 60%,#1e3a6e 100%); padding: var(--section-py) 0; text-align: center; position: relative; overflow: hidden; }
+    #cta-section::before { content: ''; position: absolute; width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle,rgba(113,177,54,0.12) 0%,transparent 65%); pointer-events: none; }
+    .cta-inner { position: relative; z-index: 2; }
+    .cta-headline { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 44px; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 20px; }
+    .cta-headline em { font-style: normal; color: var(--accent); }
+    .cta-sub { font-family: 'Inter', sans-serif; font-size: 18px; color: rgba(255,255,255,0.65); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .cta-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    @media (max-width: 768px) { .cta-headline { font-size: 30px; } }
+
+    /* ── FOOTER ── */
+    #footer { background: var(--primary); padding: 72px 0 32px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; margin-bottom: 56px; }
+    @media (max-width: 960px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .footer-logo-img { height: 40px; width: auto; display: block; margin-bottom: 14px; }
+    .footer-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 24px; max-width: 260px; }
+    .footer-partner-logos { display: flex; gap: 10px; flex-wrap: wrap; }
+    .footer-partner-badge { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 12px; }
+    .footer-partner-badge img { width: 18px; height: 18px; border-radius: 4px; object-fit: cover; }
+    .footer-partner-badge span { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); }
+    .footer-col-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.9); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.52); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+    .footer-contact-item { display: flex; flex-direction: column; gap: 3px; margin-bottom: 12px; }
+    .footer-contact-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); }
+    .footer-contact-val { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.65); }
+    .footer-contact-val a { color: rgba(255,255,255,0.65); text-decoration: none; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; }
+
+    /* ── SCROLL TOP ── */
+    .scroll-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(113,177,54,0.45); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; z-index: 900; }
+    .scroll-top.show { opacity: 1; transform: translateY(0); }
+    .scroll-top svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── INNER PAGE: HERO (compact) ── */
+    .page-hero { background: var(--primary); min-height: 52vh; display: flex; align-items: center; padding: 140px 0 80px; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .page-hero::after { content: ''; position: absolute; width: 600px; height: 600px; top: -120px; right: -80px; background: radial-gradient(circle,rgba(113,177,54,0.12) 0%,transparent 70%); pointer-events: none; }
+    .page-hero-inner { position: relative; z-index: 2; }
+    .page-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(113,177,54,0.15); border: 1px solid rgba(113,177,54,0.3); border-radius: 20px; padding: 6px 14px; margin-bottom: 24px; }
+    .page-hero-eyebrow-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    .page-hero-eyebrow span { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--accent); }
+    .page-hero-h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 52px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 20px; text-wrap: pretty; }
+    .page-hero-h1 em { font-style: normal; color: var(--accent); }
+    .page-hero-sub { font-family: 'Inter', sans-serif; font-size: 17px; color: rgba(255,255,255,0.68); line-height: 1.7; max-width: 540px; }
+    @media (max-width: 768px) { .page-hero-h1 { font-size: 32px; } }
+
+    /* breadcrumb */
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+    .breadcrumb a, .breadcrumb span.bc-link { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+    .breadcrumb a:hover, .breadcrumb span.bc-link:hover { color: rgba(255,255,255,0.8); }
+    .breadcrumb-sep { color: rgba(255,255,255,0.25); font-size: 13px; }
+    .breadcrumb-cur { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); }
+
+    /* ── PRODUCTS PAGE ── */
+    .showcase { padding: var(--section-py) 0; border-bottom: 1px solid #F0F0F0; }
+    .showcase.alt { background: var(--secondary); }
+    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .showcase-grid.mirror { direction: rtl; }
+    .showcase-grid.mirror > * { direction: ltr; }
+    @media (max-width: 960px) { .showcase-grid { grid-template-columns: 1fr; gap: 48px; } .showcase-grid.mirror { direction: ltr; } }
+    .showcase-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.1); border: 1px solid rgba(113,177,54,0.25); border-radius: 20px; padding: 5px 13px; margin-bottom: 20px; width: fit-content; }
+    .showcase-badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .showcase-badge span { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.07em; }
+    .showcase-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 38px; font-weight: 800; color: var(--primary); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .showcase-tagline { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 600; color: var(--primary); margin-bottom: 18px; opacity: 0.8; }
+    .showcase-desc { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted); line-height: 1.75; margin-bottom: 28px; }
+    .use-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .chip { background: rgba(23,37,84,0.06); border: 1px solid rgba(23,37,84,0.12); border-radius: 20px; padding: 6px 14px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--primary); }
+    .benefits-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .benefit-row { display: flex; align-items: flex-start; gap: 14px; }
+    .benefit-icon { width: 36px; height: 36px; flex-shrink: 0; background: rgba(113,177,54,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .benefit-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .benefit-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; color: var(--primary); }
+    .benefit-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-muted); line-height: 1.55; }
+    .showcase-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Browser mockup */
+    .browser-frame { background: #fff; border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.06); overflow: hidden; }
+    .browser-toolbar { background: #F3F4F6; padding: 10px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #E5E7EB; }
+    .browser-dots { display: flex; gap: 6px; }
+    .browser-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .browser-dots span:nth-child(1){background:#FF5F57} .browser-dots span:nth-child(2){background:#FFBD2E} .browser-dots span:nth-child(3){background:#28C840}
+    .browser-address { flex: 1; background: #fff; border: 1px solid #E5E7EB; border-radius: 6px; padding: 5px 12px; font-family: 'Inter', sans-serif; font-size: 12px; color: #9CA3AF; }
+    .browser-placeholder { width: 100%; aspect-ratio: 16/10; background: #F8F9FA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border: 2px dashed #E5E7EB; }
+    .browser-placeholder svg { width: 48px; height: 48px; stroke: #D1D5DB; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .browser-placeholder span { font-family: 'Inter', sans-serif; font-size: 13px; color: #9CA3AF; }
+    .browser-placeholder-sm { aspect-ratio: 16/10; background: #F8F9FA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 2px dashed #E5E7EB; }
+    .browser-placeholder-sm svg { width: 36px; height: 36px; stroke: #D1D5DB; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .browser-placeholder-sm span { font-family: 'Inter', sans-serif; font-size: 12px; color: #9CA3AF; }
+
+    /* ── PRODUCT DETAIL: valor cards ── */
+    .valor-section { background: var(--secondary); padding: var(--section-py) 0; }
+    .valor-section.white { background: #fff; }
+    .section-header-center { text-align: center; margin-bottom: 56px; }
+    .section-header-center h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 38px; font-weight: 700; color: var(--primary); line-height: 1.15; margin-bottom: 14px; }
+    .section-header-center p { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--text-muted); max-width: 520px; margin: 0 auto; line-height: 1.65; }
+    .valor-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    @media (max-width: 768px) { .valor-grid { grid-template-columns: 1fr; } }
+    .valor-card { background: #fff; border-radius: var(--card-radius); border: 1px solid #E5E7EB; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px; transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s; position: relative; overflow: hidden; }
+    .valor-section.white .valor-card { background: var(--secondary); }
+    .valor-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(.22,1,.36,1); }
+    .valor-card:hover::before { transform: scaleX(1); }
+    .valor-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.1); transform: translateY(-4px); border-color: transparent; }
+    .valor-icon { width: 56px; height: 56px; background: rgba(23,37,84,0.06); border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+    .valor-icon svg { width: 28px; height: 28px; stroke: var(--primary); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .valor-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary); }
+    .valor-card p { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+    .valor-stat { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 800; color: var(--accent); margin-top: 4px; }
+    .valor-stat-lbl { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); }
+
+    /* ── FUNC TABS ── */
+    .func-tabs { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; background: var(--secondary); border-radius: 12px; padding: 6px; margin-bottom: 48px; width: fit-content; margin-left: auto; margin-right: auto; }
+    .func-tab { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; padding: 10px 24px; border-radius: 8px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: background 0.2s, color 0.2s; }
+    .func-tab.active { background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(23,37,84,0.2); }
+    .func-tab:hover:not(.active) { background: rgba(23,37,84,0.06); color: var(--primary); }
+    .func-panel { display: none; }
+    .func-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    @media (max-width: 960px) { .func-panel.active { grid-template-columns: 1fr; gap: 40px; } }
+    .func-module-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.1); border: 1px solid rgba(113,177,54,0.25); border-radius: 20px; padding: 5px 13px; margin-bottom: 18px; }
+    .func-module-badge span { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.07em; }
+    .func-text h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 700; color: var(--primary); line-height: 1.2; margin-bottom: 14px; }
+    .func-text p { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+    .func-actions { display: flex; flex-direction: column; gap: 10px; }
+    .func-action-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--secondary); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-body); transition: background 0.2s; }
+    .func-action-item:hover { background: #E8F5DB; }
+    .func-action-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── CASOS DE USO ── */
+    .casos-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
+    @media (max-width: 768px) { .casos-grid { grid-template-columns: 1fr; } }
+    .caso-card { background: #fff; border-radius: var(--card-radius); box-shadow: var(--card-shadow); padding: 36px; display: flex; flex-direction: column; gap: 20px; border: 1px solid #E5E7EB; transition: box-shadow 0.25s, transform 0.25s; }
+    .caso-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.12); transform: translateY(-3px); }
+    .caso-industry { display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .caso-industry-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .caso-step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #F3F4F6; }
+    .caso-step:last-of-type { border-bottom: none; }
+    .caso-step-icon { width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .caso-step-icon.before { background: rgba(239,68,68,0.1); }
+    .caso-step-icon.action { background: rgba(23,37,84,0.07); }
+    .caso-step-icon svg { width: 17px; height: 17px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .caso-step-icon.before svg { stroke: #EF4444; }
+    .caso-step-icon.action svg { stroke: var(--primary); }
+    .caso-step-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-muted); }
+    .caso-step-text { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-body); line-height: 1.5; }
+    .caso-result-pill { align-self: flex-start; background: rgba(113,177,54,0.1); border: 1px solid rgba(113,177,54,0.25); border-radius: 20px; padding: 6px 14px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--accent); }
+
+    /* ── FORM CTA ── */
+    .form-cta-section { background: var(--primary); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+    .form-cta-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .form-cta-section::after { content: ''; position: absolute; width: 600px; height: 600px; top: -200px; right: -100px; background: radial-gradient(circle,rgba(113,177,54,0.1) 0%,transparent 70%); pointer-events: none; }
+    .form-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    @media (max-width: 960px) { .form-inner { grid-template-columns: 1fr; gap: 48px; } }
+    .form-left h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 16px; }
+    .form-left h2 em { font-style: normal; color: var(--accent); }
+    .form-left p { font-family: 'Inter', sans-serif; font-size: 16px; color: rgba(255,255,255,0.62); line-height: 1.7; margin-bottom: 32px; }
+    .form-trust { display: flex; flex-direction: column; gap: 12px; }
+    .form-trust-item { display: flex; align-items: center; gap: 10px; }
+    .form-trust-check { width: 20px; height: 20px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .form-trust-check::after { content: '✓'; font-size: 10px; color: #fff; font-weight: 700; }
+    .form-trust-item span { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.72); }
+    .form-right { background: #fff; border-radius: var(--card-radius); padding: 40px; box-shadow: 0 24px 64px rgba(0,0,0,0.25); }
+    .form-right h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .form-group label { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--text-body); }
+    .form-group input, .form-group textarea, .form-group select { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-body); border: 1.5px solid #D1D5DB; border-radius: 8px; padding: 12px 14px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(113,177,54,0.12); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 580px) { .form-row { grid-template-columns: 1fr; } }
+    .form-submit { width: 100%; justify-content: center; font-size: 16px; padding: 16px; }
+    .form-note { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+    .form-success { display: none; text-align: center; padding: 32px 0; }
+    .form-success-icon { width: 56px; height: 56px; background: rgba(113,177,54,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .form-success-icon svg { width: 28px; height: 28px; stroke: var(--accent); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .form-success h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+    .form-success p { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="goTo('home')">
+      <img src="assets/connexaAzulP.png" alt="Connexa Services" />
+    </div>
+    <ul class="nav-links">
+      <li><a onclick="goTo('home');scrollToSection('services')">Servicios</a></li>
+      <li><a onclick="goTo('productos')" id="nav-productos">Productos</a></li>
+      <li><a onclick="goTo('home');scrollToSection('partnerships')">Partnerships</a></li>
+      <li><a href="#">Casos de éxito</a></li>
+      <li><a href="#">Nosotros</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn-primary" onclick="goTo('home');scrollToSection('cta-section')">Hablar con un experto</button>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a onclick="goTo('home');scrollToSection('services');closeMobileNav()">Servicios</a>
+  <a onclick="goTo('productos');closeMobileNav()">Productos</a>
+  <a onclick="goTo('home');scrollToSection('partnerships');closeMobileNav()">Partnerships</a>
+  <a href="#">Casos de éxito</a>
+  <a href="#">Nosotros</a>
+  <button class="btn-primary" onclick="goTo('home');scrollToSection('cta-section');closeMobileNav()">Hablar con un experto</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>Field Service Management · Experts certificados</span></div>
+      <h1 class="hero-headline">
+        Transformamos el Field&nbsp;Service<br/>
+        en <em>ventaja competitiva</em>
+      </h1>
+      <p class="hero-subheadline">Somos expertos en Oracle Field Service Cloud y Zinier.<br/>Implementación, consultoría, soporte y soluciones propias<br/>para optimizar cada operación de campo.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="scrollToSection('services')" style="font-size:16px;padding:16px 32px;">
+          Conocé nuestras soluciones
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="btn-ghost" onclick="scrollToSection('cta-section')" style="font-size:16px;padding:16px 32px;">Hablar con un experto</button>
+      </div>
+    </div>
+    <div class="hero-trust-bar">
+      <span class="trust-label-text">Partner oficial</span>
+      <div class="trust-sep"></div>
+      <div class="trust-partner">
+        <img src="assets/OFSC-hq.png" alt="Oracle" />
+        <div class="trust-partner-text"><span class="trust-partner-name">Oracle</span><span class="trust-partner-caption">Field Service Cloud</span></div>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-partner">
+        <img src="assets/zinier-hq.webp" alt="Zinier" style="background:#fff;border-radius:7px;" />
+        <div class="trust-partner-text"><span class="trust-partner-name">Zinier</span><span class="trust-partner-caption">Certified Partner</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section id="hero-metrics-row">
+    <div class="metrics-inner">
+      <div class="metric-item fade-up"><div class="metric-num">50<span>+</span></div><div class="metric-label">Proyectos implementados</div></div>
+      <div class="metric-divider"></div>
+      <div class="metric-item fade-up d1"><div class="metric-num">12<span>+</span></div><div class="metric-label">Países de operación</div></div>
+      <div class="metric-divider"></div>
+      <div class="metric-item fade-up d2"><div class="metric-num">10<span>+</span></div><div class="metric-label">Años de experiencia</div></div>
+    </div>
+  </section>
+
+  <!-- CLIENTS CAROUSEL -->
+  <section id="clients-carousel">
+    <div class="clients-eyebrow">Empresas que confían en Connexa</div>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <img class="carousel-logo" src="assets/clients/claro.png" alt="Claro" />
+        <img class="carousel-logo" src="assets/clients/telefonica.png" alt="Telefónica" />
+        <img class="carousel-logo" src="assets/clients/vodafone.png" alt="Vodafone" />
+        <img class="carousel-logo" src="assets/clients/tim.png" alt="TIM" />
+        <img class="carousel-logo" src="assets/clients/prosegur.png" alt="Prosegur" />
+        <img class="carousel-logo" src="assets/clients/promigas.png" alt="Promigas" />
+        <img class="carousel-logo" src="assets/clients/simpress.png" alt="Simpress" />
+        <img class="carousel-logo" src="assets/clients/onnet.png" alt="OnNet" />
+        <!-- duplicate for seamless loop -->
+        <img class="carousel-logo" src="assets/clients/claro.png" alt="Claro" />
+        <img class="carousel-logo" src="assets/clients/telefonica.png" alt="Telefónica" />
+        <img class="carousel-logo" src="assets/clients/vodafone.png" alt="Vodafone" />
+        <img class="carousel-logo" src="assets/clients/tim.png" alt="TIM" />
+        <img class="carousel-logo" src="assets/clients/prosegur.png" alt="Prosegur" />
+        <img class="carousel-logo" src="assets/clients/promigas.png" alt="Promigas" />
+        <img class="carousel-logo" src="assets/clients/simpress.png" alt="Simpress" />
+        <img class="carousel-logo" src="assets/clients/onnet.png" alt="OnNet" />
+      </div>
+    </div>
+    <div class="clients-separator"></div>
+  </section>
+
+  <!-- PARTNERSHIPS -->
+  <section id="partnerships">
+    <div class="container">
+      <div class="partnerships-header"><span class="section-label fade-up">Nuestros Partners</span><h2 class="section-title fade-up d1">Respaldados por los líderes<br/>globales del Field Service</h2><p class="section-subtitle fade-up d2" style="margin:0 auto;">Relaciones de partnership oficial certificado con las dos plataformas líderes del mercado global de Field Service Management.</p></div>
+      <div class="partnerships-grid">
+        <div class="partnership-card fade-up d1">
+          <div class="partner-logo-area">
+            <div class="partner-logo-img"><img src="assets/OFSC-hq.png" alt="Oracle" /></div>
+            <div class="partner-verified"><div class="partner-verified-icon"></div><span class="partner-verified-text">Partner Certificado</span></div>
+          </div>
+          <div class="partner-name-large">Oracle Field Service Cloud</div>
+          <p class="partner-desc">Partner oficial de Oracle para la implementación y soporte de Oracle Field Service Cloud. Lideramos proyectos de transformación digital para empresas de utilities, telecomunicaciones e industria de servicios.</p>
+          <div class="partner-stats">
+            <div class="partner-stat-item"><div class="partner-stat-val">30+</div><div class="partner-stat-lbl">Impl. OFSC</div></div>
+            <div class="partner-stat-item"><div class="partner-stat-val">99%</div><div class="partner-stat-lbl">Satisfacción</div></div>
+            <div class="partner-stat-item"><div class="partner-stat-val">8+</div><div class="partner-stat-lbl">Años de partnership</div></div>
+          </div>
+        </div>
+        <div class="partnership-card fade-up d2">
+          <div class="partner-logo-area">
+            <div class="partner-logo-img"><img src="assets/zinier-hq.webp" alt="Zinier" style="background:#fff;border-radius:10px;" /></div>
+            <div class="partner-verified"><div class="partner-verified-icon"></div><span class="partner-verified-text">Partner Certificado</span></div>
+          </div>
+          <div class="partner-name-large">Zinier FSM Platform</div>
+          <p class="partner-desc">Partner certificado de Zinier, la plataforma de inteligencia artificial para Field Service Management de próxima generación. Implementamos flujos de trabajo inteligentes y automatizados.</p>
+          <div class="partner-stats">
+            <div class="partner-stat-item"><div class="partner-stat-val">20+</div><div class="partner-stat-lbl">Impl. Zinier</div></div>
+            <div class="partner-stat-item"><div class="partner-stat-val">40%</div><div class="partner-stat-lbl">Efic. promedio</div></div>
+            <div class="partner-stat-item"><div class="partner-stat-val">5+</div><div class="partner-stat-lbl">Años de partnership</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header"><span class="section-label fade-up">Capacidades</span><h2 class="section-title fade-up d1">Todo lo que necesitás<br/>para tu Field Service</h2><p class="section-subtitle fade-up d2" style="margin:0 auto;">Desde la implementación inicial hasta el soporte continuo, cubrimos todo el ciclo de vida de tu operación de campo.</p></div>
+      <div class="services-grid">
+        <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div><h3>Implementación OFSC</h3><p>Diseño, configuración y puesta en marcha de Oracle Field Service Cloud. Desde el análisis de procesos hasta el go-live y capacitación de equipos.</p><span class="service-link" onclick="goTo('home')">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Implementación Zinier</h3><p>Configuración de la plataforma Zinier adaptada a tus flujos de trabajo, integraciones con sistemas existentes y deployment en producción.</p><span class="service-link">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3>Consultoría FSM</h3><p>Análisis de madurez operacional, diseño de procesos y estrategia de transformación digital para tu área de Field Service Management.</p><span class="service-link">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Soporte Post Go-Live</h3><p>Servicio de soporte continuo con SLA garantizado, gestión de incidentes, mejoras evolutivas y acompañamiento técnico de primer nivel.</p><span class="service-link">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Desarrollo a Medida</h3><p>Desarrollo de plugins, extensiones y soluciones personalizadas sobre las plataformas OFSC y Zinier para adaptar la herramienta a tu negocio.</p><span class="service-link">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3>Integraciones</h3><p>Conectamos OFSC y Zinier con tus sistemas ERP, CRM, GIS o de facturación mediante APIs, middleware y conectores especializados.</p><span class="service-link">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METODOLOGÍA -->
+  <section id="metodologia">
+    <div class="container">
+      <div class="metodologia-header">
+        <div class="metodologia-eyebrow fade-up">NUESTRA METODOLOGÍA</div>
+        <h2 class="metodologia-title fade-up d1">Un proceso probado para<br/>cada implementación</h2>
+        <p class="metodologia-subtitle fade-up d2">Cada proyecto sigue una metodología estructurada que garantiza resultados predecibles y de calidad.</p>
+      </div>
+
+      <div class="timeline-container fade-up d2">
+        <div class="timeline-line" id="timeline-line"></div>
+        <div class="timeline-phases" id="timeline-phases">
+          
+          <div class="timeline-phase">
+            <div class="phase-circle">1</div>
+            <div class="phase-content">
+              <div class="phase-name">Descubrimiento</div>
+              <div class="phase-divider"></div>
+              <div class="phase-desc">Relevamiento del negocio, procesos actuales y necesidades operativas del cliente.</div>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <div class="phase-circle">2</div>
+            <div class="phase-content">
+              <div class="phase-name">Análisis</div>
+              <div class="phase-divider"></div>
+              <div class="phase-desc">Evaluación técnica y funcional del entorno OFSC o Zinier para definir el alcance.</div>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <div class="phase-circle">3</div>
+            <div class="phase-content">
+              <div class="phase-name">Estimación</div>
+              <div class="phase-divider"></div>
+              <div class="phase-desc">Planificación de tiempos, recursos y costos del proyecto con entregables claros.</div>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <div class="phase-circle">4</div>
+            <div class="phase-content">
+              <div class="phase-name">Desarrollo</div>
+              <div class="phase-divider"></div>
+              <div class="phase-desc">Configuración, parametrización y desarrollo de soluciones sobre la plataforma.</div>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <div class="phase-badge">QA</div>
+            <div class="phase-circle">5</div>
+            <div class="phase-content">
+              <div class="phase-name">Pruebas Internas</div>
+              <div class="phase-divider"></div>
+              <div class="phase-desc">Validación funcional y de integración realizada por el equipo técnico de Connexa.</div>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <div class="phase-badge">QA</div>
+            <div class="phase-circle">6</div>
+            <div class="phase-content">
+              <div class="phase-name">UAT</div>
+              <div class="phase-divider"></div>
+              <div class="phase-desc">Pruebas de aceptación ejecutadas por los usuarios finales del cliente en su entorno.</div>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <div class="phase-badge">🚀</div>
+            <div class="phase-circle">7</div>
+            <div class="phase-content">
+              <div class="phase-name">Go Live</div>
+              <div class="phase-divider"></div>
+              <div class="phase-desc">Puesta en producción, capacitación de usuarios y acompañamiento en el lanzamiento.</div>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <div class="phase-badge">∞</div>
+            <div class="phase-circle">8</div>
+            <div class="phase-content">
+              <div class="phase-name">Soporte</div>
+              <div class="phase-divider"></div>
+              <div class="phase-desc">Monitoreo post-implementación, mejora continua y soporte técnico especializado.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="metodologia-cta fade-up d3">
+        <p class="metodologia-cta-text"><strong>¿Querés conocer cómo aplicamos esta metodología en tu empresa?</strong></p>
+        <button class="btn-primary" onclick="scrollToSection('cta-section')" style="font-size:16px;padding:14px 32px;">Hablemos →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS PREVIEW -->
+  <section id="products">
+    <div class="container products-inner">
+      <div class="products-header">
+        <span class="section-label fade-up" style="color:var(--accent);">Innovación propia</span>
+        <h2 class="section-title fade-up d1" style="color:#fff;">Nuestras soluciones propias</h2>
+        <p class="section-subtitle fade-up d2" style="color:rgba(255,255,255,0.6);margin:0 auto;">Herramientas desarrolladas internamente sobre las plataformas líderes, diseñadas para resolver los desafíos más comunes del Field Service.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card fade-up d1" onclick="goTo('fsmtool')">
+          <div>
+            <div class="product-badge"><div class="product-badge-dot"></div><span>Solución propia</span></div>
+            <div class="product-name">FSMTool</div>
+            <p class="product-desc">Suite de herramientas avanzadas de administración y monitoreo para Oracle Field Service Cloud. Operaciones masivas, dashboards en tiempo real y automatización de procesos.</p>
+            <div class="product-bullets"><div class="product-bullet">Dashboard de operaciones en tiempo real</div><div class="product-bullet">Gestión avanzada de rutas y recursos</div><div class="product-bullet">Reportería y analytics personalizables</div></div>
+            <button class="product-cta">Conocer más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+          <div class="product-visual"><svg viewBox="0 0 80 80"><rect x="8" y="20" width="64" height="44" rx="6"/><rect x="14" y="28" width="22" height="14" rx="3"/><rect x="14" y="46" width="22" height="8" rx="2"/><rect x="42" y="28" width="22" height="8" rx="2"/><rect x="42" y="40" width="22" height="14" rx="3"/><circle cx="14" cy="14" r="3"/><circle cx="40" cy="14" r="3"/><circle cx="66" cy="14" r="3"/></svg></div>
+        </div>
+        <div class="product-card fade-up d2" onclick="goTo('workflow')">
+          <div>
+            <div class="product-badge"><div class="product-badge-dot"></div><span>Solución propia</span></div>
+            <div class="product-name">Workflow Builder</div>
+            <p class="product-desc">Constructor visual de flujos de trabajo para Oracle Field Service Cloud. Permite diseñar, testear y publicar workflows sin código, reduciendo el time-to-market de nuevos procesos.</p>
+            <div class="product-bullets"><div class="product-bullet">Editor drag &amp; drop sin código</div><div class="product-bullet">Integración nativa con OFSC APIs</div><div class="product-bullet">Testing y simulación en sandbox</div></div>
+            <button class="product-cta">Conocer más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+          <div class="product-visual"><svg viewBox="0 0 80 80"><circle cx="20" cy="20" r="8"/><circle cx="60" cy="20" r="8"/><circle cx="20" cy="60" r="8"/><circle cx="60" cy="60" r="8"/><line x1="28" y1="20" x2="52" y2="20"/><line x1="20" y1="28" x2="20" y2="52"/><line x1="28" y1="60" x2="52" y2="60"/><line x1="60" y1="28" x2="60" y2="52"/><circle cx="40" cy="40" r="6"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta-section">
+    <div class="container cta-inner">
+      <span class="section-label fade-up" style="color:var(--accent);">Hablemos</span>
+      <h2 class="cta-headline fade-up d1">¿Listo para optimizar tu<br/><em>operación de campo</em>?</h2>
+      <p class="cta-sub fade-up d2">Nuestro equipo de expertos está disponible para analizar tu situación actual y proponer la estrategia óptima para tu negocio.</p>
+      <div class="cta-btns fade-up d3">
+        <a href="mailto:contacto@connexaservices.com" class="btn-primary" style="font-size:16px;padding:16px 36px;">Hablar con un experto</a>
+        <button class="btn-ghost" onclick="scrollToSection('services')" style="font-size:16px;padding:16px 36px;">Ver servicios</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><img class="footer-logo-img" src="assets/connexaAzulP.png" alt="Connexa Services" /><p class="footer-desc">Expertos en Field Service Management. Implementamos, optimizamos y soportamos Oracle Field Service Cloud y Zinier para empresas líderes en América Latina y el mundo.</p><div class="footer-partner-logos"><div class="footer-partner-badge"><img src="assets/OFSC-hq.png" alt="Oracle" /><span>Oracle Partner</span></div><div class="footer-partner-badge"><img src="assets/zinier-hq.webp" alt="Zinier" style="background:#fff;" /><span>Zinier Partner</span></div></div></div>
+        <div><div class="footer-col-title">Servicios</div><ul class="footer-links"><li><a onclick="scrollToSection('services')">Implementación OFSC</a></li><li><a onclick="scrollToSection('services')">Implementación Zinier</a></li><li><a onclick="scrollToSection('services')">Consultoría FSM</a></li><li><a onclick="scrollToSection('services')">Soporte Post Go-Live</a></li></ul></div>
+        <div><div class="footer-col-title">Productos</div><ul class="footer-links"><li><a onclick="goTo('fsmtool')">FSMTool</a></li><li><a onclick="goTo('workflow')">Workflow Builder</a></li></ul><div class="footer-col-title" style="margin-top:28px;">Empresa</div><ul class="footer-links"><li><a href="#">Nosotros</a></li><li><a href="#">Casos de éxito</a></li></ul></div>
+        <div><div class="footer-col-title">Contacto</div><div class="footer-contact-item"><span class="footer-contact-label">Email</span><div class="footer-contact-val"><a href="mailto:contacto@connexaservices.com">contacto@connexaservices.com</a></div></div><div class="footer-contact-item"><span class="footer-contact-label">Website</span><div class="footer-contact-val">www.connexaservices.com</div></div></div>
+      </div>
+      <div class="footer-bottom"><span class="footer-copy">© 2026 Connexa Services. Todos los derechos reservados.</span><div class="footer-bottom-links"><a href="#">Privacidad</a><a href="#">Términos</a></div></div>
+    </div>
+  </footer>
+</div><!-- /page-home -->
+
+<!-- ══════════════════════════════════════
+     PAGE: PRODUCTOS
+══════════════════════════════════════ -->
+<div class="page" id="page-productos">
+  <div class="page-hero">
+    <div class="container page-hero-inner">
+      <nav class="breadcrumb"><span class="bc-link" onclick="goTo('home')">Inicio</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-cur">Productos</span></nav>
+      <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span>Soluciones propias · Desarrolladas por Connexa</span></div>
+      <h1 class="page-hero-h1">Herramientas que potencian<br/>tu plataforma <em>OFSC</em></h1>
+      <p class="page-hero-sub">Apps web nativas construidas sobre Oracle Field Service Cloud para resolver los desafíos operacionales más complejos del Field Service, sin fricciones y sin código adicional.</p>
+    </div>
+  </div>
+
+  <!-- FSMTool showcase -->
+  <div class="showcase" id="prod-fsmtool">
+    <div class="container">
+      <div class="showcase-grid">
+        <div class="showcase-text">
+          <div class="showcase-badge fade-up"><div class="showcase-badge-dot"></div><span>Solución propia</span></div>
+          <h2 class="showcase-name fade-up d1">FSMTool</h2>
+          <p class="showcase-tagline fade-up d2">Operaciones masivas en OFSC, sin complejidad</p>
+          <p class="showcase-desc fade-up d2">FSMTool es una suite de administración y monitoreo de operaciones construida nativamente sobre Oracle Field Service Cloud. Permite a los equipos de operaciones ejecutar acciones masivas, visualizar el estado en tiempo real y automatizar los procesos del día a día.</p>
+          <div class="use-chips fade-up d3"><span class="chip">Reasignación masiva de órdenes</span><span class="chip">Cierre automático de actividades</span><span class="chip">Monitoreo de SLA en vivo</span></div>
+          <div class="benefits-list fade-up d3">
+            <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div><div><div class="benefit-title">Eficiencia operacional ×3</div><div class="benefit-desc">Ejecutá acciones sobre miles de órdenes en segundos.</div></div></div>
+            <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="benefit-title">Visibilidad en tiempo real</div><div class="benefit-desc">Dashboard operacional con KPIs y alertas automáticas.</div></div></div>
+            <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="benefit-title">Sin riesgo de errores</div><div class="benefit-desc">Validaciones integradas antes de cada acción masiva.</div></div></div>
+            <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div><div class="benefit-title">Reportería exportable</div><div class="benefit-desc">Exportá cualquier vista a Excel o PDF con un clic.</div></div></div>
+          </div>
+          <div class="showcase-ctas fade-up d4">
+            <button class="btn-primary" onclick="goTo('fsmtool')">Ver demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+            <button class="btn-secondary" onclick="goTo('fsmtool')">Solicitar acceso</button>
+          </div>
+        </div>
+        <div class="fade-up d2">
+          <div class="browser-frame">
+            <div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">app.connexaservices.com/fsmtool</div></div>
+            <img src="assets/fsmtool-home.png" style="width:100%;display:block;" alt="FSMTool dashboard" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workflow Builder showcase -->
+  <div class="showcase alt" id="prod-workflow">
+    <div class="container">
+      <div class="showcase-grid mirror">
+        <div class="fade-up d2">
+          <div class="browser-frame">
+            <div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">newwfbuilder.fsmtool.com/workflows</div></div>
+            <img src="assets/wb-canvas.png" style="width:100%;display:block;" alt="Workflow Builder canvas" />
+          </div>
+        </div>
+        <div class="showcase-text">
+          <div class="showcase-badge fade-up"><div class="showcase-badge-dot"></div><span>Solución propia</span></div>
+          <h2 class="showcase-name fade-up d1">Workflow Builder</h2>
+          <p class="showcase-tagline fade-up d2">Automatizá tus procesos OFSC sin código</p>
+          <p class="showcase-desc fade-up d2">Workflow Builder es un constructor visual de flujos de trabajo para Oracle Field Service Cloud. Permite diseñar, testear y publicar procesos de campo complejos sin escribir una línea de código.</p>
+          <div class="use-chips fade-up d3"><span class="chip">Flujos de diagnóstico guiado</span><span class="chip">Checklists de cierre</span><span class="chip">Escalados automáticos</span></div>
+          <div class="benefits-list fade-up d3">
+            <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="benefit-title">Editor drag &amp; drop</div><div class="benefit-desc">Arrastrá nodos y condiciones para construir cualquier flujo.</div></div></div>
+            <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><div class="benefit-title">Integración nativa con OFSC</div><div class="benefit-desc">Acceso directo a todas las APIs de Oracle Field Service.</div></div></div>
+            <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><div class="benefit-title">Sandbox de testing</div><div class="benefit-desc">Simulá cada workflow antes de publicarlo en producción.</div></div></div>
+            <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div class="benefit-title">Autonomía para el negocio</div><div class="benefit-desc">Los equipos de operaciones modifican procesos sin IT.</div></div></div>
+          </div>
+          <div class="showcase-ctas fade-up d4">
+            <button class="btn-primary" onclick="goTo('workflow')">Ver demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+            <button class="btn-secondary" onclick="goTo('workflow')">Solicitar acceso</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section style="background:linear-gradient(135deg,#0f1c42 0%,var(--primary) 60%,#1e3a6e 100%);padding:var(--section-py) 0;text-align:center;position:relative;overflow:hidden;">
+    <div class="container" style="position:relative;z-index:2;">
+      <span class="section-label" style="color:var(--accent);">Demo en vivo</span>
+      <h2 class="cta-headline" style="margin-top:0;">¿Querés ver los productos<br/><em>en acción</em>?</h2>
+      <p class="cta-sub">Agendá una demo personalizada con nuestro equipo.</p>
+      <div class="cta-btns"><a href="mailto:contacto@connexaservices.com?subject=Demo%20Productos" class="btn-primary" style="font-size:16px;padding:16px 36px;">Agendar demo</a><button class="btn-ghost" onclick="scrollToSectionInPage('prod-fsmtool')" style="font-size:16px;padding:16px 36px;">Ver productos</button></div>
+    </div>
+  </section>
+
+  <footer style="background:var(--primary);padding:40px 0 24px;border-top:1px solid rgba(255,255,255,0.06);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <img src="assets/connexaAzulP.png" alt="Connexa Services" style="height:36px;" />
+      <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);">© 2026 Connexa Services. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+</div><!-- /page-productos -->
+
+<!-- ══════════════════════════════════════
+     PAGE: FSMTOOL
+══════════════════════════════════════ -->
+<div class="page" id="page-fsmtool">
+  <div class="page-hero">
+    <div class="container page-hero-inner">
+      <nav class="breadcrumb"><span class="bc-link" onclick="goTo('home')">Inicio</span><span class="breadcrumb-sep">/</span><span class="bc-link" onclick="goTo('productos')">Productos</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-cur">FSMTool</span></nav>
+      <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span>Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
+      <h1 class="page-hero-h1">Operaciones masivas en OFSC,<br/><em>sin complejidad</em></h1>
+      <p class="page-hero-sub">FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva.</p>
+    </div>
+  </div>
+
+  <!-- Hero visual -->
+  <div style="background:var(--primary);padding:0 0 60px;">
+    <div class="container">
+      <div class="browser-frame" style="max-width:900px;margin:0 auto;box-shadow:0 40px 100px rgba(0,0,0,0.4);">
+        <div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">app.connexaservices.com/fsmtool</div></div>
+        <img src="assets/fsmtool-home.png" style="width:100%;display:block;" alt="FSMTool dashboard" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Valor -->
+  <div class="valor-section">
+    <div class="container">
+      <div class="section-header-center"><span class="section-label fade-up">Por qué FSMTool</span><h2 class="fade-up d1">Lo que ninguna otra herramienta te da</h2><p class="fade-up d2">Construido por expertos OFSC para resolver los problemas reales de las operaciones de campo a escala.</p></div>
+      <div class="valor-grid">
+        <div class="valor-card fade-up d1"><div class="valor-icon"><svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Velocidad operacional</h3><p>Ejecutá acciones sobre miles de órdenes en segundos desde una sola pantalla.</p><div class="valor-stat">×10</div><div class="valor-stat-lbl">más rápido que la operación manual</div></div>
+        <div class="valor-card fade-up d2"><div class="valor-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Interfaz intuitiva</h3><p>Diseñada para operadores que no son técnicos. Sin curva de aprendizaje. Funciona desde el día uno.</p><div class="valor-stat">0</div><div class="valor-stat-lbl">horas de capacitación técnica</div></div>
+        <div class="valor-card fade-up d3"><div class="valor-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3>Escala ilimitada</h3><p>Desde 10 hasta 100.000 órdenes por operación con validación previa.</p><div class="valor-stat">100k</div><div class="valor-stat-lbl">registros por operación</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="valor-section white">
+    <div class="container">
+      <div class="section-header-center"><span class="section-label fade-up">Módulos</span><h2 class="fade-up d1">Todo lo que podés hacer</h2><p class="fade-up d2">Cinco módulos integrados que cubren cada aspecto de la operación masiva sobre Oracle Field Service Cloud.</p></div>
+      <div class="func-tabs fade-up d1" id="fsm-tabs">
+        <button class="func-tab active" data-tab="fsm-actividades">Actividades</button>
+        <button class="func-tab" data-tab="fsm-recursos">Recursos</button>
+        <button class="func-tab" data-tab="fsm-inventario">Inventario</button>
+        <button class="func-tab" data-tab="fsm-descargas">Descargas</button>
+      </div>
+      <div class="func-panel active fade-up d2" id="tab-fsm-actividades">
+        <div class="func-text"><div class="func-module-badge"><span>Módulo Actividades</span></div><h3>Gestión masiva de actividades</h3><p>Creá, actualizá, reasigná y cerrá miles de actividades de OFSC en una sola operación. Cargá un Excel y FSMTool valida, procesa y reporta el resultado en tiempo real.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Creación masiva desde plantilla Excel</div><div class="func-action-item"><div class="func-action-dot"></div>Actualización de propiedades por lote</div><div class="func-action-item"><div class="func-action-dot"></div>Cambio de estado (pendiente → en curso → cerrada)</div><div class="func-action-item"><div class="func-action-dot"></div>Reasignación de recurso o fecha</div><div class="func-action-item"><div class="func-action-dot"></div>Validación previa con preview de errores</div></div></div>
+        <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Creación de actividades</div></div><img src="assets/fsmtool-actividades.png" style="width:100%;display:block;" alt="FSMTool actividades" /></div></div>
+      </div>
+      <div class="func-panel" id="tab-fsm-recursos">
+        <div class="func-text"><div class="func-module-badge"><span>Módulo Recursos</span></div><h3>Administración masiva de recursos</h3><p>Gestioná técnicos, vehículos y equipos de tu organización OFSC de forma masiva. Actualizá propiedades, habilidades y calendarios sin abrir cada recurso individualmente.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Creación de recursos en lote</div><div class="func-action-item"><div class="func-action-dot"></div>Actualización de habilidades y certificaciones</div><div class="func-action-item"><div class="func-action-dot"></div>Asignación masiva de zonas de trabajo</div><div class="func-action-item"><div class="func-action-dot"></div>Gestión de calendarios y horarios</div></div></div>
+        <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Recursos</div></div><img src="assets/fsmtool-config.png" style="width:100%;display:block;" alt="FSMTool recursos" /></div></div>
+      </div>
+      <div class="func-panel" id="tab-fsm-inventario">
+        <div class="func-text"><div class="func-module-badge"><span>Módulo Inventario</span></div><h3>Gestión y transferencia de inventario</h3><p>Controlá el stock de materiales asignados a técnicos y almacenes. Realizá transferencias masivas entre recursos y exportá el estado completo del inventario en OFSC.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Transferencia masiva entre recursos</div><div class="func-action-item"><div class="func-action-dot"></div>Carga masiva de stock inicial</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación completa para auditoría</div></div></div>
+        <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Inventario</div></div><img src="assets/fsmtool-config.png" style="width:100%;display:block;" alt="FSMTool inventario" /></div></div>
+      </div>
+      <div class="func-panel" id="tab-fsm-descargas">
+        <div class="func-text"><div class="func-module-badge"><span>Módulo Descargas</span></div><h3>Exportación avanzada de datos OFSC</h3><p>Descargá actividades con filtros avanzados por recurso, fecha, estado y condiciones personalizadas. Ideal para análisis, reportes y auditoría operacional.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Filtros por árbol jerárquico de recursos</div><div class="func-action-item"><div class="func-action-dot"></div>Condiciones personalizables por campo</div><div class="func-action-item"><div class="func-action-dot"></div>Favoritos para consultas recurrentes</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación a Excel con campos configurables</div></div></div>
+        <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Descargas</div></div><img src="assets/fsmtool-descarga.png" style="width:100%;display:block;" alt="FSMTool descargas" /></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Casos -->
+  <div class="valor-section">
+    <div class="container">
+      <div class="section-header-center"><span class="section-label fade-up">Casos reales</span><h2 class="fade-up d1">Resultados medibles en operaciones reales</h2></div>
+      <div class="casos-grid">
+        <div class="caso-card fade-up d1"><div class="caso-industry"><div class="caso-industry-dot"></div>Utilities — Distribuidora eléctrica</div><div class="caso-step"><div class="caso-step-icon before"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="caso-step-label">Situación</div><div class="caso-step-text">Corte masivo afecta a 800 clientes. Todas las órdenes deben reasignarse en 5 minutos.</div></div></div><div class="caso-step"><div class="caso-step-icon action"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="caso-step-label">Acción con FSMTool</div><div class="caso-step-text">Supervisor filtra 800 actividades y ejecuta reasignación masiva en un solo paso.</div></div></div><div class="caso-result-pill">800 órdenes reasignadas en 3 minutos</div></div>
+        <div class="caso-card fade-up d2"><div class="caso-industry"><div class="caso-industry-dot"></div>Telecomunicaciones — ISP</div><div class="caso-step"><div class="caso-step-icon before"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="caso-step-label">Situación</div><div class="caso-step-text">2.000 órdenes de instalación deben cargarse en OFSC antes del lunes. Equipo tiene 2 horas.</div></div></div><div class="caso-step"><div class="caso-step-icon action"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="caso-step-label">Acción con FSMTool</div><div class="caso-step-text">Plantilla Excel, FSMTool valida los 2.000 registros y los crea en OFSC con feedback en tiempo real.</div></div></div><div class="caso-result-pill">2.000 órdenes creadas en 20 minutos</div></div>
+        <div class="caso-card fade-up d1"><div class="caso-industry"><div class="caso-industry-dot"></div>Gas — Distribuidora regional</div><div class="caso-step"><div class="caso-step-icon before"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="caso-step-label">Situación</div><div class="caso-step-text">1.500 órdenes finalizadas aún en estado "pendiente". Auditoría requiere cierre formal antes de las 18hs.</div></div></div><div class="caso-step"><div class="caso-step-icon action"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="caso-step-label">Acción con FSMTool</div><div class="caso-step-text">Filtra por estado, selecciona todas y ejecuta cambio masivo de estado a "completada".</div></div></div><div class="caso-result-pill">1.500 cierres procesados en 8 minutos</div></div>
+        <div class="caso-card fade-up d2"><div class="caso-industry"><div class="caso-industry-dot"></div>Infraestructura — Servicios de campo</div><div class="caso-step"><div class="caso-step-icon before"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="caso-step-label">Situación</div><div class="caso-step-text">50 nuevos técnicos deben cargarse en OFSC con habilidades, zonas y calendarios antes del lunes.</div></div></div><div class="caso-step"><div class="caso-step-icon action"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="caso-step-label">Acción con FSMTool</div><div class="caso-step-text">HR completa plantilla unificada. FSMTool crea los 50 recursos con todas sus propiedades de una vez.</div></div></div><div class="caso-result-pill">50 recursos configurados en 15 minutos</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="form-cta-section">
+    <div class="container">
+      <div class="form-inner">
+        <div class="form-left"><span class="section-label" style="color:var(--accent);">Demo gratuita</span><h2>Probá FSMTool en tu<br/><em>entorno OFSC</em></h2><p>Agendá una demo personalizada. Te mostramos FSMTool funcionando con tus propios datos y casos de uso reales.</p><div class="form-trust"><div class="form-trust-item"><div class="form-trust-check"></div><span>Sin costo. Sin compromiso.</span></div><div class="form-trust-item"><div class="form-trust-check"></div><span>Demo con tu ambiente OFSC real</span></div><div class="form-trust-item"><div class="form-trust-check"></div><span>Respondemos en menos de 24hs hábiles</span></div><div class="form-trust-item"><div class="form-trust-check"></div><span>Expertos certificados en OFSC</span></div></div></div>
+        <div class="form-right"><h3>Solicitá tu demo de FSMTool</h3>
+          <form onsubmit="submitForm(event,'fsm-success')">
+            <div class="form-row"><div class="form-group"><label>Nombre *</label><input type="text" placeholder="Tu nombre" required /></div><div class="form-group"><label>Apellido *</label><input type="text" placeholder="Tu apellido" required /></div></div>
+            <div class="form-group"><label>Empresa *</label><input type="text" placeholder="Nombre de tu empresa" required /></div>
+            <div class="form-group"><label>Email corporativo *</label><input type="email" placeholder="tu@empresa.com" required /></div>
+            <div class="form-group"><label>¿Cómo usás Oracle Field Service Cloud?</label><select><option value="">Seleccioná una opción</option><option>Utilities</option><option>Telecomunicaciones</option><option>Servicios de campo</option><option>Logística</option><option>Otro</option></select></div>
+            <div class="form-group"><label>¿Qué problema querés resolver?</label><textarea placeholder="Contanos tu caso de uso..."></textarea></div>
+            <button type="submit" class="btn-primary form-submit">Solicitar demo gratuita →</button>
+            <p class="form-note">Tus datos están seguros. No enviamos spam.</p>
+          </form>
+          <div class="form-success" id="fsm-success"><div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><h4>¡Solicitud recibida!</h4><p>Nos pondremos en contacto en menos de 24hs hábiles.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--primary);padding:40px 0 24px;border-top:1px solid rgba(255,255,255,0.06);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <img src="assets/connexaAzulP.png" alt="Connexa Services" style="height:36px;cursor:pointer;" onclick="goTo('home')" />
+      <div style="display:flex;gap:16px;"><span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);cursor:pointer;" onclick="goTo('home')">← Inicio</span><span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);cursor:pointer;" onclick="goTo('productos')">← Volver a Productos</span></div>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);">© 2026 Connexa Services</span>
+    </div>
+  </footer>
+</div><!-- /page-fsmtool -->
+
+<!-- ══════════════════════════════════════
+     PAGE: WORKFLOW BUILDER
+══════════════════════════════════════ -->
+<div class="page" id="page-workflow">
+  <div class="page-hero">
+    <div class="container page-hero-inner">
+      <nav class="breadcrumb"><span class="bc-link" onclick="goTo('home')">Inicio</span><span class="breadcrumb-sep">/</span><span class="bc-link" onclick="goTo('productos')">Productos</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-cur">Workflow Builder</span></nav>
+      <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span>Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
+      <h1 class="page-hero-h1">Automatizá tus procesos OFSC<br/><em>sin escribir código</em></h1>
+      <p class="page-hero-sub">Construí y ejecutá workflows programados sobre entidades de Oracle Field Service de forma visual y sencilla. Triggers, condiciones, acciones y notificaciones — todo sin código.</p>
+    </div>
+  </div>
+
+  <div style="background:var(--primary);padding:0 0 60px;">
+    <div class="container">
+      <div class="browser-frame" style="max-width:900px;margin:0 auto;box-shadow:0 40px 100px rgba(0,0,0,0.4);">
+        <div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">newwfbuilder.fsmtool.com/workflows</div></div>
+        <img src="assets/wb-canvas.png" style="width:100%;display:block;" alt="Workflow Builder canvas" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Valor -->
+  <div class="valor-section">
+    <div class="container">
+      <div class="section-header-center"><span class="section-label fade-up">Por qué Workflow Builder</span><h2 class="fade-up d1">Automatización OFSC al alcance de todos</h2><p class="fade-up d2">Diseñado para que los equipos de operaciones puedan automatizar sin depender de IT.</p></div>
+      <div class="valor-grid">
+        <div class="valor-card fade-up d1"><div class="valor-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Sin código</h3><p>Cualquier usuario de negocio puede armar workflows sin programar. Interface visual con nodos drag &amp; drop.</p><div class="valor-stat">0</div><div class="valor-stat-lbl">líneas de código para crear un workflow</div></div>
+        <div class="valor-card fade-up d2"><div class="valor-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Visual e intuitivo</h3><p>Editor canvas con paleta de nodos: condiciones, switches, loops, acciones OFS y notificaciones.</p><div class="valor-stat">10+</div><div class="valor-stat-lbl">tipos de nodos disponibles</div></div>
+        <div class="valor-card fade-up d3"><div class="valor-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3>Potente y confiable</h3><p>Automatizaciones complejas sobre cualquier entidad OFSC con historial completo de ejecuciones.</p><div class="valor-stat">99+</div><div class="valor-stat-lbl">workflows activos en producción</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="valor-section white">
+    <div class="container">
+      <div class="section-header-center"><span class="section-label fade-up">Módulos</span><h2 class="fade-up d1">Todo lo que podés hacer</h2></div>
+      <div class="func-tabs fade-up d1" id="wb-tabs">
+        <button class="func-tab active" data-tab="wb-constructor">Constructor visual</button>
+        <button class="func-tab" data-tab="wb-ejecuciones">Ejecuciones</button>
+        <button class="func-tab" data-tab="wb-orquestaciones">Orquestaciones</button>
+        <button class="func-tab" data-tab="wb-panel">Panel principal</button>
+      </div>
+      <div class="func-panel active fade-up d2" id="tab-wb-constructor">
+        <div class="func-text"><div class="func-module-badge"><span>Editor de workflows</span></div><h3>Constructor visual drag &amp; drop</h3><p>Diseñá workflows complejos arrastrando nodos al canvas. Conectá condiciones, acciones sobre OFSC, loops y notificaciones en una interfaz clara y poderosa.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Paleta de nodos: If, Switch, Loop, Wait, Try/Catch</div><div class="func-action-item"><div class="func-action-dot"></div>Acciones directas sobre APIs de Oracle Field Service</div><div class="func-action-item"><div class="func-action-dot"></div>Nodo Notify: webhooks a Slack, Teams, email</div><div class="func-action-item"><div class="func-action-dot"></div>Nodo AI Agent: consultas inteligentes sobre OFSC</div><div class="func-action-item"><div class="func-action-dot"></div>Botón "Probar" para ejecutar en sandbox</div></div></div>
+        <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Editor</div></div><img src="assets/wb-canvas.png" style="width:100%;display:block;" alt="Workflow Builder editor" /></div></div>
+      </div>
+      <div class="func-panel" id="tab-wb-ejecuciones">
+        <div class="func-text"><div class="func-module-badge"><span>Monitoreo en tiempo real</span></div><h3>Historial y logs de ejecuciones</h3><p>Monitoreá cada ejecución de tus workflows en tiempo real. Filtrá por estado, revisá los logs detallados de cada paso y exportá para auditoría.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Vista en tiempo real de todas las ejecuciones</div><div class="func-action-item"><div class="func-action-dot"></div>Filtros: Running · Success · Error · Pending</div><div class="func-action-item"><div class="func-action-dot"></div>Panel lateral con logs JSON detallados</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación completa para auditoría</div></div></div>
+        <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Ejecuciones</div></div><img src="assets/wb-ejecuciones.png" style="width:100%;display:block;" alt="Workflow Builder ejecuciones" /></div></div>
+      </div>
+      <div class="func-panel" id="tab-wb-orquestaciones">
+        <div class="func-text"><div class="func-module-badge"><span>Automatización reactiva</span></div><h3>Orquestaciones: trigger → workflow</h3><p>Conectá triggers de eventos OFSC con tus workflows para ejecutarlos automáticamente. Activá o pausá cada orquestación con un toggle.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Vinculación de cualquier trigger a cualquier workflow</div><div class="func-action-item"><div class="func-action-dot"></div>Toggle de activación/pausa sin borrar configuración</div><div class="func-action-item"><div class="func-action-dot"></div>Ejecución reactiva: trigger recibido → workflow disparado</div></div></div>
+        <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Orquestaciones</div></div><img src="assets/wb-orquestaciones.png" style="width:100%;display:block;" alt="Workflow Builder orquestaciones" /></div></div>
+      </div>
+      <div class="func-panel" id="tab-wb-panel">
+        <div class="func-text"><div class="func-module-badge"><span>Visibilidad operacional</span></div><h3>Panel principal de actividad</h3><p>Visión completa del estado de tu plataforma: ejecuciones recientes, tasa de éxito, errores en las últimas 24h y estado de todos tus workflows.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>KPIs en tiempo real: ejecuciones, tasa de éxito, errores</div><div class="func-action-item"><div class="func-action-dot"></div>Gráfico de actividad: 24h · 7d · 30d</div><div class="func-action-item"><div class="func-action-dot"></div>Estado de workflows activos vs pausados</div></div></div>
+        <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Panel Principal</div></div><img src="assets/wb-panel.png" style="width:100%;display:block;" alt="Workflow Builder panel" /></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Casos -->
+  <div class="valor-section">
+    <div class="container">
+      <div class="section-header-center"><span class="section-label fade-up">Casos reales</span><h2 class="fade-up d1">Automatizaciones que cambian operaciones</h2></div>
+      <div class="casos-grid">
+        <div class="caso-card fade-up d1"><div class="caso-industry"><div class="caso-industry-dot"></div>Telecomunicaciones — ISP regional</div><div class="caso-step"><div class="caso-step-icon before"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="caso-step-label">Situación</div><div class="caso-step-text">Al cambiar una actividad a "Suspendida", el supervisor debía notificar manualmente a coordinación.</div></div></div><div class="caso-step"><div class="caso-step-icon action"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="caso-step-label">Acción con Workflow Builder</div><div class="caso-step-text">Workflow disparado por trigger "Actividad_Suspendida": notifica vía webhook y actualiza sistema externo.</div></div></div><div class="caso-result-pill">0 intervenciones manuales por suspensión</div></div>
+        <div class="caso-card fade-up d2"><div class="caso-industry"><div class="caso-industry-dot"></div>Utilities — Distribuidora eléctrica</div><div class="caso-step"><div class="caso-step-icon before"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="caso-step-label">Situación</div><div class="caso-step-text">Órdenes de alta prioridad debían escalarse manualmente cuando no eran atendidas dentro del SLA.</div></div></div><div class="caso-step"><div class="caso-step-icon action"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="caso-step-label">Acción con Workflow Builder</div><div class="caso-step-text">Workflow If(priority=="high") + Wait(2h) + Notify al supervisor en Slack si sigue sin atender.</div></div></div><div class="caso-result-pill">Escalados automáticos en 2hs sin intervención</div></div>
+        <div class="caso-card fade-up d1"><div class="caso-industry"><div class="caso-industry-dot"></div>Gas — Distribuidora regional</div><div class="caso-step"><div class="caso-step-icon before"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="caso-step-label">Situación</div><div class="caso-step-text">Al completarse una orden, debían actualizarse los datos de inventario del técnico manualmente (15 min/orden).</div></div></div><div class="caso-step"><div class="caso-step-icon action"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="caso-step-label">Acción con Workflow Builder</div><div class="caso-step-text">Workflow con trigger de cierre + Loop sobre ítems + OFS Action para actualizar automáticamente.</div></div></div><div class="caso-result-pill">Inventario actualizado en segundos por cierre</div></div>
+        <div class="caso-card fade-up d2"><div class="caso-industry"><div class="caso-industry-dot"></div>Infraestructura — Servicios de campo</div><div class="caso-step"><div class="caso-step-icon before"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="caso-step-label">Situación</div><div class="caso-step-text">Necesitaban asignar automáticamente actividades al técnico disponible de la región correcta.</div></div></div><div class="caso-step"><div class="caso-step-icon action"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="caso-step-label">Acción con Workflow Builder</div><div class="caso-step-text">Switch por region + AI Agent para seleccionar técnico óptimo + OFS Action para asignar actividad.</div></div></div><div class="caso-result-pill">Asignación automática en &lt;5 segundos</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="form-cta-section">
+    <div class="container">
+      <div class="form-inner">
+        <div class="form-left"><span class="section-label" style="color:var(--accent);">Demo gratuita</span><h2>Empezá a automatizar<br/>tu operación <em>OFSC hoy</em></h2><p>Agendá una demo. Te mostramos Workflow Builder construyendo un caso de uso real de tu operación.</p><div class="form-trust"><div class="form-trust-item"><div class="form-trust-check"></div><span>Sin costo. Sin compromiso.</span></div><div class="form-trust-item"><div class="form-trust-check"></div><span>Demo con tu caso de uso real en OFSC</span></div><div class="form-trust-item"><div class="form-trust-check"></div><span>Respondemos en menos de 24hs hábiles</span></div></div></div>
+        <div class="form-right"><h3>Solicitá tu demo de Workflow Builder</h3>
+          <form onsubmit="submitForm(event,'wb-success')">
+            <div class="form-row"><div class="form-group"><label>Nombre *</label><input type="text" placeholder="Tu nombre" required /></div><div class="form-group"><label>Apellido *</label><input type="text" placeholder="Tu apellido" required /></div></div>
+            <div class="form-group"><label>Empresa *</label><input type="text" placeholder="Nombre de tu empresa" required /></div>
+            <div class="form-group"><label>Email corporativo *</label><input type="email" placeholder="tu@empresa.com" required /></div>
+            <div class="form-group"><label>¿Qué proceso querés automatizar?</label><select><option value="">Seleccioná una opción</option><option>Notificaciones automáticas</option><option>Asignación automática de técnicos</option><option>Escalados por SLA</option><option>Actualización de inventario</option><option>Otro proceso</option></select></div>
+            <div class="form-group"><label>Contanos tu caso de uso</label><textarea placeholder="Describí el proceso que querés automatizar..."></textarea></div>
+            <button type="submit" class="btn-primary form-submit">Solicitar demo gratuita →</button>
+            <p class="form-note">Tus datos están seguros. No enviamos spam.</p>
+          </form>
+          <div class="form-success" id="wb-success"><div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><h4>¡Solicitud recibida!</h4><p>Nos pondremos en contacto en menos de 24hs hábiles.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--primary);padding:40px 0 24px;border-top:1px solid rgba(255,255,255,0.06);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <img src="assets/connexaAzulP.png" alt="Connexa Services" style="height:36px;cursor:pointer;" onclick="goTo('home')" />
+      <div style="display:flex;gap:16px;"><span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);cursor:pointer;" onclick="goTo('home')">← Inicio</span><span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);cursor:pointer;" onclick="goTo('productos')">← Volver a Productos</span></div>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);">© 2026 Connexa Services</span>
+    </div>
+  </footer>
+</div><!-- /page-workflow -->
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTopBtn"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+<script>
+  // ── SPA ROUTER ──
+  var pages = ['home','productos','fsmtool','workflow'];
+  var currentPage = 'home';
+
+  function goTo(pageId) {
+    if (currentPage === pageId) return;
+    var oldEl = document.getElementById('page-' + currentPage);
+    var newEl = document.getElementById('page-' + pageId);
+    if (!newEl) return;
+    oldEl.style.opacity = '0';
+    setTimeout(function() {
+      oldEl.classList.remove('active');
+      oldEl.style.opacity = '';
+      newEl.classList.add('active');
+      newEl.style.opacity = '0';
+      window.scrollTo(0,0);
+      setTimeout(function() { newEl.style.opacity = '1'; }, 20);
+      currentPage = pageId;
+      updateNav(pageId);
+      // re-observe fade-ups in new page
+      newEl.querySelectorAll('.fade-up').forEach(function(el) {
+        el.classList.remove('visible');
+        io.observe(el);
+      });
+      // reinit tabs
+      newEl.querySelectorAll('.func-tabs').forEach(initTabs);
+      // update navbar solid state
+      navbar.classList.toggle('solid', pageId !== 'home');
+      if (pageId !== 'home') navbar.classList.add('scrolled');
+    }, 250);
+  }
+
+  function updateNav(pageId) {
+    document.querySelectorAll('.nav-links a[id]').forEach(function(a) { a.classList.remove('active'); });
+    if (pageId === 'productos' || pageId === 'fsmtool' || pageId === 'workflow') {
+      var el = document.getElementById('nav-productos');
+      if (el) el.classList.add('active');
+    }
+  }
+
+  function scrollToSection(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    setTimeout(function() { el.scrollIntoView({behavior:'smooth',block:'start'}); }, 100);
+  }
+
+  function scrollToSectionInPage(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  // ── FORM SUBMIT ──
+  function submitForm(e, successId) {
+    e.preventDefault();
+    var form = e.target;
+    var success = document.getElementById(successId);
+    if (form && success) { form.style.display = 'none'; success.style.display = 'block'; }
+  }
+
+  // ── NAVBAR SCROLL ──
+  var navbar = document.getElementById('navbar');
+  var scrollTopBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', function() {
+    if (currentPage === 'home') {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }
+    scrollTopBtn.classList.toggle('show', window.scrollY > 300);
+  }, {passive:true});
+  scrollTopBtn.addEventListener('click', function() { window.scrollTo({top:0,behavior:'smooth'}); });
+
+  // ── HAMBURGER ──
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburgerBtn.addEventListener('click', function() { mobileNav.classList.toggle('open'); });
+  function closeMobileNav() { mobileNav.classList.remove('open'); }
+
+  // ── INTERSECTION OBSERVER ──
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:0.1});
+  document.querySelectorAll('.fade-up').forEach(function(el) { io.observe(el); });
+
+  // ── METODOLOGÍA TIMELINE ANIMATION ──
+  var timelineIo = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var line = document.getElementById('timeline-line');
+        var phases = document.querySelectorAll('.timeline-phase');
+        if (line) line.classList.add('visible');
+        phases.forEach(function(phase) { phase.classList.add('visible'); });
+        timelineIo.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.3});
+  var timelineContainer = document.getElementById('timeline-phases');
+  if (timelineContainer) timelineIo.observe(timelineContainer);
+
+  // ── TABS ──
+  function initTabs(container) {
+    container.querySelectorAll('.func-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        container.querySelectorAll('.func-tab').forEach(function(t) { t.classList.remove('active'); });
+        var panelId = 'tab-' + tab.dataset.tab;
+        // find sibling panels
+        var parent = container.parentElement;
+        parent.querySelectorAll('.func-panel').forEach(function(p) { p.classList.remove('active'); });
+        var panel = document.getElementById(panelId);
+        if (panel) panel.classList.add('active');
+        tab.classList.add('active');
+      });
+    });
+  }
+  document.querySelectorAll('.func-tabs').forEach(initTabs);
+
+  // ── HERO CANVAS ──
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W, H, nodes = [];
+    var N = 48, DIST = 160, COLOR = 'rgba(113,177,54,';
+    function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+    function init() { nodes = []; for (var i=0;i<N;i++) nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*2+1.5}); }
+    function draw() {
+      ctx.clearRect(0,0,W,H);
+      for (var i=0;i<nodes.length;i++) { nodes[i].x+=nodes[i].vx; nodes[i].y+=nodes[i].vy; if(nodes[i].x<0||nodes[i].x>W) nodes[i].vx*=-1; if(nodes[i].y<0||nodes[i].y>H) nodes[i].vy*=-1; }
+      for (var i=0;i<nodes.length;i++) for (var j=i+1;j<nodes.length;j++) { var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy); if(d<DIST){var a=(1-d/DIST)*0.12; ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=COLOR+a+')';ctx.lineWidth=1;ctx.stroke();} }
+      for (var i=0;i<nodes.length;i++) { ctx.beginPath();ctx.arc(nodes[i].x,nodes[i].y,nodes[i].r,0,Math.PI*2);ctx.fillStyle=COLOR+'0.18)';ctx.fill(); }
+      requestAnimationFrame(draw);
+    }
+    resize(); init(); draw();
+    window.addEventListener('resize', function(){resize();init();},{passive:true});
+  })();
+
+  // ── COUNTER ANIMATION ──
+  function animateCounter(el, target, suffix, duration) {
+    var start = null;
+    function step(ts) { if(!start) start=ts; var p=Math.min((ts-start)/duration,1),e=1-Math.pow(1-p,3); el.textContent=Math.floor(e*target)+suffix; if(p<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var metricIo = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var nums = e.target.querySelectorAll('.metric-num');
+        var cfg = [{v:50,s:'+'},{v:12,s:'+'},{v:10,s:'+'}];
+        nums.forEach(function(el,i){ if(cfg[i]){ el.innerHTML='0'; setTimeout(function(){animateCounter(el,cfg[i].v,cfg[i].s,1800);},i*120); } });
+        metricIo.unobserve(e.target);
+      }
+    });
+  },{threshold:0.5});
+  var mr = document.getElementById('hero-metrics-row');
+  if (mr) metricIo.observe(mr);
+</script>
+</body>
+</html>
