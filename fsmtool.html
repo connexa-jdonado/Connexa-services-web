@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FSMTool — Operaciones masivas en OFSC | Connexa Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #172554; --secondary: #F3F4F6;
+      --accent: #71B136; --accent-dark: #5a9229;
+      --text-body: #374151; --text-muted: #6B7280;
+      --max-w: 1280px; --section-py: 120px;
+      --card-radius: 16px; --btn-radius: 8px;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-body); background: #fff; overflow-x: hidden; }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+    /* ── BUTTONS ── */
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: var(--btn-radius); border: 2px solid var(--accent); cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: var(--btn-radius); border: 2px solid rgba(255,255,255,0.6); cursor: pointer; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.15s; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-1px); }
+
+    /* ── UTILITIES ── */
+    .section-label { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(.22,1,.36,1), transform 0.65s cubic-bezier(.22,1,.36,1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.d1{transition-delay:.1s} .fade-up.d2{transition-delay:.2s} .fade-up.d3{transition-delay:.3s} .fade-up.d4{transition-delay:.4s}
+
+    /* ── NAVBAR ── */
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; display: flex; align-items: center; background: var(--primary); box-shadow: 0 2px 20px rgba(0,0,0,0.3); padding: 0 60px; }
+    @media (max-width: 768px) { #navbar { padding: 0 24px; } }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: var(--max-w); margin: 0 auto; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+    .nav-links a { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.2s ease; white-space: nowrap; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+    .nav-cta { flex-shrink: 0; }
+    .nav-cta .btn-primary { padding: 12px 28px; font-size: 15px; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+    @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .nav-hamburger { display: flex; } }
+    .mobile-nav { display: none; position: fixed; top: 80px; left: 0; right: 0; background: var(--primary); padding: 16px 24px 32px; z-index: 999; flex-direction: column; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border-top: 1px solid rgba(255,255,255,0.08); }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .mobile-nav a:last-of-type { border-bottom: none; }
+    .mobile-nav .btn-primary { margin-top: 20px; width: 100%; justify-content: center; }
+
+    /* ── PAGE HERO ── */
+    .page-hero { background: var(--primary); min-height: 52vh; display: flex; align-items: center; padding: 140px 0 80px; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .page-hero::after { content: ''; position: absolute; width: 600px; height: 600px; top: -120px; right: -80px; background: radial-gradient(circle,rgba(113,177,54,0.12) 0%,transparent 70%); pointer-events: none; }
+    .page-hero-inner { position: relative; z-index: 2; }
+    .page-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(113,177,54,0.15); border: 1px solid rgba(113,177,54,0.3); border-radius: 20px; padding: 6px 14px; margin-bottom: 24px; }
+    .page-hero-eyebrow-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    .page-hero-eyebrow span { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--accent); }
+    .page-hero-h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 52px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 20px; }
+    .page-hero-h1 em { font-style: normal; color: var(--accent); }
+    .page-hero-sub { font-family: 'Inter', sans-serif; font-size: 17px; color: rgba(255,255,255,0.68); line-height: 1.7; max-width: 540px; }
+    @media (max-width: 768px) { .page-hero-h1 { font-size: 32px; } }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+    .breadcrumb a, .breadcrumb span.bc-link { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover, .breadcrumb span.bc-link:hover { color: rgba(255,255,255,0.8); }
+    .breadcrumb-sep { color: rgba(255,255,255,0.25); font-size: 13px; }
+    .breadcrumb-cur { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); }
+
+    /* ── BROWSER FRAME ── */
+    .browser-frame { background: #fff; border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,0.15),0 0 0 1px rgba(0,0,0,0.06); overflow: hidden; }
+    .browser-toolbar { background: #F3F4F6; padding: 10px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #E5E7EB; }
+    .browser-dots { display: flex; gap: 6px; }
+    .browser-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .browser-dots span:nth-child(1){background:#FF5F57} .browser-dots span:nth-child(2){background:#FFBD2E} .browser-dots span:nth-child(3){background:#28C840}
+    .browser-address { flex: 1; background: #fff; border: 1px solid #E5E7EB; border-radius: 6px; padding: 5px 12px; font-family: 'Inter', sans-serif; font-size: 12px; color: #9CA3AF; }
+
+    /* ── VALOR SECTION ── */
+    .valor-section { background: var(--secondary); padding: var(--section-py) 0; }
+    .valor-section.white { background: #fff; }
+    .section-header-center { text-align: center; margin-bottom: 56px; }
+    .section-header-center h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 38px; font-weight: 700; color: var(--primary); line-height: 1.15; margin-bottom: 14px; }
+    .section-header-center p { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--text-muted); max-width: 520px; margin: 0 auto; line-height: 1.65; }
+    .valor-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    @media (max-width: 768px) { .valor-grid { grid-template-columns: 1fr; } }
+    .valor-card { background: #fff; border-radius: var(--card-radius); border: 1px solid #E5E7EB; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px; transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s; position: relative; overflow: hidden; }
+    .valor-section.white .valor-card { background: var(--secondary); }
+    .valor-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(.22,1,.36,1); }
+    .valor-card:hover::before { transform: scaleX(1); }
+    .valor-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.1); transform: translateY(-4px); border-color: transparent; }
+    .valor-icon { width: 56px; height: 56px; background: rgba(23,37,84,0.06); border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+    .valor-icon svg { width: 28px; height: 28px; stroke: var(--primary); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .valor-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary); }
+    .valor-card p { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+    .valor-stat { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 800; color: var(--accent); margin-top: 4px; }
+    .valor-stat-lbl { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); }
+
+    /* ── FUNC TABS ── */
+    .func-tabs { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; background: var(--secondary); border-radius: 12px; padding: 6px; margin-bottom: 48px; width: fit-content; margin-left: auto; margin-right: auto; }
+    .func-tab { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; padding: 10px 24px; border-radius: 8px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: background 0.2s, color 0.2s; }
+    .func-tab.active { background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(23,37,84,0.2); }
+    .func-tab:hover:not(.active) { background: rgba(23,37,84,0.06); color: var(--primary); }
+    .func-panel { display: none; }
+    .func-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    @media (max-width: 960px) { .func-panel.active { grid-template-columns: 1fr; gap: 40px; } }
+    .func-module-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.1); border: 1px solid rgba(113,177,54,0.25); border-radius: 20px; padding: 5px 13px; margin-bottom: 18px; }
+    .func-module-badge span { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.07em; }
+    .func-text h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 700; color: var(--primary); line-height: 1.2; margin-bottom: 14px; }
+    .func-text p { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+    .func-actions { display: flex; flex-direction: column; gap: 10px; }
+    .func-action-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--secondary); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-body); transition: background 0.2s; }
+    .func-action-item:hover { background: #E8F5DB; }
+    .func-action-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── CASOS DE USO V2 ── */
+    .casos-v2-section { background: var(--secondary); padding: var(--section-py) 0; }
+    .casos-v2-header { text-align: center; margin-bottom: 64px; }
+    .casos-v2-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .casos-v2-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 700; color: var(--primary); line-height: 1.15; margin-bottom: 16px; }
+    .casos-v2-sub { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--text-muted); line-height: 1.7; max-width: 520px; margin: 0 auto; }
+    .casos-v2-layout { display: grid; grid-template-columns: 40% 60%; gap: 0; align-items: start; }
+    .casos-v2-list { display: flex; flex-direction: column; padding-right: 48px; }
+
+    /* caso item */
+    .caso-item { padding: 20px 24px; border-radius: 12px; cursor: pointer; transition: background 0.2s ease, box-shadow 0.2s ease; border-left: 4px solid transparent; }
+    .caso-item:not(.active):not(.disabled):hover { background: rgba(255,255,255,0.65); }
+    .caso-item.active { background: #fff; border-left-color: var(--accent); box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    .caso-item.disabled { opacity: 0.5; cursor: default; pointer-events: none; }
+    .caso-item-header { display: flex; align-items: center; gap: 16px; }
+    .caso-item-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 700; color: rgba(23,37,84,0.18); line-height: 1; transition: color 0.25s; min-width: 44px; flex-shrink: 0; }
+    .caso-item.active .caso-item-num { color: var(--accent); }
+    .caso-item-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary); line-height: 1.35; }
+    .caso-soon-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(107,114,128,0.1); border: 1px solid rgba(107,114,128,0.18); border-radius: 6px; padding: 3px 8px; color: var(--text-muted); margin-left: 8px; vertical-align: middle; }
+    .caso-item-body { padding-left: 60px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, opacity 0.25s ease; opacity: 0; }
+    .caso-item.active .caso-item-body { max-height: 200px; opacity: 1; padding-top: 12px; }
+    .caso-item-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
+    .caso-item-metric { display: inline-flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.12); border: 1px solid rgba(113,177,54,0.25); border-radius: 20px; padding: 5px 14px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent); }
+
+    /* video panel */
+    .casos-v2-video { position: sticky; top: 100px; }
+    .video-frame { background: #fff; border-radius: 12px; box-shadow: 0 24px 48px rgba(0,0,0,0.15); overflow: hidden; }
+    .video-toolbar { background: #F3F4F6; padding: 10px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #E5E7EB; }
+    .video-dots { display: flex; gap: 6px; }
+    .video-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .video-dots span:nth-child(1){background:#FF5F57} .video-dots span:nth-child(2){background:#FFBD2E} .video-dots span:nth-child(3){background:#28C840}
+    .video-inner { aspect-ratio: 16/9; background: var(--primary); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .video-content { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; padding: 32px; transition: opacity 0.15s ease, transform 0.15s ease; }
+    .video-content.fading { opacity: 0; transform: translateY(8px); }
+    .video-play-btn { width: 76px; height: 76px; background: rgba(113,177,54,0.15); border: 2px solid rgba(113,177,54,0.45); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .video-play-btn svg { width: 28px; height: 28px; fill: var(--accent); margin-left: 5px; }
+    .video-case-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .video-case-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; max-width: 320px; }
+    .video-coming-soon { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 4px; }
+
+    /* Mobile: video arriba, acordeón abajo */
+    @media (max-width: 960px) {
+      .casos-v2-layout { grid-template-columns: 1fr; }
+      .casos-v2-list { padding-right: 0; margin-top: 40px; }
+      .casos-v2-video { position: static; }
+      .caso-item-body { max-height: none; }
+    }
+
+    /* ── FORM CTA ── */
+    .form-cta-section { background: var(--primary); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+    .form-cta-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .form-cta-section::after { content: ''; position: absolute; width: 600px; height: 600px; top: -200px; right: -100px; background: radial-gradient(circle,rgba(113,177,54,0.1) 0%,transparent 70%); pointer-events: none; }
+    .form-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    @media (max-width: 960px) { .form-inner { grid-template-columns: 1fr; gap: 48px; } }
+    .form-left h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 16px; }
+    .form-left h2 em { font-style: normal; color: var(--accent); }
+    .form-left p { font-family: 'Inter', sans-serif; font-size: 16px; color: rgba(255,255,255,0.62); line-height: 1.7; margin-bottom: 32px; }
+    .form-trust { display: flex; flex-direction: column; gap: 12px; }
+    .form-trust-item { display: flex; align-items: center; gap: 10px; }
+    .form-trust-check { width: 20px; height: 20px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .form-trust-check::after { content: '✓'; font-size: 10px; color: #fff; font-weight: 700; }
+    .form-trust-item span { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.72); }
+    .form-right { background: #fff; border-radius: var(--card-radius); padding: 40px; box-shadow: 0 24px 64px rgba(0,0,0,0.25); }
+    .form-right h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .form-group label { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--text-body); }
+    .form-group input, .form-group textarea, .form-group select { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-body); border: 1.5px solid #D1D5DB; border-radius: 8px; padding: 12px 14px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(113,177,54,0.12); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 580px) { .form-row { grid-template-columns: 1fr; } }
+    .form-submit { width: 100%; justify-content: center; font-size: 16px; padding: 16px; }
+    .form-note { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+    .form-success { display: none; text-align: center; padding: 32px 0; }
+    .form-success-icon { width: 56px; height: 56px; background: rgba(113,177,54,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .form-success-icon svg { width: 28px; height: 28px; stroke: var(--accent); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .form-success h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+    .form-success p { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── SCROLL TOP ── */
+    .scroll-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(113,177,54,0.45); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; z-index: 900; }
+    .scroll-top.show { opacity: 1; transform: translateY(0); }
+    .scroll-top svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/connexaAzulP.png" alt="Connexa Services" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Servicios</a></li>
+      <li><a href="productos.html" class="active">Productos</a></li>
+      <li><a href="index.html#partnerships">Partnerships</a></li>
+      <li><a href="#">Casos de éxito</a></li>
+      <li><a href="#">Nosotros</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn-primary" href="#demo">Hablar con un experto</a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html#services">Servicios</a>
+  <a href="productos.html">Productos</a>
+  <a href="index.html#partnerships">Partnerships</a>
+  <a href="#">Casos de éxito</a>
+  <a href="#">Nosotros</a>
+  <a class="btn-primary" href="#demo">Hablar con un experto</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Inicio</a><span class="breadcrumb-sep">/</span>
+      <a href="productos.html">Productos</a><span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-cur">FSMTool</span>
+    </nav>
+    <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span>Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
+    <h1 class="page-hero-h1">Operaciones masivas en OFSC,<br/><em>sin complejidad</em></h1>
+    <p class="page-hero-sub">FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva.</p>
+  </div>
+</div>
+
+<!-- HERO VISUAL -->
+<div style="background:var(--primary);padding:0 0 60px;">
+  <div class="container">
+    <div class="browser-frame" style="max-width:900px;margin:0 auto;box-shadow:0 40px 100px rgba(0,0,0,0.4);">
+      <div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">app.connexaservices.com/fsmtool</div></div>
+      <img src="assets/fsmtool-home.png" style="width:100%;display:block;" alt="FSMTool dashboard" />
+    </div>
+  </div>
+</div>
+
+<!-- VALOR -->
+<div class="valor-section">
+  <div class="container">
+    <div class="section-header-center">
+      <span class="section-label fade-up">Por qué FSMTool</span>
+      <h2 class="fade-up d1">Lo que ninguna otra herramienta te da</h2>
+      <p class="fade-up d2">Construido por expertos OFSC para resolver los problemas reales de las operaciones de campo a escala.</p>
+    </div>
+    <div class="valor-grid">
+      <div class="valor-card fade-up d1"><div class="valor-icon"><svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Velocidad operacional</h3><p>Ejecutá acciones sobre miles de órdenes en segundos desde una sola pantalla.</p><div class="valor-stat">×10</div><div class="valor-stat-lbl">más rápido que la operación manual</div></div>
+      <div class="valor-card fade-up d2"><div class="valor-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Interfaz intuitiva</h3><p>Diseñada para operadores que no son técnicos. Sin curva de aprendizaje. Funciona desde el día uno.</p><div class="valor-stat">0</div><div class="valor-stat-lbl">horas de capacitación técnica</div></div>
+      <div class="valor-card fade-up d3"><div class="valor-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3>Escala ilimitada</h3><p>Desde 10 hasta 100.000 órdenes por operación con validación previa.</p><div class="valor-stat">100k</div><div class="valor-stat-lbl">registros por operación</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="valor-section white">
+  <div class="container">
+    <div class="section-header-center">
+      <span class="section-label fade-up">Módulos</span>
+      <h2 class="fade-up d1">Todo lo que podés hacer</h2>
+      <p class="fade-up d2">Cinco módulos integrados que cubren cada aspecto de la operación masiva sobre Oracle Field Service Cloud.</p>
+    </div>
+    <div class="func-tabs fade-up d1" id="fsm-tabs">
+      <button class="func-tab active" data-tab="fsm-actividades">Actividades</button>
+      <button class="func-tab" data-tab="fsm-recursos">Recursos</button>
+      <button class="func-tab" data-tab="fsm-inventario">Inventario</button>
+      <button class="func-tab" data-tab="fsm-descargas">Descargas</button>
+    </div>
+    <div class="func-panel active fade-up d2" id="tab-fsm-actividades">
+      <div class="func-text"><div class="func-module-badge"><span>Módulo Actividades</span></div><h3>Gestión masiva de actividades</h3><p>Creá, actualizá, reasigná y cerrá miles de actividades de OFSC en una sola operación. Cargá un Excel y FSMTool valida, procesa y reporta el resultado en tiempo real.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Creación masiva desde plantilla Excel</div><div class="func-action-item"><div class="func-action-dot"></div>Actualización de propiedades por lote</div><div class="func-action-item"><div class="func-action-dot"></div>Cambio de estado (pendiente → en curso → cerrada)</div><div class="func-action-item"><div class="func-action-dot"></div>Reasignación de recurso o fecha</div><div class="func-action-item"><div class="func-action-dot"></div>Validación previa con preview de errores</div></div></div>
+      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Creación de actividades</div></div><img src="assets/fsmtool-actividades.png" style="width:100%;display:block;" alt="FSMTool actividades" /></div></div>
+    </div>
+    <div class="func-panel" id="tab-fsm-recursos">
+      <div class="func-text"><div class="func-module-badge"><span>Módulo Recursos</span></div><h3>Administración masiva de recursos</h3><p>Gestioná técnicos, vehículos y equipos de tu organización OFSC de forma masiva. Actualizá propiedades, habilidades y calendarios sin abrir cada recurso individualmente.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Creación de recursos en lote</div><div class="func-action-item"><div class="func-action-dot"></div>Actualización de habilidades y certificaciones</div><div class="func-action-item"><div class="func-action-dot"></div>Asignación masiva de zonas de trabajo</div><div class="func-action-item"><div class="func-action-dot"></div>Gestión de calendarios y horarios</div></div></div>
+      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Recursos</div></div><img src="assets/fsmtool-config.png" style="width:100%;display:block;" alt="FSMTool recursos" /></div></div>
+    </div>
+    <div class="func-panel" id="tab-fsm-inventario">
+      <div class="func-text"><div class="func-module-badge"><span>Módulo Inventario</span></div><h3>Gestión y transferencia de inventario</h3><p>Controlá el stock de materiales asignados a técnicos y almacenes. Realizá transferencias masivas entre recursos y exportá el estado completo del inventario en OFSC.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Transferencia masiva entre recursos</div><div class="func-action-item"><div class="func-action-dot"></div>Carga masiva de stock inicial</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación completa para auditoría</div></div></div>
+      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Inventario</div></div><img src="assets/fsmtool-config.png" style="width:100%;display:block;" alt="FSMTool inventario" /></div></div>
+    </div>
+    <div class="func-panel" id="tab-fsm-descargas">
+      <div class="func-text"><div class="func-module-badge"><span>Módulo Descargas</span></div><h3>Exportación avanzada de datos OFSC</h3><p>Descargá actividades con filtros avanzados por recurso, fecha, estado y condiciones personalizadas. Ideal para análisis, reportes y auditoría operacional.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Filtros por árbol jerárquico de recursos</div><div class="func-action-item"><div class="func-action-dot"></div>Condiciones personalizables por campo</div><div class="func-action-item"><div class="func-action-dot"></div>Favoritos para consultas recurrentes</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación a Excel con campos configurables</div></div></div>
+      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Descargas</div></div><img src="assets/fsmtool-descarga.png" style="width:100%;display:block;" alt="FSMTool descargas" /></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CASOS DE USO — layout dos columnas
+══════════════════════════════════════ -->
+<section class="casos-v2-section">
+  <div class="container">
+    <div class="casos-v2-header fade-up">
+      <div class="casos-v2-eyebrow">Casos de uso</div>
+      <h2 class="casos-v2-title">Mirá FSMTool en acción</h2>
+      <p class="casos-v2-sub">Seleccioná un caso de uso y vé cómo FSMTool lo resuelve en segundos.</p>
+    </div>
+
+    <div class="casos-v2-layout">
+
+      <!-- Columna izquierda 40%: lista de casos -->
+      <div class="casos-v2-list">
+
+        <div class="caso-item active" data-caso="0">
+          <div class="caso-item-header">
+            <span class="caso-item-num">01</span>
+            <span class="caso-item-title">Reasignación masiva de órdenes</span>
+          </div>
+          <div class="caso-item-body">
+            <p class="caso-item-desc">Seleccioná cientos de órdenes de trabajo y reasignálas a nuevos técnicos en segundos, sin hacerlo una por una.</p>
+            <span class="caso-item-metric">De 2 horas a 3 minutos</span>
+          </div>
+        </div>
+
+        <div class="caso-item" data-caso="1">
+          <div class="caso-item-header">
+            <span class="caso-item-num">02</span>
+            <span class="caso-item-title">Visualización completa de fuerza de trabajo</span>
+          </div>
+          <div class="caso-item-body">
+            <p class="caso-item-desc">Extraé y visualizá todos los técnicos, sus estados, actividades asignadas y disponibilidad en tiempo real.</p>
+            <span class="caso-item-metric">Visibilidad 100% del equipo en campo</span>
+          </div>
+        </div>
+
+        <div class="caso-item" data-caso="2">
+          <div class="caso-item-header">
+            <span class="caso-item-num">03</span>
+            <span class="caso-item-title">Transferencia masiva de inventarios</span>
+          </div>
+          <div class="caso-item-body">
+            <p class="caso-item-desc">Mové inventario entre técnicos, depósitos y zonas de forma masiva sin procesar cada item individualmente.</p>
+            <span class="caso-item-metric">Gestión de miles de items en minutos</span>
+          </div>
+        </div>
+
+        <div class="caso-item" data-caso="3">
+          <div class="caso-item-header">
+            <span class="caso-item-num">04</span>
+            <span class="caso-item-title">Reasignación masiva de zonas</span>
+          </div>
+          <div class="caso-item-body">
+            <p class="caso-item-desc">Reorganizá las zonas de trabajo de tu fuerza laboral completa de forma simultánea.</p>
+            <span class="caso-item-metric">Reorganización territorial en un clic</span>
+          </div>
+        </div>
+
+        <div class="caso-item" data-caso="4">
+          <div class="caso-item-header">
+            <span class="caso-item-num">05</span>
+            <span class="caso-item-title">Actualización masiva de estados</span>
+          </div>
+          <div class="caso-item-body">
+            <p class="caso-item-desc">Cambiá el estado de cientos de actividades simultáneamente — completadas, canceladas, reprogramadas.</p>
+            <span class="caso-item-metric">Miles de actualizaciones en segundos</span>
+          </div>
+        </div>
+
+      </div><!-- /casos-v2-list -->
+
+      <!-- Columna derecha 60%: video placeholder -->
+      <div class="casos-v2-video">
+        <div class="video-frame">
+          <div class="video-toolbar">
+            <div class="video-dots"><span></span><span></span><span></span></div>
+            <div class="browser-address" style="flex:1;">FSMTool — Demo en vivo</div>
+          </div>
+          <!-- VIDEO: reemplazar por <video src="assets/videos/caso-01.mp4" autoplay loop muted playsinline> -->
+          <div class="video-inner">
+            <div class="video-content" id="fsm-video-content">
+              <div class="video-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <span class="video-case-label">Video · Caso de uso</span>
+              <p class="video-case-title" id="fsm-video-title">Reasignación masiva de órdenes</p>
+              <span class="video-coming-soon">Próximamente — demo en vivo</span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /casos-v2-video -->
+
+    </div><!-- /casos-v2-layout -->
+  </div>
+</section>
+<!-- ── FIN CASOS DE USO ── -->
+
+<!-- FORMULARIO -->
+<div class="form-cta-section" id="demo">
+  <div class="container">
+    <div class="form-inner">
+      <div class="form-left">
+        <span class="section-label" style="color:var(--accent);">Demo gratuita</span>
+        <h2>Probá FSMTool en tu<br/><em>entorno OFSC</em></h2>
+        <p>Agendá una demo personalizada. Te mostramos FSMTool funcionando con tus propios datos y casos de uso reales.</p>
+        <div class="form-trust">
+          <div class="form-trust-item"><div class="form-trust-check"></div><span>Sin costo. Sin compromiso.</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span>Demo con tu ambiente OFSC real</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span>Respondemos en menos de 24hs hábiles</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span>Expertos certificados en OFSC</span></div>
+        </div>
+      </div>
+      <div class="form-right">
+        <h3>Solicitá tu demo de FSMTool</h3>
+        <form onsubmit="submitForm(event,'fsm-success')">
+          <div class="form-row">
+            <div class="form-group"><label>Nombre *</label><input type="text" placeholder="Tu nombre" required /></div>
+            <div class="form-group"><label>Apellido *</label><input type="text" placeholder="Tu apellido" required /></div>
+          </div>
+          <div class="form-group"><label>Empresa *</label><input type="text" placeholder="Nombre de tu empresa" required /></div>
+          <div class="form-group"><label>Email corporativo *</label><input type="email" placeholder="tu@empresa.com" required /></div>
+          <div class="form-group"><label>¿Cómo usás Oracle Field Service Cloud?</label><select><option value="">Seleccioná una opción</option><option>Utilities</option><option>Telecomunicaciones</option><option>Servicios de campo</option><option>Logística</option><option>Otro</option></select></div>
+          <div class="form-group"><label>¿Qué problema querés resolver?</label><textarea placeholder="Contanos tu caso de uso..."></textarea></div>
+          <button type="submit" class="btn-primary form-submit">Solicitar demo gratuita →</button>
+          <p class="form-note">Tus datos están seguros. No enviamos spam.</p>
+        </form>
+        <div class="form-success" id="fsm-success">
+          <div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h4>¡Solicitud recibida!</h4>
+          <p>Nos pondremos en contacto en menos de 24hs hábiles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:var(--primary);padding:40px 0 24px;border-top:1px solid rgba(255,255,255,0.06);">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <a href="index.html"><img src="assets/connexaAzulP.png" alt="Connexa Services" style="height:36px;" /></a>
+    <div style="display:flex;gap:16px;">
+      <a href="index.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;">← Inicio</a>
+      <a href="productos.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;">← Volver a Productos</a>
+    </div>
+    <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);">© 2026 Connexa Services</span>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+<script>
+  // ── NAVBAR HAMBURGER ──
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburgerBtn.addEventListener('click', function() { mobileNav.classList.toggle('open'); });
+
+  // ── SCROLL TOP ──
+  var scrollTopBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', function() {
+    scrollTopBtn.classList.toggle('show', window.scrollY > 300);
+  }, {passive: true});
+  scrollTopBtn.addEventListener('click', function() { window.scrollTo({top: 0, behavior: 'smooth'}); });
+
+  // ── INTERSECTION OBSERVER (fade-up) ──
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.fade-up').forEach(function(el) { io.observe(el); });
+
+  // ── TABS ──
+  document.querySelectorAll('.func-tabs').forEach(function(container) {
+    container.querySelectorAll('.func-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        container.querySelectorAll('.func-tab').forEach(function(t) { t.classList.remove('active'); });
+        var parent = container.parentElement;
+        parent.querySelectorAll('.func-panel').forEach(function(p) { p.classList.remove('active'); });
+        var panel = document.getElementById('tab-' + tab.dataset.tab);
+        if (panel) panel.classList.add('active');
+        tab.classList.add('active');
+      });
+    });
+  });
+
+  // ── CASOS DE USO ──
+  var fsmCasos = [
+    'Reasignación masiva de órdenes',
+    'Visualización completa de fuerza de trabajo',
+    'Transferencia masiva de inventarios',
+    'Reasignación masiva de zonas',
+    'Actualización masiva de estados'
+  ];
+  var fsmVideoTitle = document.getElementById('fsm-video-title');
+  var fsmVideoContent = document.getElementById('fsm-video-content');
+
+  document.querySelectorAll('#page-fsmtool-casos .caso-item, .casos-v2-section .caso-item').forEach(function(item) {
+    if (item.classList.contains('disabled')) return;
+    item.addEventListener('click', function() {
+      // deactivate all
+      document.querySelectorAll('.casos-v2-section .caso-item').forEach(function(i) { i.classList.remove('active'); });
+      // activate clicked
+      item.classList.add('active');
+      // update video — fadeOut → update → fadeIn
+      var idx = parseInt(item.dataset.caso);
+      fsmVideoContent.classList.add('fading');
+      setTimeout(function() {
+        fsmVideoTitle.textContent = fsmCasos[idx] || '';
+        fsmVideoContent.classList.remove('fading');
+      }, 150);
+    });
+  });
+
+  // ── FORM SUBMIT ──
+  function submitForm(e, successId) {
+    e.preventDefault();
+    var form = e.target;
+    var success = document.getElementById(successId);
+    if (form && success) { form.style.display = 'none'; success.style.display = 'block'; }
+  }
+</script>
+</body>
+</html>
