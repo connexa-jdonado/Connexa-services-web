@@ -40,3 +40,18 @@ Estos valores no se modifican bajo ninguna circunstancia:
 3. Confirmar qué NO se va a tocar
 4. Hacer el cambio
 5. Reportar exactamente qué se modificó
+
+
+## PROTOCOLO DE GIT — CONTROL DE VERSIONES
+Antes de cualquier cambio ejecutar:
+  git add .
+  git commit -m "backup antes de: [descripción del cambio]"
+
+Si algo sale mal ejecutar:
+  git checkout -- .
+  (esto revierte todos los cambios al último commit)
+
+## PROTOCOLO DE BACKUP POR ARCHIVO
+Antes de modificar cualquier archivo hacer una copia:
+  cp index.html index.html.backup
+Así si algo se rompe se restaura en segundos.
