@@ -119,45 +119,43 @@
     .func-action-item:hover { background: #E8F5DB; }
     .func-action-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
 
-    /* ── CASOS DE USO V2 ── */
-    .casos-v2-section { background: var(--secondary); padding: var(--section-py) 0; }
+    /* ── CASOS DE USO ── */
+    .casos-v2-section { background: #F3F4F6; padding: 120px 0; }
     .casos-v2-header { text-align: center; margin-bottom: 64px; }
-    .casos-v2-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
-    .casos-v2-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 700; color: var(--primary); line-height: 1.15; margin-bottom: 16px; }
-    .casos-v2-sub { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--text-muted); line-height: 1.7; max-width: 520px; margin: 0 auto; }
-    .casos-v2-layout { display: grid; grid-template-columns: 40% 60%; gap: 0; align-items: start; }
-    .casos-v2-list { display: flex; flex-direction: column; padding-right: 48px; }
-    .caso-item { padding: 20px 24px; border-radius: 12px; cursor: pointer; transition: background 0.2s ease, box-shadow 0.2s ease; border-left: 4px solid transparent; }
-    .caso-item:not(.active):not(.disabled):hover { background: rgba(255,255,255,0.65); }
-    .caso-item.active { background: #fff; border-left-color: var(--accent); box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
-    .caso-item.disabled { opacity: 0.5; cursor: default; pointer-events: none; }
+    .casos-v2-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #71B136; margin-bottom: 14px; }
+    .casos-v2-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 700; color: #172554; line-height: 1.15; margin-bottom: 16px; }
+    .casos-v2-sub { font-family: 'Inter', sans-serif; font-size: 18px; color: #6B7280; line-height: 1.7; max-width: 600px; margin: 0 auto; }
+    .casos-v2-layout { display: grid; grid-template-columns: 40% 60%; gap: 48px; align-items: start; }
+    .casos-v2-list { display: flex; flex-direction: column; }
+    .caso-item { padding: 24px; border-radius: 12px; cursor: pointer; transition: background 0.2s ease, box-shadow 0.2s ease; border-left: 4px solid transparent; border-bottom: 1px solid #E5E7EB; }
+    .caso-item:last-child { border-bottom: none; }
+    .caso-item:not(.active):not(.disabled):hover { background: rgba(255,255,255,0.6); }
+    .caso-item.active { background: #fff; border-left-color: #71B136; box-shadow: 0 4px 24px rgba(0,0,0,0.08); border-bottom-color: transparent; }
+    .caso-item.disabled { opacity: 0.4; cursor: default; pointer-events: none; }
     .caso-item-header { display: flex; align-items: center; gap: 16px; }
-    .caso-item-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 700; color: rgba(23,37,84,0.18); line-height: 1; transition: color 0.25s; min-width: 44px; flex-shrink: 0; }
-    .caso-item.active .caso-item-num { color: var(--accent); }
-    .caso-item-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary); line-height: 1.35; }
-    .caso-soon-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(107,114,128,0.1); border: 1px solid rgba(107,114,128,0.18); border-radius: 6px; padding: 3px 8px; color: var(--text-muted); margin-left: 8px; vertical-align: middle; }
+    .caso-item-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 700; color: #172554; opacity: 0.2; line-height: 1; transition: color 0.25s, opacity 0.25s; min-width: 44px; flex-shrink: 0; }
+    .caso-item.active .caso-item-num { color: #71B136; opacity: 1; }
+    .caso-item-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 600; color: #172554; line-height: 1.35; }
+    .caso-soon-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(107,114,128,0.1); border: 1px solid rgba(107,114,128,0.18); border-radius: 6px; padding: 3px 8px; color: #6B7280; margin-left: 8px; vertical-align: middle; }
     .caso-item-body { padding-left: 60px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, opacity 0.25s ease; opacity: 0; }
     .caso-item.active .caso-item-body { max-height: 200px; opacity: 1; padding-top: 12px; }
-    .caso-item-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
-    .caso-item-metric { display: inline-flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.12); border: 1px solid rgba(113,177,54,0.25); border-radius: 20px; padding: 5px 14px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .caso-item-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: #6B7280; line-height: 1.65; margin-bottom: 14px; }
+    .caso-item-metric { display: inline-flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.15); border-radius: 20px; padding: 4px 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: #71B136; }
     .casos-v2-video { position: sticky; top: 100px; }
-    .video-frame { background: #fff; border-radius: 12px; box-shadow: 0 24px 48px rgba(0,0,0,0.15); overflow: hidden; }
-    .video-toolbar { background: #F3F4F6; padding: 10px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #E5E7EB; }
+    .video-frame { border-radius: 12px; box-shadow: 0 24px 48px rgba(0,0,0,0.15); overflow: hidden; }
+    .video-toolbar { background: #E5E7EB; height: 36px; border-radius: 12px 12px 0 0; padding: 0 16px; display: flex; align-items: center; gap: 8px; }
     .video-dots { display: flex; gap: 6px; }
-    .video-dots span { width: 11px; height: 11px; border-radius: 50%; }
-    .video-dots span:nth-child(1){background:#FF5F57} .video-dots span:nth-child(2){background:#FFBD2E} .video-dots span:nth-child(3){background:#28C840}
-    .video-inner { aspect-ratio: 16/9; background: var(--primary); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .video-content { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; padding: 32px; transition: opacity 0.15s ease, transform 0.15s ease; }
-    .video-content.fading { opacity: 0; transform: translateY(8px); }
-    .video-play-btn { width: 76px; height: 76px; background: rgba(113,177,54,0.15); border: 2px solid rgba(113,177,54,0.45); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .video-play-btn svg { width: 28px; height: 28px; fill: var(--accent); margin-left: 5px; }
-    .video-case-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-    .video-case-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; max-width: 320px; }
-    .video-coming-soon { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 4px; }
-    @media (max-width: 960px) {
+    .video-dots span { width: 12px; height: 12px; border-radius: 50%; }
+    .video-dots span:nth-child(1){background:#FF5F57} .video-dots span:nth-child(2){background:#FFBD2E} .video-dots span:nth-child(3){background:#28CA41}
+    .video-area { aspect-ratio: 16/9; background: #172554; border-radius: 0 0 12px 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: opacity 0.3s ease; }
+    .video-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 32px; }
+    .video-placeholder svg { width: 64px; height: 64px; fill: #71B136; }
+    .video-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 600; color: #fff; margin-top: 16px; line-height: 1.3; max-width: 320px; }
+    .video-soon { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+    @media (max-width: 768px) {
       .casos-v2-layout { grid-template-columns: 1fr; }
-      .casos-v2-list { padding-right: 0; margin-top: 40px; }
-      .casos-v2-video { position: static; }
+      .casos-v2-video { position: static; order: -1; }
+      .caso-item-body { max-height: none; }
     }
 
     /* ── FORM CTA ── */
@@ -195,9 +193,6 @@
     .scroll-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(113,177,54,0.45); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; z-index: 900; }
     .scroll-top.show { opacity: 1; transform: translateY(0); }
     .scroll-top svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-  .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: var(--accent); color: #fff; padding: 16px 12px; border-radius: 8px 0 0 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 999; border: none; text-decoration: none; }
-  .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
-  .cta-flotante:hover { background: var(--accent-dark); transform: translateY(-50%) translateX(-4px); }
   </style>
 </head>
 <body>
@@ -308,7 +303,7 @@
 <section class="casos-v2-section">
   <div class="container">
     <div class="casos-v2-header fade-up">
-      <div class="casos-v2-eyebrow">Casos de uso</div>
+      <div class="casos-v2-eyebrow">CASOS DE USO</div>
       <h2 class="casos-v2-title">Mirá Workflow Builder en acción</h2>
       <p class="casos-v2-sub">Seleccioná un caso y vé cómo automatizar tus procesos OFSC sin escribir código.</p>
     </div>
@@ -318,7 +313,7 @@
       <!-- Columna izquierda 40%: lista de casos -->
       <div class="casos-v2-list">
 
-        <div class="caso-item active" data-caso="0">
+        <div class="caso-item" data-caso="0">
           <div class="caso-item-header">
             <span class="caso-item-num">01</span>
             <span class="caso-item-title">Automatización de tareas repetitivas</span>
@@ -373,22 +368,18 @@
 
       </div><!-- /casos-v2-list -->
 
-      <!-- Columna derecha 60%: video placeholder -->
+      <!-- Columna derecha 60%: video placeholder sticky -->
       <div class="casos-v2-video">
         <div class="video-frame">
           <div class="video-toolbar">
             <div class="video-dots"><span></span><span></span><span></span></div>
-            <div class="browser-address" style="flex:1;">Workflow Builder — Demo en vivo</div>
           </div>
-          <!-- VIDEO: reemplazar por <video src="assets/videos/caso-01.mp4" autoplay loop muted playsinline> -->
-          <div class="video-inner">
-            <div class="video-content" id="wb-video-content">
-              <div class="video-play-btn">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </div>
-              <span class="video-case-label">Video · Caso de uso</span>
-              <p class="video-case-title" id="wb-video-title">Automatización de tareas repetitivas</p>
-              <span class="video-coming-soon">Próximamente — demo en vivo</span>
+          <!-- VIDEO caso-01: reemplazar div.video-area por <video src="assets/videos/caso-01.mp4" controls></video> -->
+          <div class="video-area" id="wb-video-content">
+            <div class="video-placeholder">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <p class="video-title" id="wb-video-title">Automatización de tareas repetitivas</p>
+              <span class="video-soon">Próximamente — demo en vivo</span>
             </div>
           </div>
         </div>
@@ -493,22 +484,26 @@
   var wbVideoTitle = document.getElementById('wb-video-title');
   var wbVideoContent = document.getElementById('wb-video-content');
 
+  function wbActivarCaso(item) {
+    document.querySelectorAll('.casos-v2-section .caso-item').forEach(function(i) { i.classList.remove('active'); });
+    item.classList.add('active');
+    var idx = parseInt(item.dataset.caso);
+    wbVideoContent.style.transition = 'opacity 0.15s ease';
+    wbVideoContent.style.opacity = '0';
+    setTimeout(function() {
+      wbVideoTitle.textContent = wbCasos[idx] || '';
+      wbVideoContent.style.transition = 'opacity 0.3s ease';
+      wbVideoContent.style.opacity = '1';
+    }, 150);
+  }
+
   document.querySelectorAll('.casos-v2-section .caso-item').forEach(function(item) {
     if (item.classList.contains('disabled')) return;
-    item.addEventListener('click', function() {
-      // deactivate all
-      document.querySelectorAll('.casos-v2-section .caso-item').forEach(function(i) { i.classList.remove('active'); });
-      // activate clicked
-      item.classList.add('active');
-      // update video — fadeOut → update → fadeIn
-      var idx = parseInt(item.dataset.caso);
-      wbVideoContent.classList.add('fading');
-      setTimeout(function() {
-        wbVideoTitle.textContent = wbCasos[idx] || '';
-        wbVideoContent.classList.remove('fading');
-      }, 150);
-    });
+    item.addEventListener('click', function() { wbActivarCaso(item); });
   });
+
+  var wbPrimerCaso = document.querySelector('.casos-v2-section .caso-item:not(.disabled)');
+  if (wbPrimerCaso) wbActivarCaso(wbPrimerCaso);
 
   // ── FORM SUBMIT ──
   function submitForm(e, successId) {
@@ -517,18 +512,6 @@
     var success = document.getElementById(successId);
     if (form && success) { form.style.display = 'none'; success.style.display = 'block'; }
   }
-
-  // ── CTA FLOTANTE ──
-  var ctaFlotante = document.getElementById('ctaFlotante');
-  window.addEventListener('scroll', function() {
-    ctaFlotante.classList.toggle('visible', window.scrollY > 300);
-  }, {passive: true});
-  ctaFlotante.addEventListener('click', function() {
-    var target = document.getElementById('demo');
-    if (target) target.scrollIntoView({behavior: 'smooth'});
-  });
 </script>
-
-<div class="cta-flotante" id="ctaFlotante"><span>Agendar demo</span></div>
 </body>
 </html>
