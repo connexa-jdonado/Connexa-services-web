@@ -193,6 +193,9 @@
     .scroll-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(113,177,54,0.45); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; z-index: 900; }
     .scroll-top.show { opacity: 1; transform: translateY(0); }
     .scroll-top svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: #71B136; color: white; padding: 16px 12px; border-radius: 8px 0 0 8px; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 9999; }
+  .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .cta-flotante:hover { background: #5a9229; transform: translateY(-50%) translateX(-4px); }
   </style>
 </head>
 <body>
@@ -518,6 +521,29 @@
     var success = document.getElementById(successId);
     if (form && success) { form.style.display = 'none'; success.style.display = 'block'; }
   }
+</script>
+
+<div class="cta-flotante" id="ctaFlotante">
+  <span>Agendar demo</span>
+</div>
+
+<script>
+  const ctaFlotante = document.getElementById('ctaFlotante');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      ctaFlotante.classList.add('visible');
+    } else {
+      ctaFlotante.classList.remove('visible');
+    }
+  });
+  ctaFlotante.addEventListener('click', () => {
+    const contacto = document.getElementById('contacto')
+      || document.getElementById('demo')
+      || document.getElementById('cta-section');
+    if (contacto) {
+      contacto.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 </script>
 </body>
 </html>
