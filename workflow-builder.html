@@ -268,38 +268,6 @@
   </div>
 </div>
 
-<!-- TABS -->
-<div class="valor-section white">
-  <div class="container">
-    <div class="section-header-center">
-      <span class="section-label fade-up">Módulos</span>
-      <h2 class="fade-up d1">Todo lo que podés hacer</h2>
-    </div>
-    <div class="func-tabs fade-up d1" id="wb-tabs">
-      <button class="func-tab active" data-tab="wb-constructor">Constructor visual</button>
-      <button class="func-tab" data-tab="wb-ejecuciones">Ejecuciones</button>
-      <button class="func-tab" data-tab="wb-orquestaciones">Orquestaciones</button>
-      <button class="func-tab" data-tab="wb-panel">Panel principal</button>
-    </div>
-    <div class="func-panel active fade-up d2" id="tab-wb-constructor">
-      <div class="func-text"><div class="func-module-badge"><span>Editor de workflows</span></div><h3>Constructor visual drag &amp; drop</h3><p>Diseñá workflows complejos arrastrando nodos al canvas. Conectá condiciones, acciones sobre OFSC, loops y notificaciones en una interfaz clara y poderosa.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Paleta de nodos: If, Switch, Loop, Wait, Try/Catch</div><div class="func-action-item"><div class="func-action-dot"></div>Acciones directas sobre APIs de Oracle Field Service</div><div class="func-action-item"><div class="func-action-dot"></div>Nodo Notify: webhooks a Slack, Teams, email</div><div class="func-action-item"><div class="func-action-dot"></div>Nodo AI Agent: consultas inteligentes sobre OFSC</div><div class="func-action-item"><div class="func-action-dot"></div>Botón "Probar" para ejecutar en sandbox</div></div></div>
-      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Editor</div></div><img src="assets/wb-canvas.png" style="width:100%;display:block;" alt="Workflow Builder editor" /></div></div>
-    </div>
-    <div class="func-panel" id="tab-wb-ejecuciones">
-      <div class="func-text"><div class="func-module-badge"><span>Monitoreo en tiempo real</span></div><h3>Historial y logs de ejecuciones</h3><p>Monitoreá cada ejecución de tus workflows en tiempo real. Filtrá por estado, revisá los logs detallados de cada paso y exportá para auditoría.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Vista en tiempo real de todas las ejecuciones</div><div class="func-action-item"><div class="func-action-dot"></div>Filtros: Running · Success · Error · Pending</div><div class="func-action-item"><div class="func-action-dot"></div>Panel lateral con logs JSON detallados</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación completa para auditoría</div></div></div>
-      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Ejecuciones</div></div><img src="assets/wb-ejecuciones.png" style="width:100%;display:block;" alt="Workflow Builder ejecuciones" /></div></div>
-    </div>
-    <div class="func-panel" id="tab-wb-orquestaciones">
-      <div class="func-text"><div class="func-module-badge"><span>Automatización reactiva</span></div><h3>Orquestaciones: trigger → workflow</h3><p>Conectá triggers de eventos OFSC con tus workflows para ejecutarlos automáticamente. Activá o pausá cada orquestación con un toggle.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Vinculación de cualquier trigger a cualquier workflow</div><div class="func-action-item"><div class="func-action-dot"></div>Toggle de activación/pausa sin borrar configuración</div><div class="func-action-item"><div class="func-action-dot"></div>Ejecución reactiva: trigger recibido → workflow disparado</div></div></div>
-      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Orquestaciones</div></div><img src="assets/wb-orquestaciones.png" style="width:100%;display:block;" alt="Workflow Builder orquestaciones" /></div></div>
-    </div>
-    <div class="func-panel" id="tab-wb-panel">
-      <div class="func-text"><div class="func-module-badge"><span>Visibilidad operacional</span></div><h3>Panel principal de actividad</h3><p>Visión completa del estado de tu plataforma: ejecuciones recientes, tasa de éxito, errores en las últimas 24h y estado de todos tus workflows.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>KPIs en tiempo real: ejecuciones, tasa de éxito, errores</div><div class="func-action-item"><div class="func-action-dot"></div>Gráfico de actividad: 24h · 7d · 30d</div><div class="func-action-item"><div class="func-action-dot"></div>Estado de workflows activos vs pausados</div></div></div>
-      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Panel Principal</div></div><img src="assets/wb-panel.png" style="width:100%;display:block;" alt="Workflow Builder panel" /></div></div>
-    </div>
-  </div>
-</div>
-
 <!-- ══════════════════════════════════════
      CASOS DE USO — layout dos columnas
 ══════════════════════════════════════ -->
@@ -392,6 +360,38 @@
   </div>
 </section>
 <!-- ── FIN CASOS DE USO ── -->
+
+<!-- TABS -->
+<div class="valor-section white">
+  <div class="container">
+    <div class="section-header-center">
+      <span class="section-label fade-up">Módulos</span>
+      <h2 class="fade-up d1">Todo lo que podés hacer</h2>
+    </div>
+    <div class="func-tabs fade-up d1" id="wb-tabs">
+      <button class="func-tab active" data-tab="wb-constructor">Constructor visual</button>
+      <button class="func-tab" data-tab="wb-ejecuciones">Ejecuciones</button>
+      <button class="func-tab" data-tab="wb-orquestaciones">Orquestaciones</button>
+      <button class="func-tab" data-tab="wb-panel">Panel principal</button>
+    </div>
+    <div class="func-panel active fade-up d2" id="tab-wb-constructor">
+      <div class="func-text"><div class="func-module-badge"><span>Editor de workflows</span></div><h3>Constructor visual drag &amp; drop</h3><p>Diseñá workflows complejos arrastrando nodos al canvas. Conectá condiciones, acciones sobre OFSC, loops y notificaciones en una interfaz clara y poderosa.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Paleta de nodos: If, Switch, Loop, Wait, Try/Catch</div><div class="func-action-item"><div class="func-action-dot"></div>Acciones directas sobre APIs de Oracle Field Service</div><div class="func-action-item"><div class="func-action-dot"></div>Nodo Notify: webhooks a Slack, Teams, email</div><div class="func-action-item"><div class="func-action-dot"></div>Nodo AI Agent: consultas inteligentes sobre OFSC</div><div class="func-action-item"><div class="func-action-dot"></div>Botón "Probar" para ejecutar en sandbox</div></div></div>
+      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Editor</div></div><img src="assets/wb-canvas.png" style="width:100%;display:block;" alt="Workflow Builder editor" /></div></div>
+    </div>
+    <div class="func-panel" id="tab-wb-ejecuciones">
+      <div class="func-text"><div class="func-module-badge"><span>Monitoreo en tiempo real</span></div><h3>Historial y logs de ejecuciones</h3><p>Monitoreá cada ejecución de tus workflows en tiempo real. Filtrá por estado, revisá los logs detallados de cada paso y exportá para auditoría.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Vista en tiempo real de todas las ejecuciones</div><div class="func-action-item"><div class="func-action-dot"></div>Filtros: Running · Success · Error · Pending</div><div class="func-action-item"><div class="func-action-dot"></div>Panel lateral con logs JSON detallados</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación completa para auditoría</div></div></div>
+      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Ejecuciones</div></div><img src="assets/wb-ejecuciones.png" style="width:100%;display:block;" alt="Workflow Builder ejecuciones" /></div></div>
+    </div>
+    <div class="func-panel" id="tab-wb-orquestaciones">
+      <div class="func-text"><div class="func-module-badge"><span>Automatización reactiva</span></div><h3>Orquestaciones: trigger → workflow</h3><p>Conectá triggers de eventos OFSC con tus workflows para ejecutarlos automáticamente. Activá o pausá cada orquestación con un toggle.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Vinculación de cualquier trigger a cualquier workflow</div><div class="func-action-item"><div class="func-action-dot"></div>Toggle de activación/pausa sin borrar configuración</div><div class="func-action-item"><div class="func-action-dot"></div>Ejecución reactiva: trigger recibido → workflow disparado</div></div></div>
+      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Orquestaciones</div></div><img src="assets/wb-orquestaciones.png" style="width:100%;display:block;" alt="Workflow Builder orquestaciones" /></div></div>
+    </div>
+    <div class="func-panel" id="tab-wb-panel">
+      <div class="func-text"><div class="func-module-badge"><span>Visibilidad operacional</span></div><h3>Panel principal de actividad</h3><p>Visión completa del estado de tu plataforma: ejecuciones recientes, tasa de éxito, errores en las últimas 24h y estado de todos tus workflows.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>KPIs en tiempo real: ejecuciones, tasa de éxito, errores</div><div class="func-action-item"><div class="func-action-dot"></div>Gráfico de actividad: 24h · 7d · 30d</div><div class="func-action-item"><div class="func-action-dot"></div>Estado de workflows activos vs pausados</div></div></div>
+      <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Panel Principal</div></div><img src="assets/wb-panel.png" style="width:100%;display:block;" alt="Workflow Builder panel" /></div></div>
+    </div>
+  </div>
+</div>
 
 <!-- FORMULARIO -->
 <div class="form-cta-section" id="demo">
