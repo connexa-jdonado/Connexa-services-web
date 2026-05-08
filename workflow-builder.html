@@ -195,6 +195,9 @@
     .scroll-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(113,177,54,0.45); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; z-index: 900; }
     .scroll-top.show { opacity: 1; transform: translateY(0); }
     .scroll-top svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: var(--accent); color: #fff; padding: 16px 12px; border-radius: 8px 0 0 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 999; border: none; text-decoration: none; }
+  .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .cta-flotante:hover { background: var(--accent-dark); transform: translateY(-50%) translateX(-4px); }
   </style>
 </head>
 <body>
@@ -514,6 +517,18 @@
     var success = document.getElementById(successId);
     if (form && success) { form.style.display = 'none'; success.style.display = 'block'; }
   }
+
+  // ── CTA FLOTANTE ──
+  var ctaFlotante = document.getElementById('ctaFlotante');
+  window.addEventListener('scroll', function() {
+    ctaFlotante.classList.toggle('visible', window.scrollY > 300);
+  }, {passive: true});
+  ctaFlotante.addEventListener('click', function() {
+    var target = document.getElementById('demo');
+    if (target) target.scrollIntoView({behavior: 'smooth'});
+  });
 </script>
+
+<div class="cta-flotante" id="ctaFlotante"><span>Agendar demo</span></div>
 </body>
 </html>

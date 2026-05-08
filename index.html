@@ -502,6 +502,31 @@
     .form-success-icon svg { width: 28px; height: 28px; stroke: var(--accent); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
     .form-success h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
     .form-success p { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── POR QUÉ CONNEXA ── */
+    #por-que-connexa { background: var(--primary); padding: var(--section-py) 0; position: relative; overflow: hidden; }
+    #por-que-connexa::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .pqc-header { text-align: center; margin-bottom: 56px; position: relative; z-index: 2; }
+    .pqc-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .pqc-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 16px; }
+    .pqc-sub { font-family: 'Inter', sans-serif; font-size: 18px; color: rgba(255,255,255,0.70); line-height: 1.65; max-width: 600px; margin: 0 auto; }
+    .pqc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; position: relative; z-index: 2; }
+    @media (max-width: 960px) { .pqc-grid { grid-template-columns: 1fr; } }
+    .pqc-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); border-radius: var(--card-radius); padding: 40px; display: flex; flex-direction: column; gap: 16px; transition: border-color 0.3s ease, transform 0.3s ease; }
+    .pqc-card:hover { border-color: rgba(113,177,54,0.40); transform: translateY(-4px); }
+    .pqc-icon { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; }
+    .pqc-icon svg { width: 48px; height: 48px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .pqc-card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 19px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .pqc-card-desc { font-family: 'Inter', sans-serif; font-size: 15px; color: rgba(255,255,255,0.62); line-height: 1.65; }
+    .pqc-badge { display: inline-flex; align-items: center; background: rgba(113,177,54,0.15); border-radius: 20px; padding: 4px 12px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--accent); width: fit-content; margin-top: 4px; }
+    .pqc-sep { width: 100%; height: 1px; background: rgba(255,255,255,0.10); margin: 48px 0 40px; position: relative; z-index: 2; }
+    .pqc-cta { text-align: center; position: relative; z-index: 2; }
+    .pqc-cta-text { font-family: 'Inter', sans-serif; font-size: 17px; color: rgba(255,255,255,0.70); margin-bottom: 24px; }
+
+    /* ── CTA FLOTANTE ── */
+    .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: var(--accent); color: #fff; padding: 16px 12px; border-radius: 8px 0 0 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 999; border: none; text-decoration: none; }
+    .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
+    .cta-flotante:hover { background: var(--accent-dark); transform: translateY(-50%) translateX(-4px); }
   </style>
 </head>
 <body>
@@ -656,6 +681,42 @@
         <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Soporte Post Go-Live</h3><p>Servicio de soporte continuo con SLA garantizado, gestión de incidentes, mejoras evolutivas y acompañamiento técnico de primer nivel.</p><span class="service-link">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
         <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Desarrollo a Medida</h3><p>Desarrollo de plugins, extensiones y soluciones personalizadas sobre las plataformas OFSC y Zinier para adaptar la herramienta a tu negocio.</p><span class="service-link">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
         <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3>Integraciones</h3><p>Conectamos OFSC y Zinier con tus sistemas ERP, CRM, GIS o de facturación mediante APIs, middleware y conectores especializados.</p><span class="service-link">Ver más <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ CONNEXA -->
+  <section id="por-que-connexa">
+    <div class="container">
+      <div class="pqc-header">
+        <div class="pqc-eyebrow fade-up">Por qué elegirnos</div>
+        <h2 class="pqc-title fade-up d1">No somos una consultora genérica</h2>
+        <p class="pqc-sub fade-up d2">Nos especializamos exclusivamente en Field Service Management. Eso marca la diferencia.</p>
+      </div>
+      <div class="pqc-grid">
+        <div class="pqc-card fade-up d1">
+          <div class="pqc-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="2" x2="12" y2="22"/></svg></div>
+          <div class="pqc-card-title">Soluciones desarrolladas por nosotros</div>
+          <p class="pqc-card-desc">FSMTool y Workflow Builder son aplicaciones propias que desarrollamos para potenciar Oracle Field Service Cloud. Ninguna otra consultora las tiene.</p>
+          <span class="pqc-badge">FSMTool · Workflow Builder</span>
+        </div>
+        <div class="pqc-card fade-up d2">
+          <div class="pqc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8 14l-4 8h16l-4-8"/><line x1="12" y1="14" x2="12" y2="22"/></svg></div>
+          <div class="pqc-card-title">10+ años exclusivos en Field Service</div>
+          <p class="pqc-card-desc">No hacemos de todo. Nos dedicamos exclusivamente al Field Service Management. Esa especialización se traduce en resultados más rápidos y proyectos más exitosos.</p>
+          <span class="pqc-badge">Foco 100% FSM</span>
+        </div>
+        <div class="pqc-card fade-up d3">
+          <div class="pqc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+          <div class="pqc-card-title">Equipo certificado en Oracle Field Service</div>
+          <p class="pqc-card-desc">Nuestros consultores están certificados en Oracle Field Service Cloud y Zinier. Implementamos con el conocimiento técnico más profundo del mercado.</p>
+          <span class="pqc-badge">Oracle Certified · Zinier Partner</span>
+        </div>
+      </div>
+      <div class="pqc-sep"></div>
+      <div class="pqc-cta fade-up">
+        <p class="pqc-cta-text">¿Querés conocer más sobre nuestra metodología y equipo?</p>
+        <button class="btn-primary" onclick="scrollToSection('metodologia')" style="font-size:16px;padding:14px 32px;">Conocé nuestro equipo →</button>
       </div>
     </div>
   </section>
@@ -1281,6 +1342,18 @@
   },{threshold:0.5});
   var mr = document.getElementById('hero-metrics-row');
   if (mr) metricIo.observe(mr);
+
+  // ── CTA FLOTANTE ──
+  var ctaFlotante = document.getElementById('ctaFlotante');
+  window.addEventListener('scroll', function() {
+    ctaFlotante.classList.toggle('visible', window.scrollY > 300);
+  }, {passive: true});
+  ctaFlotante.addEventListener('click', function() {
+    var target = document.getElementById('cta-section');
+    if (target) target.scrollIntoView({behavior: 'smooth'});
+  });
 </script>
+
+<div class="cta-flotante" id="ctaFlotante"><span>Agendar demo</span></div>
 </body>
 </html>
