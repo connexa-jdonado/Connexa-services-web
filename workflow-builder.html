@@ -197,6 +197,11 @@
   .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: #71B136; color: white; padding: 16px 12px; border-radius: 8px 0 0 8px; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 9999; }
   .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
   .cta-flotante:hover { background: #5a9229; transform: translateY(-50%) translateX(-4px); }
+  .lang-switcher { display: flex; align-items: center; gap: 8px; }
+  .lang-btn { font-size: 13px; font-weight: 600; cursor: pointer; color: rgba(255,255,255,0.5); transition: color 200ms; }
+  .lang-btn.active { color: #ffffff; }
+  .lang-btn:hover { color: #ffffff; }
+  .lang-divider { color: rgba(255,255,255,0.3); }
   </style>
 </head>
 <body>
@@ -208,38 +213,43 @@
       <img src="assets/connexaAzulP.png" alt="Connexa Services" />
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#services">Servicios</a></li>
-      <li><a href="productos.html" class="active">Productos</a></li>
+      <li><a href="index.html#services" data-es="Servicios" data-en="Services">Servicios</a></li>
+      <li><a href="productos.html" class="active" data-es="Productos" data-en="Products">Productos</a></li>
       <li><a href="index.html#partnerships">Partnerships</a></li>
-      <li><a href="#">Casos de éxito</a></li>
-      <li><a href="#">Nosotros</a></li>
+      <li><a href="#" data-es="Casos de éxito" data-en="Success Stories">Casos de éxito</a></li>
+      <li><a href="#" data-es="Nosotros" data-en="About Us">Nosotros</a></li>
     </ul>
     <div class="nav-cta">
-      <a class="btn-primary" href="#demo">Hablar con un experto</a>
+      <a class="btn-primary" href="#demo" data-es="Hablar con un experto" data-en="Talk to an Expert">Hablar con un experto</a>
+    </div>
+    <div class="lang-switcher" style="margin-left:20px;flex-shrink:0;">
+      <span class="lang-btn active" data-lang="es">ES</span>
+      <span class="lang-divider">|</span>
+      <span class="lang-btn" data-lang="en">EN</span>
     </div>
     <button class="nav-hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="index.html#services">Servicios</a>
-  <a href="productos.html">Productos</a>
+  <a href="index.html#services" data-es="Servicios" data-en="Services">Servicios</a>
+  <a href="productos.html" data-es="Productos" data-en="Products">Productos</a>
   <a href="index.html#partnerships">Partnerships</a>
-  <a href="#">Casos de éxito</a>
-  <a href="#">Nosotros</a>
-  <a class="btn-primary" href="#demo">Hablar con un experto</a>
+  <a href="#" data-es="Casos de éxito" data-en="Success Stories">Casos de éxito</a>
+  <a href="#" data-es="Nosotros" data-en="About Us">Nosotros</a>
+  <a class="btn-primary" href="#demo" data-es="Hablar con un experto" data-en="Talk to an Expert">Hablar con un experto</a>
 </div>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="container page-hero-inner">
     <nav class="breadcrumb">
-      <a href="index.html">Inicio</a><span class="breadcrumb-sep">/</span>
-      <a href="productos.html">Productos</a><span class="breadcrumb-sep">/</span>
+      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a><span class="breadcrumb-sep">/</span>
+      <a href="productos.html" data-es="Productos" data-en="Products">Productos</a><span class="breadcrumb-sep">/</span>
       <span class="breadcrumb-cur">Workflow Builder</span>
     </nav>
-    <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span>Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
-    <h1 class="page-hero-h1">Automatizá tus procesos OFSC<br/><em>sin escribir código</em></h1>
-    <p class="page-hero-sub">Construí y ejecutá workflows programados sobre entidades de Oracle Field Service de forma visual y sencilla. Triggers, condiciones, acciones y notificaciones — todo sin código.</p>
+    <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span data-es="Solución propia Connexa · Para Oracle Field Service Cloud" data-en="Connexa Proprietary Solution · For Oracle Field Service Cloud">Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
+    <h1 class="page-hero-h1" data-es="Automatizá tus procesos OFSC<br/><em>sin escribir código</em>" data-en="Automate your OFSC processes<br/><em>without writing code</em>">Automatizá tus procesos OFSC<br/><em>sin escribir código</em></h1>
+    <p class="page-hero-sub" data-es="Construí y ejecutá workflows programados sobre entidades de Oracle Field Service de forma visual y sencilla. Triggers, condiciones, acciones y notificaciones — todo sin código." data-en="Build and run scheduled workflows on Oracle Field Service entities visually and simply. Triggers, conditions, actions, and notifications — all without code.">Construí y ejecutá workflows programados sobre entidades de Oracle Field Service de forma visual y sencilla. Triggers, condiciones, acciones y notificaciones — todo sin código.</p>
   </div>
 </div>
 
@@ -257,14 +267,14 @@
 <div class="valor-section">
   <div class="container">
     <div class="section-header-center">
-      <span class="section-label fade-up">Por qué Workflow Builder</span>
-      <h2 class="fade-up d1">Automatización OFSC al alcance de todos</h2>
-      <p class="fade-up d2">Diseñado para que los equipos de operaciones puedan automatizar sin depender de IT.</p>
+      <span class="section-label fade-up" data-es="Por qué Workflow Builder" data-en="Why Workflow Builder">Por qué Workflow Builder</span>
+      <h2 class="fade-up d1" data-es="Automatización OFSC al alcance de todos" data-en="OFSC Automation within Everyone's Reach">Automatización OFSC al alcance de todos</h2>
+      <p class="fade-up d2" data-es="Diseñado para que los equipos de operaciones puedan automatizar sin depender de IT." data-en="Designed so operations teams can automate without depending on IT.">Diseñado para que los equipos de operaciones puedan automatizar sin depender de IT.</p>
     </div>
     <div class="valor-grid">
-      <div class="valor-card fade-up d1"><div class="valor-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Sin código</h3><p>Cualquier usuario de negocio puede armar workflows sin programar. Interface visual con nodos drag &amp; drop.</p><div class="valor-stat">0</div><div class="valor-stat-lbl">líneas de código para crear un workflow</div></div>
-      <div class="valor-card fade-up d2"><div class="valor-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Visual e intuitivo</h3><p>Editor canvas con paleta de nodos: condiciones, switches, loops, acciones OFS y notificaciones.</p><div class="valor-stat">10+</div><div class="valor-stat-lbl">tipos de nodos disponibles</div></div>
-      <div class="valor-card fade-up d3"><div class="valor-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3>Potente y confiable</h3><p>Automatizaciones complejas sobre cualquier entidad OFSC con historial completo de ejecuciones.</p><div class="valor-stat">99+</div><div class="valor-stat-lbl">workflows activos en producción</div></div>
+      <div class="valor-card fade-up d1"><div class="valor-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3 data-es="Sin código" data-en="No Code">Sin código</h3><p data-es="Cualquier usuario de negocio puede armar workflows sin programar. Interface visual con nodos drag &amp; drop." data-en="Any business user can build workflows without programming. Visual interface with drag &amp; drop nodes.">Cualquier usuario de negocio puede armar workflows sin programar. Interface visual con nodos drag &amp; drop.</p><div class="valor-stat">0</div><div class="valor-stat-lbl" data-es="líneas de código para crear un workflow" data-en="lines of code to create a workflow">líneas de código para crear un workflow</div></div>
+      <div class="valor-card fade-up d2"><div class="valor-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3 data-es="Visual e intuitivo" data-en="Visual and Intuitive">Visual e intuitivo</h3><p data-es="Editor canvas con paleta de nodos: condiciones, switches, loops, acciones OFS y notificaciones." data-en="Canvas editor with node palette: conditions, switches, loops, OFS actions, and notifications.">Editor canvas con paleta de nodos: condiciones, switches, loops, acciones OFS y notificaciones.</p><div class="valor-stat">10+</div><div class="valor-stat-lbl" data-es="tipos de nodos disponibles" data-en="node types available">tipos de nodos disponibles</div></div>
+      <div class="valor-card fade-up d3"><div class="valor-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3 data-es="Potente y confiable" data-en="Powerful and Reliable">Potente y confiable</h3><p data-es="Automatizaciones complejas sobre cualquier entidad OFSC con historial completo de ejecuciones." data-en="Complex automations on any OFSC entity with a complete execution history.">Automatizaciones complejas sobre cualquier entidad OFSC con historial completo de ejecuciones.</p><div class="valor-stat">99+</div><div class="valor-stat-lbl" data-es="workflows activos en producción" data-en="active workflows in production">workflows activos en producción</div></div>
     </div>
   </div>
 </div>
@@ -275,9 +285,9 @@
 <section class="casos-v2-section">
   <div class="container">
     <div class="casos-v2-header fade-up">
-      <div class="casos-v2-eyebrow">CASOS DE USO</div>
-      <h2 class="casos-v2-title">Mirá Workflow Builder en acción</h2>
-      <p class="casos-v2-sub">Seleccioná un caso y vé cómo automatizar tus procesos OFSC sin escribir código.</p>
+      <div class="casos-v2-eyebrow" data-es="CASOS DE USO" data-en="USE CASES">CASOS DE USO</div>
+      <h2 class="casos-v2-title" data-es="Mirá Workflow Builder en acción" data-en="See Workflow Builder in Action">Mirá Workflow Builder en acción</h2>
+      <p class="casos-v2-sub" data-es="Seleccioná un caso y vé cómo automatizar tus procesos OFSC sin escribir código." data-en="Select a case and see how to automate your OFSC processes without writing code.">Seleccioná un caso y vé cómo automatizar tus procesos OFSC sin escribir código.</p>
     </div>
 
     <div class="casos-v2-layout">
@@ -288,53 +298,53 @@
         <div class="caso-item" data-caso="0">
           <div class="caso-item-header">
             <span class="caso-item-num">01</span>
-            <span class="caso-item-title">Automatización de tareas repetitivas</span>
+            <span class="caso-item-title" data-es="Automatización de tareas repetitivas" data-en="Repetitive Task Automation">Automatización de tareas repetitivas</span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Creá workflows que ejecuten automáticamente las tareas que tu equipo repite a diario en OFSC.</p>
-            <span class="caso-item-metric">0 horas en tareas manuales repetitivas</span>
+            <p class="caso-item-desc" data-es="Creá workflows que ejecuten automáticamente las tareas que tu equipo repite a diario en OFSC." data-en="Build workflows that automatically execute the tasks your team repeats daily in OFSC.">Creá workflows que ejecuten automáticamente las tareas que tu equipo repite a diario en OFSC.</p>
+            <span class="caso-item-metric" data-es="0 horas en tareas manuales repetitivas" data-en="0 hours on repetitive manual tasks">0 horas en tareas manuales repetitivas</span>
           </div>
         </div>
 
         <div class="caso-item" data-caso="1">
           <div class="caso-item-header">
             <span class="caso-item-num">02</span>
-            <span class="caso-item-title">IA Agents integrados</span>
+            <span class="caso-item-title" data-es="IA Agents integrados" data-en="Integrated AI Agents">IA Agents integrados</span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Incorporá agentes de IA dentro de tus flujos para tomar decisiones automáticas basadas en datos de campo.</p>
-            <span class="caso-item-metric">Decisiones inteligentes sin intervención humana</span>
+            <p class="caso-item-desc" data-es="Incorporá agentes de IA dentro de tus flujos para tomar decisiones automáticas basadas en datos de campo." data-en="Incorporate AI agents into your flows to make automatic decisions based on field data.">Incorporá agentes de IA dentro de tus flujos para tomar decisiones automáticas basadas en datos de campo.</p>
+            <span class="caso-item-metric" data-es="Decisiones inteligentes sin intervención humana" data-en="Smart decisions without human intervention">Decisiones inteligentes sin intervención humana</span>
           </div>
         </div>
 
         <div class="caso-item" data-caso="2">
           <div class="caso-item-header">
             <span class="caso-item-num">03</span>
-            <span class="caso-item-title">Gestión automática de capacidad</span>
+            <span class="caso-item-title" data-es="Gestión automática de capacidad" data-en="Automatic Capacity Management">Gestión automática de capacidad</span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Automatizá la distribución de carga según la disponibilidad real de tu fuerza de trabajo por zona.</p>
-            <span class="caso-item-metric">Capacidad optimizada en tiempo real</span>
+            <p class="caso-item-desc" data-es="Automatizá la distribución de carga según la disponibilidad real de tu fuerza de trabajo por zona." data-en="Automate load distribution based on the real availability of your workforce by zone.">Automatizá la distribución de carga según la disponibilidad real de tu fuerza de trabajo por zona.</p>
+            <span class="caso-item-metric" data-es="Capacidad optimizada en tiempo real" data-en="Capacity optimized in real time">Capacidad optimizada en tiempo real</span>
           </div>
         </div>
 
         <div class="caso-item disabled" data-caso="3">
           <div class="caso-item-header">
             <span class="caso-item-num">04</span>
-            <span class="caso-item-title">Próximamente<span class="caso-soon-badge">Próximamente</span></span>
+            <span class="caso-item-title" data-es="Próximamente" data-en="Coming Soon"><span data-es="Próximamente" data-en="Coming Soon">Próximamente</span><span class="caso-soon-badge" data-es="Próximamente" data-en="Coming Soon">Próximamente</span></span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Nuevo caso de uso en camino.</p>
+            <p class="caso-item-desc" data-es="Nuevo caso de uso en camino." data-en="New use case coming soon.">Nuevo caso de uso en camino.</p>
           </div>
         </div>
 
         <div class="caso-item disabled" data-caso="4">
           <div class="caso-item-header">
             <span class="caso-item-num">05</span>
-            <span class="caso-item-title">Próximamente<span class="caso-soon-badge">Próximamente</span></span>
+            <span class="caso-item-title" data-es="Próximamente" data-en="Coming Soon"><span data-es="Próximamente" data-en="Coming Soon">Próximamente</span><span class="caso-soon-badge" data-es="Próximamente" data-en="Coming Soon">Próximamente</span></span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Nuevo caso de uso en camino.</p>
+            <p class="caso-item-desc" data-es="Nuevo caso de uso en camino." data-en="New use case coming soon.">Nuevo caso de uso en camino.</p>
           </div>
         </div>
 
@@ -351,7 +361,7 @@
             <div class="video-placeholder">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               <p class="video-title" id="wb-video-title">Automatización de tareas repetitivas</p>
-              <span class="video-soon">Próximamente — demo en vivo</span>
+              <span class="video-soon" data-es="Próximamente — demo en vivo" data-en="Coming soon — live demo">Próximamente — demo en vivo</span>
             </div>
           </div>
         </div>
@@ -366,29 +376,29 @@
 <div class="valor-section white">
   <div class="container">
     <div class="section-header-center">
-      <span class="section-label fade-up">Módulos</span>
-      <h2 class="fade-up d1">Todo lo que podés hacer</h2>
+      <span class="section-label fade-up" data-es="Módulos" data-en="Modules">Módulos</span>
+      <h2 class="fade-up d1" data-es="Todo lo que podés hacer" data-en="Everything You Can Do">Todo lo que podés hacer</h2>
     </div>
     <div class="func-tabs fade-up d1" id="wb-tabs">
-      <button class="func-tab active" data-tab="wb-constructor">Constructor visual</button>
-      <button class="func-tab" data-tab="wb-ejecuciones">Ejecuciones</button>
-      <button class="func-tab" data-tab="wb-orquestaciones">Orquestaciones</button>
-      <button class="func-tab" data-tab="wb-panel">Panel principal</button>
+      <button class="func-tab active" data-tab="wb-constructor" data-es="Constructor visual" data-en="Visual Builder">Constructor visual</button>
+      <button class="func-tab" data-tab="wb-ejecuciones" data-es="Ejecuciones" data-en="Executions">Ejecuciones</button>
+      <button class="func-tab" data-tab="wb-orquestaciones" data-es="Orquestaciones" data-en="Orchestrations">Orquestaciones</button>
+      <button class="func-tab" data-tab="wb-panel" data-es="Panel principal" data-en="Main Dashboard">Panel principal</button>
     </div>
     <div class="func-panel active fade-up d2" id="tab-wb-constructor">
-      <div class="func-text"><div class="func-module-badge"><span>Editor de workflows</span></div><h3>Constructor visual drag &amp; drop</h3><p>Diseñá workflows complejos arrastrando nodos al canvas. Conectá condiciones, acciones sobre OFSC, loops y notificaciones en una interfaz clara y poderosa.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Paleta de nodos: If, Switch, Loop, Wait, Try/Catch</div><div class="func-action-item"><div class="func-action-dot"></div>Acciones directas sobre APIs de Oracle Field Service</div><div class="func-action-item"><div class="func-action-dot"></div>Nodo Notify: webhooks a Slack, Teams, email</div><div class="func-action-item"><div class="func-action-dot"></div>Nodo AI Agent: consultas inteligentes sobre OFSC</div><div class="func-action-item"><div class="func-action-dot"></div>Botón "Probar" para ejecutar en sandbox</div></div></div>
+      <div class="func-text"><div class="func-module-badge"><span data-es="Editor de workflows" data-en="Workflow Editor">Editor de workflows</span></div><h3 data-es="Constructor visual drag &amp; drop" data-en="Drag &amp; Drop Visual Builder">Constructor visual drag &amp; drop</h3><p data-es="Diseñá workflows complejos arrastrando nodos al canvas. Conectá condiciones, acciones sobre OFSC, loops y notificaciones en una interfaz clara y poderosa." data-en="Design complex workflows by dragging nodes onto the canvas. Connect conditions, OFSC actions, loops, and notifications in a clear and powerful interface.">Diseñá workflows complejos arrastrando nodos al canvas. Conectá condiciones, acciones sobre OFSC, loops y notificaciones en una interfaz clara y poderosa.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Paleta de nodos: If, Switch, Loop, Wait, Try/Catch" data-en="Node palette: If, Switch, Loop, Wait, Try/Catch">Paleta de nodos: If, Switch, Loop, Wait, Try/Catch</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Acciones directas sobre APIs de Oracle Field Service" data-en="Direct actions on Oracle Field Service APIs">Acciones directas sobre APIs de Oracle Field Service</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Nodo Notify: webhooks a Slack, Teams, email" data-en="Notify node: webhooks to Slack, Teams, email">Nodo Notify: webhooks a Slack, Teams, email</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Nodo AI Agent: consultas inteligentes sobre OFSC" data-en="AI Agent node: intelligent queries on OFSC">Nodo AI Agent: consultas inteligentes sobre OFSC</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es='Botón "Probar" para ejecutar en sandbox' data-en='"Test" button to run in sandbox'>Botón "Probar" para ejecutar en sandbox</span></div></div></div>
       <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Editor</div></div><img src="assets/wb-canvas.png" style="width:100%;display:block;" alt="Workflow Builder editor" /></div></div>
     </div>
     <div class="func-panel" id="tab-wb-ejecuciones">
-      <div class="func-text"><div class="func-module-badge"><span>Monitoreo en tiempo real</span></div><h3>Historial y logs de ejecuciones</h3><p>Monitoreá cada ejecución de tus workflows en tiempo real. Filtrá por estado, revisá los logs detallados de cada paso y exportá para auditoría.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Vista en tiempo real de todas las ejecuciones</div><div class="func-action-item"><div class="func-action-dot"></div>Filtros: Running · Success · Error · Pending</div><div class="func-action-item"><div class="func-action-dot"></div>Panel lateral con logs JSON detallados</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación completa para auditoría</div></div></div>
+      <div class="func-text"><div class="func-module-badge"><span data-es="Monitoreo en tiempo real" data-en="Real-time Monitoring">Monitoreo en tiempo real</span></div><h3 data-es="Historial y logs de ejecuciones" data-en="Execution History and Logs">Historial y logs de ejecuciones</h3><p data-es="Monitoreá cada ejecución de tus workflows en tiempo real. Filtrá por estado, revisá los logs detallados de cada paso y exportá para auditoría." data-en="Monitor each workflow execution in real time. Filter by status, review the detailed logs of each step, and export for audit.">Monitoreá cada ejecución de tus workflows en tiempo real. Filtrá por estado, revisá los logs detallados de cada paso y exportá para auditoría.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Vista en tiempo real de todas las ejecuciones" data-en="Real-time view of all executions">Vista en tiempo real de todas las ejecuciones</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Filtros: Running · Success · Error · Pending" data-en="Filters: Running · Success · Error · Pending">Filtros: Running · Success · Error · Pending</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Panel lateral con logs JSON detallados" data-en="Side panel with detailed JSON logs">Panel lateral con logs JSON detallados</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Exportación completa para auditoría" data-en="Complete export for audit">Exportación completa para auditoría</span></div></div></div>
       <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Ejecuciones</div></div><img src="assets/wb-ejecuciones.png" style="width:100%;display:block;" alt="Workflow Builder ejecuciones" /></div></div>
     </div>
     <div class="func-panel" id="tab-wb-orquestaciones">
-      <div class="func-text"><div class="func-module-badge"><span>Automatización reactiva</span></div><h3>Orquestaciones: trigger → workflow</h3><p>Conectá triggers de eventos OFSC con tus workflows para ejecutarlos automáticamente. Activá o pausá cada orquestación con un toggle.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Vinculación de cualquier trigger a cualquier workflow</div><div class="func-action-item"><div class="func-action-dot"></div>Toggle de activación/pausa sin borrar configuración</div><div class="func-action-item"><div class="func-action-dot"></div>Ejecución reactiva: trigger recibido → workflow disparado</div></div></div>
+      <div class="func-text"><div class="func-module-badge"><span data-es="Automatización reactiva" data-en="Reactive Automation">Automatización reactiva</span></div><h3 data-es="Orquestaciones: trigger → workflow" data-en="Orchestrations: trigger → workflow">Orquestaciones: trigger → workflow</h3><p data-es="Conectá triggers de eventos OFSC con tus workflows para ejecutarlos automáticamente. Activá o pausá cada orquestación con un toggle." data-en="Connect OFSC event triggers with your workflows to run them automatically. Activate or pause each orchestration with a toggle.">Conectá triggers de eventos OFSC con tus workflows para ejecutarlos automáticamente. Activá o pausá cada orquestación con un toggle.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Vinculación de cualquier trigger a cualquier workflow" data-en="Link any trigger to any workflow">Vinculación de cualquier trigger a cualquier workflow</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Toggle de activación/pausa sin borrar configuración" data-en="Activation/pause toggle without deleting configuration">Toggle de activación/pausa sin borrar configuración</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Ejecución reactiva: trigger recibido → workflow disparado" data-en="Reactive execution: trigger received → workflow fired">Ejecución reactiva: trigger recibido → workflow disparado</span></div></div></div>
       <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Orquestaciones</div></div><img src="assets/wb-orquestaciones.png" style="width:100%;display:block;" alt="Workflow Builder orquestaciones" /></div></div>
     </div>
     <div class="func-panel" id="tab-wb-panel">
-      <div class="func-text"><div class="func-module-badge"><span>Visibilidad operacional</span></div><h3>Panel principal de actividad</h3><p>Visión completa del estado de tu plataforma: ejecuciones recientes, tasa de éxito, errores en las últimas 24h y estado de todos tus workflows.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>KPIs en tiempo real: ejecuciones, tasa de éxito, errores</div><div class="func-action-item"><div class="func-action-dot"></div>Gráfico de actividad: 24h · 7d · 30d</div><div class="func-action-item"><div class="func-action-dot"></div>Estado de workflows activos vs pausados</div></div></div>
+      <div class="func-text"><div class="func-module-badge"><span data-es="Visibilidad operacional" data-en="Operational Visibility">Visibilidad operacional</span></div><h3 data-es="Panel principal de actividad" data-en="Main Activity Dashboard">Panel principal de actividad</h3><p data-es="Visión completa del estado de tu plataforma: ejecuciones recientes, tasa de éxito, errores en las últimas 24h y estado de todos tus workflows." data-en="Complete view of your platform status: recent executions, success rate, errors in the last 24h, and the status of all your workflows.">Visión completa del estado de tu plataforma: ejecuciones recientes, tasa de éxito, errores en las últimas 24h y estado de todos tus workflows.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div><span data-es="KPIs en tiempo real: ejecuciones, tasa de éxito, errores" data-en="Real-time KPIs: executions, success rate, errors">KPIs en tiempo real: ejecuciones, tasa de éxito, errores</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Gráfico de actividad: 24h · 7d · 30d" data-en="Activity chart: 24h · 7d · 30d">Gráfico de actividad: 24h · 7d · 30d</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Estado de workflows activos vs pausados" data-en="Status of active vs paused workflows">Estado de workflows activos vs pausados</span></div></div></div>
       <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">Workflow Builder · Panel Principal</div></div><img src="assets/wb-panel.png" style="width:100%;display:block;" alt="Workflow Builder panel" /></div></div>
     </div>
   </div>
@@ -399,33 +409,33 @@
   <div class="container">
     <div class="form-inner">
       <div class="form-left">
-        <span class="section-label" style="color:var(--accent);">Demo gratuita</span>
-        <h2>Empezá a automatizar<br/>tu operación <em>OFSC hoy</em></h2>
-        <p>Agendá una demo. Te mostramos Workflow Builder construyendo un caso de uso real de tu operación.</p>
+        <span class="section-label" style="color:var(--accent);" data-es="Demo gratuita" data-en="Free Demo">Demo gratuita</span>
+        <h2 data-es="Empezá a automatizar<br/>tu operación <em>OFSC hoy</em>" data-en="Start automating<br/>your <em>OFSC operation today</em>">Empezá a automatizar<br/>tu operación <em>OFSC hoy</em></h2>
+        <p data-es="Agendá una demo. Te mostramos Workflow Builder construyendo un caso de uso real de tu operación." data-en="Schedule a demo. We'll show you Workflow Builder building a real use case from your operation.">Agendá una demo. Te mostramos Workflow Builder construyendo un caso de uso real de tu operación.</p>
         <div class="form-trust">
-          <div class="form-trust-item"><div class="form-trust-check"></div><span>Sin costo. Sin compromiso.</span></div>
-          <div class="form-trust-item"><div class="form-trust-check"></div><span>Demo con tu caso de uso real en OFSC</span></div>
-          <div class="form-trust-item"><div class="form-trust-check"></div><span>Respondemos en menos de 24hs hábiles</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span data-es="Sin costo. Sin compromiso." data-en="No cost. No commitment.">Sin costo. Sin compromiso.</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span data-es="Demo con tu caso de uso real en OFSC" data-en="Demo with your real OFSC use case">Demo con tu caso de uso real en OFSC</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span data-es="Respondemos en menos de 24hs hábiles" data-en="We respond in less than 24 business hours">Respondemos en menos de 24hs hábiles</span></div>
         </div>
       </div>
       <div class="form-right">
-        <h3>Solicitá tu demo de Workflow Builder</h3>
+        <h3 data-es="Solicitá tu demo de Workflow Builder" data-en="Request your Workflow Builder demo">Solicitá tu demo de Workflow Builder</h3>
         <form onsubmit="submitForm(event,'wb-success')">
           <div class="form-row">
-            <div class="form-group"><label>Nombre *</label><input type="text" placeholder="Tu nombre" required /></div>
-            <div class="form-group"><label>Apellido *</label><input type="text" placeholder="Tu apellido" required /></div>
+            <div class="form-group"><label data-es="Nombre *" data-en="First Name *">Nombre *</label><input type="text" placeholder="Tu nombre" required /></div>
+            <div class="form-group"><label data-es="Apellido *" data-en="Last Name *">Apellido *</label><input type="text" placeholder="Tu apellido" required /></div>
           </div>
-          <div class="form-group"><label>Empresa *</label><input type="text" placeholder="Nombre de tu empresa" required /></div>
-          <div class="form-group"><label>Email corporativo *</label><input type="email" placeholder="tu@empresa.com" required /></div>
-          <div class="form-group"><label>¿Qué proceso querés automatizar?</label><select><option value="">Seleccioná una opción</option><option>Notificaciones automáticas</option><option>Asignación automática de técnicos</option><option>Escalados por SLA</option><option>Actualización de inventario</option><option>Otro proceso</option></select></div>
-          <div class="form-group"><label>Contanos tu caso de uso</label><textarea placeholder="Describí el proceso que querés automatizar..."></textarea></div>
-          <button type="submit" class="btn-primary form-submit">Solicitar demo gratuita →</button>
-          <p class="form-note">Tus datos están seguros. No enviamos spam.</p>
+          <div class="form-group"><label data-es="Empresa *" data-en="Company *">Empresa *</label><input type="text" placeholder="Nombre de tu empresa" required /></div>
+          <div class="form-group"><label data-es="Email corporativo *" data-en="Corporate Email *">Email corporativo *</label><input type="email" placeholder="tu@empresa.com" required /></div>
+          <div class="form-group"><label data-es="¿Qué proceso querés automatizar?" data-en="What process do you want to automate?">¿Qué proceso querés automatizar?</label><select><option value="">Seleccioná una opción</option><option>Notificaciones automáticas</option><option>Asignación automática de técnicos</option><option>Escalados por SLA</option><option>Actualización de inventario</option><option>Otro proceso</option></select></div>
+          <div class="form-group"><label data-es="Contanos tu caso de uso" data-en="Tell us your use case">Contanos tu caso de uso</label><textarea placeholder="Describí el proceso que querés automatizar..."></textarea></div>
+          <button type="submit" class="btn-primary form-submit" data-es="Solicitar demo gratuita →" data-en="Request free demo →">Solicitar demo gratuita →</button>
+          <p class="form-note" data-es="Tus datos están seguros. No enviamos spam." data-en="Your data is safe. We don't send spam.">Tus datos están seguros. No enviamos spam.</p>
         </form>
         <div class="form-success" id="wb-success">
           <div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <h4>¡Solicitud recibida!</h4>
-          <p>Nos pondremos en contacto en menos de 24hs hábiles.</p>
+          <h4 data-es="¡Solicitud recibida!" data-en="Request received!">¡Solicitud recibida!</h4>
+          <p data-es="Nos pondremos en contacto en menos de 24hs hábiles." data-en="We will get in touch within 24 business hours.">Nos pondremos en contacto en menos de 24hs hábiles.</p>
         </div>
       </div>
     </div>
@@ -437,10 +447,10 @@
   <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
     <a href="index.html"><img src="assets/connexaAzulP.png" alt="Connexa Services" style="height:36px;" /></a>
     <div style="display:flex;gap:16px;">
-      <a href="index.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;">← Inicio</a>
-      <a href="productos.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;">← Volver a Productos</a>
+      <a href="index.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;" data-es="← Inicio" data-en="← Home">← Inicio</a>
+      <a href="productos.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;" data-es="← Volver a Productos" data-en="← Back to Products">← Volver a Productos</a>
     </div>
-    <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);">© 2026 Connexa Services</span>
+    <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);" data-es="© 2026 Connexa Services" data-en="© 2026 Connexa Services">© 2026 Connexa Services</span>
   </div>
 </footer>
 
@@ -495,7 +505,8 @@
     wbVideoContent.style.transition = 'opacity 0.15s ease';
     wbVideoContent.style.opacity = '0';
     setTimeout(function() {
-      wbVideoTitle.textContent = wbCasos[idx] || '';
+      var casosList = window._wbCasosActive || wbCasos;
+      wbVideoTitle.textContent = casosList[idx] || '';
       wbVideoContent.style.transition = 'opacity 0.3s ease';
       wbVideoContent.style.opacity = '1';
     }, 150);
@@ -519,7 +530,7 @@
 </script>
 
 <div class="cta-flotante" id="ctaFlotante">
-  <span>Agendar demo</span>
+  <span data-es="Agendar demo" data-en="Schedule demo">Agendar demo</span>
 </div>
 
 <script>
@@ -539,6 +550,47 @@
       contacto.scrollIntoView({ behavior: 'smooth' });
     }
   });
+
+  // ── LANG SWITCHER ──
+  (function() {
+    var currentLang = localStorage.getItem('lang') || 'es';
+    var wbCasosEN = [
+      'Repetitive Task Automation',
+      'Integrated AI Agents',
+      'Automatic Capacity Management'
+    ];
+    var wbCasosES = [
+      'Automatización de tareas repetitivas',
+      'IA Agents integrados',
+      'Gestión automática de capacidad'
+    ];
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.querySelectorAll('[data-es]').forEach(function(el) {
+        el.innerHTML = el.getAttribute('data-' + lang);
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      // Update casos de uso video title
+      var videoTitle = document.getElementById('wb-video-title');
+      if (videoTitle) {
+        var activeItem = document.querySelector('.casos-v2-section .caso-item.active');
+        if (activeItem) {
+          var idx = parseInt(activeItem.dataset.caso);
+          var casosList = lang === 'en' ? wbCasosEN : wbCasosES;
+          videoTitle.textContent = casosList[idx] || '';
+        }
+      }
+      window._wbCasosActive = lang === 'en' ? wbCasosEN : wbCasosES;
+    }
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { setLang(btn.getAttribute('data-lang')); });
+    });
+    window._wbCasosActive = currentLang === 'en' ? wbCasosEN : wbCasosES;
+    setLang(currentLang);
+  })();
 </script>
 </body>
 </html>

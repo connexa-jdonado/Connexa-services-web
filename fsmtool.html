@@ -197,6 +197,11 @@
   .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: #71B136; color: white; padding: 16px 12px; border-radius: 8px 0 0 8px; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 9999; }
   .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
   .cta-flotante:hover { background: #5a9229; transform: translateY(-50%) translateX(-4px); }
+  .lang-switcher { display: flex; align-items: center; gap: 8px; }
+  .lang-btn { font-size: 13px; font-weight: 600; cursor: pointer; color: rgba(255,255,255,0.5); transition: color 200ms; }
+  .lang-btn.active { color: #ffffff; }
+  .lang-btn:hover { color: #ffffff; }
+  .lang-divider { color: rgba(255,255,255,0.3); }
   </style>
 </head>
 <body>
@@ -208,38 +213,43 @@
       <img src="assets/connexaAzulP.png" alt="Connexa Services" />
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#services">Servicios</a></li>
-      <li><a href="productos.html" class="active">Productos</a></li>
+      <li><a href="index.html#services" data-es="Servicios" data-en="Services">Servicios</a></li>
+      <li><a href="productos.html" class="active" data-es="Productos" data-en="Products">Productos</a></li>
       <li><a href="index.html#partnerships">Partnerships</a></li>
-      <li><a href="#">Casos de éxito</a></li>
-      <li><a href="#">Nosotros</a></li>
+      <li><a href="#" data-es="Casos de éxito" data-en="Success Stories">Casos de éxito</a></li>
+      <li><a href="#" data-es="Nosotros" data-en="About Us">Nosotros</a></li>
     </ul>
     <div class="nav-cta">
-      <a class="btn-primary" href="#demo">Hablar con un experto</a>
+      <a class="btn-primary" href="#demo" data-es="Hablar con un experto" data-en="Talk to an Expert">Hablar con un experto</a>
+    </div>
+    <div class="lang-switcher" style="margin-left:20px;flex-shrink:0;">
+      <span class="lang-btn active" data-lang="es">ES</span>
+      <span class="lang-divider">|</span>
+      <span class="lang-btn" data-lang="en">EN</span>
     </div>
     <button class="nav-hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="index.html#services">Servicios</a>
-  <a href="productos.html">Productos</a>
+  <a href="index.html#services" data-es="Servicios" data-en="Services">Servicios</a>
+  <a href="productos.html" data-es="Productos" data-en="Products">Productos</a>
   <a href="index.html#partnerships">Partnerships</a>
-  <a href="#">Casos de éxito</a>
-  <a href="#">Nosotros</a>
-  <a class="btn-primary" href="#demo">Hablar con un experto</a>
+  <a href="#" data-es="Casos de éxito" data-en="Success Stories">Casos de éxito</a>
+  <a href="#" data-es="Nosotros" data-en="About Us">Nosotros</a>
+  <a class="btn-primary" href="#demo" data-es="Hablar con un experto" data-en="Talk to an Expert">Hablar con un experto</a>
 </div>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="container page-hero-inner">
     <nav class="breadcrumb">
-      <a href="index.html">Inicio</a><span class="breadcrumb-sep">/</span>
-      <a href="productos.html">Productos</a><span class="breadcrumb-sep">/</span>
+      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a><span class="breadcrumb-sep">/</span>
+      <a href="productos.html" data-es="Productos" data-en="Products">Productos</a><span class="breadcrumb-sep">/</span>
       <span class="breadcrumb-cur">FSMTool</span>
     </nav>
-    <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span>Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
-    <h1 class="page-hero-h1">Operaciones masivas en OFSC,<br/><em>sin complejidad</em></h1>
-    <p class="page-hero-sub">FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva.</p>
+    <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span data-es="Solución propia Connexa · Para Oracle Field Service Cloud" data-en="Connexa Proprietary Solution · For Oracle Field Service Cloud">Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
+    <h1 class="page-hero-h1" data-es="Operaciones masivas en OFSC,<br/><em>sin complejidad</em>" data-en="Bulk OFSC operations,<br/><em>without complexity</em>">Operaciones masivas en OFSC,<br/><em>sin complejidad</em></h1>
+    <p class="page-hero-sub" data-es="FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva." data-en="FSMTool is the web tool that allows managing activities, resources and inventories in Oracle Field Service Cloud in bulk, in an easy and intuitive way.">FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva.</p>
   </div>
 </div>
 
@@ -257,14 +267,14 @@
 <div class="valor-section">
   <div class="container">
     <div class="section-header-center">
-      <span class="section-label fade-up">Por qué FSMTool</span>
-      <h2 class="fade-up d1">Lo que ninguna otra herramienta te da</h2>
-      <p class="fade-up d2">Construido por expertos OFSC para resolver los problemas reales de las operaciones de campo a escala.</p>
+      <span class="section-label fade-up" data-es="Por qué FSMTool" data-en="Why FSMTool">Por qué FSMTool</span>
+      <h2 class="fade-up d1" data-es="Lo que ninguna otra herramienta te da" data-en="What no other tool gives you">Lo que ninguna otra herramienta te da</h2>
+      <p class="fade-up d2" data-es="Construido por expertos OFSC para resolver los problemas reales de las operaciones de campo a escala." data-en="Built by OFSC experts to solve the real problems of field operations at scale.">Construido por expertos OFSC para resolver los problemas reales de las operaciones de campo a escala.</p>
     </div>
     <div class="valor-grid">
-      <div class="valor-card fade-up d1"><div class="valor-icon"><svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Velocidad operacional</h3><p>Ejecutá acciones sobre miles de órdenes en segundos desde una sola pantalla.</p><div class="valor-stat">×10</div><div class="valor-stat-lbl">más rápido que la operación manual</div></div>
-      <div class="valor-card fade-up d2"><div class="valor-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Interfaz intuitiva</h3><p>Diseñada para operadores que no son técnicos. Sin curva de aprendizaje. Funciona desde el día uno.</p><div class="valor-stat">0</div><div class="valor-stat-lbl">horas de capacitación técnica</div></div>
-      <div class="valor-card fade-up d3"><div class="valor-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3>Escala ilimitada</h3><p>Desde 10 hasta 100.000 órdenes por operación con validación previa.</p><div class="valor-stat">100k</div><div class="valor-stat-lbl">registros por operación</div></div>
+      <div class="valor-card fade-up d1"><div class="valor-icon"><svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3 data-es="Velocidad operacional" data-en="Operational Speed">Velocidad operacional</h3><p data-es="Ejecutá acciones sobre miles de órdenes en segundos desde una sola pantalla." data-en="Execute actions on thousands of orders in seconds from a single screen.">Ejecutá acciones sobre miles de órdenes en segundos desde una sola pantalla.</p><div class="valor-stat">×10</div><div class="valor-stat-lbl" data-es="más rápido que la operación manual" data-en="faster than manual operation">más rápido que la operación manual</div></div>
+      <div class="valor-card fade-up d2"><div class="valor-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3 data-es="Interfaz intuitiva" data-en="Intuitive Interface">Interfaz intuitiva</h3><p data-es="Diseñada para operadores que no son técnicos. Sin curva de aprendizaje. Funciona desde el día uno." data-en="Designed for non-technical operators. No learning curve. Works from day one.">Diseñada para operadores que no son técnicos. Sin curva de aprendizaje. Funciona desde el día uno.</p><div class="valor-stat">0</div><div class="valor-stat-lbl" data-es="horas de capacitación técnica" data-en="hours of technical training">horas de capacitación técnica</div></div>
+      <div class="valor-card fade-up d3"><div class="valor-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3 data-es="Escala ilimitada" data-en="Unlimited Scale">Escala ilimitada</h3><p data-es="Desde 10 hasta 100.000 órdenes por operación con validación previa." data-en="From 10 to 100,000 orders per operation with prior validation.">Desde 10 hasta 100.000 órdenes por operación con validación previa.</p><div class="valor-stat">100k</div><div class="valor-stat-lbl" data-es="registros por operación" data-en="records per operation">registros por operación</div></div>
     </div>
   </div>
 </div>
@@ -275,9 +285,9 @@
 <section class="casos-v2-section">
   <div class="container">
     <div class="casos-v2-header fade-up">
-      <div class="casos-v2-eyebrow">CASOS DE USO</div>
-      <h2 class="casos-v2-title">Mirá FSMTOOL en acción</h2>
-      <p class="casos-v2-sub">Seleccioná un caso de uso y vé cómo FSMTool lo resuelve en segundos.</p>
+      <div class="casos-v2-eyebrow" data-es="CASOS DE USO" data-en="USE CASES">CASOS DE USO</div>
+      <h2 class="casos-v2-title" data-es="Mirá FSMTOOL en acción" data-en="See FSMTOOL in Action">Mirá FSMTOOL en acción</h2>
+      <p class="casos-v2-sub" data-es="Seleccioná un caso de uso y vé cómo FSMTool lo resuelve en segundos." data-en="Select a use case and see how FSMTool solves it in seconds.">Seleccioná un caso de uso y vé cómo FSMTool lo resuelve en segundos.</p>
     </div>
 
     <div class="casos-v2-layout">
@@ -288,55 +298,55 @@
         <div class="caso-item" data-caso="0">
           <div class="caso-item-header">
             <span class="caso-item-num">01</span>
-            <span class="caso-item-title">Reasignación masiva de órdenes</span>
+            <span class="caso-item-title" data-es="Reasignación masiva de órdenes" data-en="Bulk Order Reassignment">Reasignación masiva de órdenes</span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Seleccioná cientos de órdenes y reasignálas a nuevos técnicos en segundos, sin hacerlo una por una.</p>
-            <span class="caso-item-metric">De 2 horas a 3 minutos</span>
+            <p class="caso-item-desc" data-es="Seleccioná cientos de órdenes y reasignálas a nuevos técnicos en segundos, sin hacerlo una por una." data-en="Select hundreds of orders and reassign them to new technicians in seconds, without doing it one by one.">Seleccioná cientos de órdenes y reasignálas a nuevos técnicos en segundos, sin hacerlo una por una.</p>
+            <span class="caso-item-metric" data-es="De 2 horas a 3 minutos" data-en="From 2 hours to 3 minutes">De 2 horas a 3 minutos</span>
           </div>
         </div>
 
         <div class="caso-item" data-caso="1">
           <div class="caso-item-header">
             <span class="caso-item-num">02</span>
-            <span class="caso-item-title">Visualización de fuerza de trabajo</span>
+            <span class="caso-item-title" data-es="Visualización de fuerza de trabajo" data-en="Workforce Visibility">Visualización de fuerza de trabajo</span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Extraé y visualizá todos los técnicos, estados y disponibilidad en tiempo real desde un solo lugar.</p>
-            <span class="caso-item-metric">Visibilidad 100% del equipo en campo</span>
+            <p class="caso-item-desc" data-es="Extraé y visualizá todos los técnicos, estados y disponibilidad en tiempo real desde un solo lugar." data-en="Extract and visualize all technicians, statuses, and availability in real time from a single place.">Extraé y visualizá todos los técnicos, estados y disponibilidad en tiempo real desde un solo lugar.</p>
+            <span class="caso-item-metric" data-es="Visibilidad 100% del equipo en campo" data-en="100% field team visibility">Visibilidad 100% del equipo en campo</span>
           </div>
         </div>
 
         <div class="caso-item" data-caso="2">
           <div class="caso-item-header">
             <span class="caso-item-num">03</span>
-            <span class="caso-item-title">Transferencia masiva de inventarios</span>
+            <span class="caso-item-title" data-es="Transferencia masiva de inventarios" data-en="Bulk Inventory Transfer">Transferencia masiva de inventarios</span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Mové inventario entre técnicos, depósitos y zonas de forma masiva sin procesar cada item.</p>
-            <span class="caso-item-metric">Gestión de miles de items en minutos</span>
+            <p class="caso-item-desc" data-es="Mové inventario entre técnicos, depósitos y zonas de forma masiva sin procesar cada item." data-en="Move inventory between technicians, warehouses, and zones in bulk without processing each item.">Mové inventario entre técnicos, depósitos y zonas de forma masiva sin procesar cada item.</p>
+            <span class="caso-item-metric" data-es="Gestión de miles de items en minutos" data-en="Manage thousands of items in minutes">Gestión de miles de items en minutos</span>
           </div>
         </div>
 
         <div class="caso-item" data-caso="3">
           <div class="caso-item-header">
             <span class="caso-item-num">04</span>
-            <span class="caso-item-title">Reasignación masiva de zonas</span>
+            <span class="caso-item-title" data-es="Reasignación masiva de zonas" data-en="Bulk Zone Reassignment">Reasignación masiva de zonas</span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Reorganizá las zonas de trabajo de tu fuerza laboral completa de forma simultánea.</p>
-            <span class="caso-item-metric">Reorganización territorial en un clic</span>
+            <p class="caso-item-desc" data-es="Reorganizá las zonas de trabajo de tu fuerza laboral completa de forma simultánea." data-en="Reorganize the work zones of your entire workforce simultaneously.">Reorganizá las zonas de trabajo de tu fuerza laboral completa de forma simultánea.</p>
+            <span class="caso-item-metric" data-es="Reorganización territorial en un clic" data-en="Territorial reorganization in one click">Reorganización territorial en un clic</span>
           </div>
         </div>
 
         <div class="caso-item" data-caso="4">
           <div class="caso-item-header">
             <span class="caso-item-num">05</span>
-            <span class="caso-item-title">Actualización masiva de estados</span>
+            <span class="caso-item-title" data-es="Actualización masiva de estados" data-en="Bulk Status Update">Actualización masiva de estados</span>
           </div>
           <div class="caso-item-body">
-            <p class="caso-item-desc">Cambiá el estado de cientos de actividades simultáneamente — completadas, canceladas, reprogramadas.</p>
-            <span class="caso-item-metric">Miles de actualizaciones en segundos</span>
+            <p class="caso-item-desc" data-es="Cambiá el estado de cientos de actividades simultáneamente — completadas, canceladas, reprogramadas." data-en="Change the status of hundreds of activities simultaneously — completed, cancelled, rescheduled.">Cambiá el estado de cientos de actividades simultáneamente — completadas, canceladas, reprogramadas.</p>
+            <span class="caso-item-metric" data-es="Miles de actualizaciones en segundos" data-en="Thousands of updates in seconds">Miles de actualizaciones en segundos</span>
           </div>
         </div>
 
@@ -368,30 +378,30 @@
 <div class="valor-section white">
   <div class="container">
     <div class="section-header-center">
-      <span class="section-label fade-up">Módulos</span>
-      <h2 class="fade-up d1">Todo lo que podés hacer</h2>
-      <p class="fade-up d2">Cinco módulos integrados que cubren cada aspecto de la operación masiva sobre Oracle Field Service Cloud.</p>
+      <span class="section-label fade-up" data-es="Módulos" data-en="Modules">Módulos</span>
+      <h2 class="fade-up d1" data-es="Todo lo que podés hacer" data-en="Everything You Can Do">Todo lo que podés hacer</h2>
+      <p class="fade-up d2" data-es="Cinco módulos integrados que cubren cada aspecto de la operación masiva sobre Oracle Field Service Cloud." data-en="Five integrated modules that cover every aspect of bulk operations on Oracle Field Service Cloud.">Cinco módulos integrados que cubren cada aspecto de la operación masiva sobre Oracle Field Service Cloud.</p>
     </div>
     <div class="func-tabs fade-up d1" id="fsm-tabs">
-      <button class="func-tab active" data-tab="fsm-actividades">Actividades</button>
-      <button class="func-tab" data-tab="fsm-recursos">Recursos</button>
-      <button class="func-tab" data-tab="fsm-inventario">Inventario</button>
-      <button class="func-tab" data-tab="fsm-descargas">Descargas</button>
+      <button class="func-tab active" data-tab="fsm-actividades" data-es="Actividades" data-en="Activities">Actividades</button>
+      <button class="func-tab" data-tab="fsm-recursos" data-es="Recursos" data-en="Resources">Recursos</button>
+      <button class="func-tab" data-tab="fsm-inventario" data-es="Inventario" data-en="Inventory">Inventario</button>
+      <button class="func-tab" data-tab="fsm-descargas" data-es="Descargas" data-en="Downloads">Descargas</button>
     </div>
     <div class="func-panel active fade-up d2" id="tab-fsm-actividades">
-      <div class="func-text"><div class="func-module-badge"><span>Módulo Actividades</span></div><h3>Gestión masiva de actividades</h3><p>Creá, actualizá, reasigná y cerrá miles de actividades de OFSC en una sola operación. Cargá un Excel y FSMTool valida, procesa y reporta el resultado en tiempo real.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Creación masiva desde plantilla Excel</div><div class="func-action-item"><div class="func-action-dot"></div>Actualización de propiedades por lote</div><div class="func-action-item"><div class="func-action-dot"></div>Cambio de estado (pendiente → en curso → cerrada)</div><div class="func-action-item"><div class="func-action-dot"></div>Reasignación de recurso o fecha</div><div class="func-action-item"><div class="func-action-dot"></div>Validación previa con preview de errores</div></div></div>
+      <div class="func-text"><div class="func-module-badge"><span data-es="Módulo Actividades" data-en="Activities Module">Módulo Actividades</span></div><h3 data-es="Gestión masiva de actividades" data-en="Bulk Activity Management">Gestión masiva de actividades</h3><p data-es="Creá, actualizá, reasigná y cerrá miles de actividades de OFSC en una sola operación. Cargá un Excel y FSMTool valida, procesa y reporta el resultado en tiempo real." data-en="Create, update, reassign, and close thousands of OFSC activities in a single operation. Upload an Excel and FSMTool validates, processes, and reports the result in real time.">Creá, actualizá, reasigná y cerrá miles de actividades de OFSC en una sola operación. Cargá un Excel y FSMTool valida, procesa y reporta el resultado en tiempo real.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Creación masiva desde plantilla Excel" data-en="Bulk creation from Excel template">Creación masiva desde plantilla Excel</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Actualización de propiedades por lote" data-en="Batch property updates">Actualización de propiedades por lote</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Cambio de estado (pendiente → en curso → cerrada)" data-en="Status change (pending → in progress → closed)">Cambio de estado (pendiente → en curso → cerrada)</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Reasignación de recurso o fecha" data-en="Resource or date reassignment">Reasignación de recurso o fecha</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Validación previa con preview de errores" data-en="Prior validation with error preview">Validación previa con preview de errores</span></div></div></div>
       <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Creación de actividades</div></div><img src="assets/fsmtool-actividades.png" style="width:100%;display:block;" alt="FSMTool actividades" /></div></div>
     </div>
     <div class="func-panel" id="tab-fsm-recursos">
-      <div class="func-text"><div class="func-module-badge"><span>Módulo Recursos</span></div><h3>Administración masiva de recursos</h3><p>Gestioná técnicos, vehículos y equipos de tu organización OFSC de forma masiva. Actualizá propiedades, habilidades y calendarios sin abrir cada recurso individualmente.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Creación de recursos en lote</div><div class="func-action-item"><div class="func-action-dot"></div>Actualización de habilidades y certificaciones</div><div class="func-action-item"><div class="func-action-dot"></div>Asignación masiva de zonas de trabajo</div><div class="func-action-item"><div class="func-action-dot"></div>Gestión de calendarios y horarios</div></div></div>
+      <div class="func-text"><div class="func-module-badge"><span data-es="Módulo Recursos" data-en="Resources Module">Módulo Recursos</span></div><h3 data-es="Administración masiva de recursos" data-en="Bulk Resource Administration">Administración masiva de recursos</h3><p data-es="Gestioná técnicos, vehículos y equipos de tu organización OFSC de forma masiva. Actualizá propiedades, habilidades y calendarios sin abrir cada recurso individualmente." data-en="Manage technicians, vehicles, and teams in your OFSC organization in bulk. Update properties, skills, and calendars without opening each resource individually.">Gestioná técnicos, vehículos y equipos de tu organización OFSC de forma masiva. Actualizá propiedades, habilidades y calendarios sin abrir cada recurso individualmente.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Creación de recursos en lote" data-en="Batch resource creation">Creación de recursos en lote</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Actualización de habilidades y certificaciones" data-en="Skills and certifications update">Actualización de habilidades y certificaciones</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Asignación masiva de zonas de trabajo" data-en="Bulk work zone assignment">Asignación masiva de zonas de trabajo</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Gestión de calendarios y horarios" data-en="Calendar and schedule management">Gestión de calendarios y horarios</span></div></div></div>
       <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Recursos</div></div><img src="assets/fsmtool-config.png" style="width:100%;display:block;" alt="FSMTool recursos" /></div></div>
     </div>
     <div class="func-panel" id="tab-fsm-inventario">
-      <div class="func-text"><div class="func-module-badge"><span>Módulo Inventario</span></div><h3>Gestión y transferencia de inventario</h3><p>Controlá el stock de materiales asignados a técnicos y almacenes. Realizá transferencias masivas entre recursos y exportá el estado completo del inventario en OFSC.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Transferencia masiva entre recursos</div><div class="func-action-item"><div class="func-action-dot"></div>Carga masiva de stock inicial</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación completa para auditoría</div></div></div>
+      <div class="func-text"><div class="func-module-badge"><span data-es="Módulo Inventario" data-en="Inventory Module">Módulo Inventario</span></div><h3 data-es="Gestión y transferencia de inventario" data-en="Inventory Management and Transfer">Gestión y transferencia de inventario</h3><p data-es="Controlá el stock de materiales asignados a técnicos y almacenes. Realizá transferencias masivas entre recursos y exportá el estado completo del inventario en OFSC." data-en="Control the stock of materials assigned to technicians and warehouses. Perform bulk transfers between resources and export the complete inventory status in OFSC.">Controlá el stock de materiales asignados a técnicos y almacenes. Realizá transferencias masivas entre recursos y exportá el estado completo del inventario en OFSC.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Transferencia masiva entre recursos" data-en="Bulk transfer between resources">Transferencia masiva entre recursos</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Carga masiva de stock inicial" data-en="Bulk initial stock loading">Carga masiva de stock inicial</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Exportación completa para auditoría" data-en="Complete export for audit">Exportación completa para auditoría</span></div></div></div>
       <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Inventario</div></div><img src="assets/fsmtool-config.png" style="width:100%;display:block;" alt="FSMTool inventario" /></div></div>
     </div>
     <div class="func-panel" id="tab-fsm-descargas">
-      <div class="func-text"><div class="func-module-badge"><span>Módulo Descargas</span></div><h3>Exportación avanzada de datos OFSC</h3><p>Descargá actividades con filtros avanzados por recurso, fecha, estado y condiciones personalizadas. Ideal para análisis, reportes y auditoría operacional.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div>Filtros por árbol jerárquico de recursos</div><div class="func-action-item"><div class="func-action-dot"></div>Condiciones personalizables por campo</div><div class="func-action-item"><div class="func-action-dot"></div>Favoritos para consultas recurrentes</div><div class="func-action-item"><div class="func-action-dot"></div>Exportación a Excel con campos configurables</div></div></div>
+      <div class="func-text"><div class="func-module-badge"><span data-es="Módulo Descargas" data-en="Downloads Module">Módulo Descargas</span></div><h3 data-es="Exportación avanzada de datos OFSC" data-en="Advanced OFSC Data Export">Exportación avanzada de datos OFSC</h3><p data-es="Descargá actividades con filtros avanzados por recurso, fecha, estado y condiciones personalizadas. Ideal para análisis, reportes y auditoría operacional." data-en="Download activities with advanced filters by resource, date, status, and custom conditions. Ideal for analysis, reports, and operational audits.">Descargá actividades con filtros avanzados por recurso, fecha, estado y condiciones personalizadas. Ideal para análisis, reportes y auditoría operacional.</p><div class="func-actions"><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Filtros por árbol jerárquico de recursos" data-en="Filters by resource hierarchy tree">Filtros por árbol jerárquico de recursos</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Condiciones personalizables por campo" data-en="Customizable conditions by field">Condiciones personalizables por campo</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Favoritos para consultas recurrentes" data-en="Favorites for recurring queries">Favoritos para consultas recurrentes</span></div><div class="func-action-item"><div class="func-action-dot"></div><span data-es="Exportación a Excel con campos configurables" data-en="Excel export with configurable fields">Exportación a Excel con campos configurables</span></div></div></div>
       <div><div class="browser-frame"><div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">FSMTool · Descargas</div></div><img src="assets/fsmtool-descarga.png" style="width:100%;display:block;" alt="FSMTool descargas" /></div></div>
     </div>
   </div>
@@ -402,34 +412,34 @@
   <div class="container">
     <div class="form-inner">
       <div class="form-left">
-        <span class="section-label" style="color:var(--accent);">Demo gratuita</span>
-        <h2>Probá FSMTool en tu<br/><em>entorno OFSC</em></h2>
-        <p>Agendá una demo personalizada. Te mostramos FSMTool funcionando con tus propios datos y casos de uso reales.</p>
+        <span class="section-label" style="color:var(--accent);" data-es="Demo gratuita" data-en="Free Demo">Demo gratuita</span>
+        <h2 data-es="Probá FSMTool en tu<br/><em>entorno OFSC</em>" data-en="Try FSMTool in your<br/><em>OFSC environment</em>">Probá FSMTool en tu<br/><em>entorno OFSC</em></h2>
+        <p data-es="Agendá una demo personalizada. Te mostramos FSMTool funcionando con tus propios datos y casos de uso reales." data-en="Schedule a personalized demo. We'll show you FSMTool working with your own data and real use cases.">Agendá una demo personalizada. Te mostramos FSMTool funcionando con tus propios datos y casos de uso reales.</p>
         <div class="form-trust">
-          <div class="form-trust-item"><div class="form-trust-check"></div><span>Sin costo. Sin compromiso.</span></div>
-          <div class="form-trust-item"><div class="form-trust-check"></div><span>Demo con tu ambiente OFSC real</span></div>
-          <div class="form-trust-item"><div class="form-trust-check"></div><span>Respondemos en menos de 24hs hábiles</span></div>
-          <div class="form-trust-item"><div class="form-trust-check"></div><span>Expertos certificados en OFSC</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span data-es="Sin costo. Sin compromiso." data-en="No cost. No commitment.">Sin costo. Sin compromiso.</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span data-es="Demo con tu ambiente OFSC real" data-en="Demo with your real OFSC environment">Demo con tu ambiente OFSC real</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span data-es="Respondemos en menos de 24hs hábiles" data-en="We respond in less than 24 business hours">Respondemos en menos de 24hs hábiles</span></div>
+          <div class="form-trust-item"><div class="form-trust-check"></div><span data-es="Expertos certificados en OFSC" data-en="OFSC certified experts">Expertos certificados en OFSC</span></div>
         </div>
       </div>
       <div class="form-right">
-        <h3>Solicitá tu demo de FSMTool</h3>
+        <h3 data-es="Solicitá tu demo de FSMTool" data-en="Request your FSMTool demo">Solicitá tu demo de FSMTool</h3>
         <form onsubmit="submitForm(event,'fsm-success')">
           <div class="form-row">
-            <div class="form-group"><label>Nombre *</label><input type="text" placeholder="Tu nombre" required /></div>
-            <div class="form-group"><label>Apellido *</label><input type="text" placeholder="Tu apellido" required /></div>
+            <div class="form-group"><label data-es="Nombre *" data-en="First Name *">Nombre *</label><input type="text" placeholder="Tu nombre" required /></div>
+            <div class="form-group"><label data-es="Apellido *" data-en="Last Name *">Apellido *</label><input type="text" placeholder="Tu apellido" required /></div>
           </div>
-          <div class="form-group"><label>Empresa *</label><input type="text" placeholder="Nombre de tu empresa" required /></div>
-          <div class="form-group"><label>Email corporativo *</label><input type="email" placeholder="tu@empresa.com" required /></div>
-          <div class="form-group"><label>¿Cómo usás Oracle Field Service Cloud?</label><select><option value="">Seleccioná una opción</option><option>Utilities</option><option>Telecomunicaciones</option><option>Servicios de campo</option><option>Logística</option><option>Otro</option></select></div>
-          <div class="form-group"><label>¿Qué problema querés resolver?</label><textarea placeholder="Contanos tu caso de uso..."></textarea></div>
-          <button type="submit" class="btn-primary form-submit">Solicitar demo gratuita →</button>
-          <p class="form-note">Tus datos están seguros. No enviamos spam.</p>
+          <div class="form-group"><label data-es="Empresa *" data-en="Company *">Empresa *</label><input type="text" placeholder="Nombre de tu empresa" required /></div>
+          <div class="form-group"><label data-es="Email corporativo *" data-en="Corporate Email *">Email corporativo *</label><input type="email" placeholder="tu@empresa.com" required /></div>
+          <div class="form-group"><label data-es="¿Cómo usás Oracle Field Service Cloud?" data-en="How do you use Oracle Field Service Cloud?">¿Cómo usás Oracle Field Service Cloud?</label><select><option value="">Seleccioná una opción</option><option>Utilities</option><option>Telecomunicaciones</option><option>Servicios de campo</option><option>Logística</option><option>Otro</option></select></div>
+          <div class="form-group"><label data-es="¿Qué problema querés resolver?" data-en="What problem do you want to solve?">¿Qué problema querés resolver?</label><textarea placeholder="Contanos tu caso de uso..."></textarea></div>
+          <button type="submit" class="btn-primary form-submit" data-es="Solicitar demo gratuita →" data-en="Request free demo →">Solicitar demo gratuita →</button>
+          <p class="form-note" data-es="Tus datos están seguros. No enviamos spam." data-en="Your data is safe. We don't send spam.">Tus datos están seguros. No enviamos spam.</p>
         </form>
         <div class="form-success" id="fsm-success">
           <div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <h4>¡Solicitud recibida!</h4>
-          <p>Nos pondremos en contacto en menos de 24hs hábiles.</p>
+          <h4 data-es="¡Solicitud recibida!" data-en="Request received!">¡Solicitud recibida!</h4>
+          <p data-es="Nos pondremos en contacto en menos de 24hs hábiles." data-en="We will get in touch within 24 business hours.">Nos pondremos en contacto en menos de 24hs hábiles.</p>
         </div>
       </div>
     </div>
@@ -441,10 +451,10 @@
   <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
     <a href="index.html"><img src="assets/connexaAzulP.png" alt="Connexa Services" style="height:36px;" /></a>
     <div style="display:flex;gap:16px;">
-      <a href="index.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;">← Inicio</a>
-      <a href="productos.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;">← Volver a Productos</a>
+      <a href="index.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;" data-es="← Inicio" data-en="← Home">← Inicio</a>
+      <a href="productos.html" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;" data-es="← Volver a Productos" data-en="← Back to Products">← Volver a Productos</a>
     </div>
-    <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);">© 2026 Connexa Services</span>
+    <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);" data-es="© 2026 Connexa Services" data-en="© 2026 Connexa Services">© 2026 Connexa Services</span>
   </div>
 </footer>
 
@@ -501,7 +511,8 @@
     fsmVideoContent.style.transition = 'opacity 0.15s ease';
     fsmVideoContent.style.opacity = '0';
     setTimeout(function() {
-      fsmVideoTitle.textContent = fsmCasos[idx] || '';
+      var casosList = window._fsmCasosActive || fsmCasos;
+      fsmVideoTitle.textContent = casosList[idx] || '';
       fsmVideoContent.style.transition = 'opacity 0.3s ease';
       fsmVideoContent.style.opacity = '1';
     }, 150);
@@ -525,7 +536,7 @@
 </script>
 
 <div class="cta-flotante" id="ctaFlotante">
-  <span>Agendar demo</span>
+  <span data-es="Agendar demo" data-en="Schedule demo">Agendar demo</span>
 </div>
 
 <script>
@@ -545,6 +556,52 @@
       contacto.scrollIntoView({ behavior: 'smooth' });
     }
   });
+
+  // ── LANG SWITCHER ──
+  (function() {
+    var currentLang = localStorage.getItem('lang') || 'es';
+    var fsmCasosEN = [
+      'Bulk Order Reassignment',
+      'Workforce Visibility',
+      'Bulk Inventory Transfer',
+      'Bulk Zone Reassignment',
+      'Bulk Status Update'
+    ];
+    var fsmCasosES = [
+      'Reasignación masiva de órdenes',
+      'Visualización de fuerza de trabajo',
+      'Transferencia masiva de inventarios',
+      'Reasignación masiva de zonas',
+      'Actualización masiva de estados'
+    ];
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.querySelectorAll('[data-es]').forEach(function(el) {
+        el.innerHTML = el.getAttribute('data-' + lang);
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      // Update casos de uso video title
+      var videoTitle = document.getElementById('fsm-video-title');
+      if (videoTitle) {
+        var activeItem = document.querySelector('.casos-v2-section .caso-item.active');
+        if (activeItem) {
+          var idx = parseInt(activeItem.dataset.caso);
+          var casosList = lang === 'en' ? fsmCasosEN : fsmCasosES;
+          videoTitle.textContent = casosList[idx] || '';
+        }
+      }
+      // Update fsmCasos array used by click handlers
+      window._fsmCasosActive = lang === 'en' ? fsmCasosEN : fsmCasosES;
+    }
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { setLang(btn.getAttribute('data-lang')); });
+    });
+    window._fsmCasosActive = currentLang === 'en' ? fsmCasosEN : fsmCasosES;
+    setLang(currentLang);
+  })();
 </script>
 </body>
 </html>

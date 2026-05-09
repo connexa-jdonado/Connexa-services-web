@@ -124,6 +124,11 @@
     .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: var(--accent); color: #fff; padding: 16px 12px; border-radius: 8px 0 0 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 999; border: none; text-decoration: none; }
     .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
     .cta-flotante:hover { background: var(--accent-dark); transform: translateY(-50%) translateX(-4px); }
+    .lang-switcher { display: flex; align-items: center; gap: 8px; }
+    .lang-btn { font-size: 13px; font-weight: 600; cursor: pointer; color: rgba(255,255,255,0.5); transition: color 200ms; }
+    .lang-btn.active { color: #ffffff; }
+    .lang-btn:hover { color: #ffffff; }
+    .lang-divider { color: rgba(255,255,255,0.3); }
   </style>
 </head>
 <body>
@@ -135,13 +140,18 @@
       <img src="assets/connexaAzulP.png" alt="Connexa Services" />
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#services">Servicios</a></li>
-      <li><a href="productos.html" class="active">Productos</a></li>
+      <li><a href="index.html#services" data-es="Servicios" data-en="Services">Servicios</a></li>
+      <li><a href="productos.html" class="active" data-es="Productos" data-en="Products">Productos</a></li>
       <li><a href="fsmtool.html">FSMTool</a></li>
       <li><a href="workflow-builder.html">Workflow Builder</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="#contacto" class="btn-primary">Agendar demo</a>
+      <a href="#contacto" class="btn-primary" data-es="Agendar demo" data-en="Schedule demo">Agendar demo</a>
+    </div>
+    <div class="lang-switcher" style="margin-left:20px;flex-shrink:0;">
+      <span class="lang-btn active" data-lang="es">ES</span>
+      <span class="lang-divider">|</span>
+      <span class="lang-btn" data-lang="en">EN</span>
     </div>
     <button class="nav-hamburger" id="hamburgerBtn" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -150,24 +160,24 @@
 </nav>
 
 <div class="mobile-nav" id="mobileNav">
-  <a href="index.html#services">Servicios</a>
-  <a href="productos.html">Productos</a>
+  <a href="index.html#services" data-es="Servicios" data-en="Services">Servicios</a>
+  <a href="productos.html" data-es="Productos" data-en="Products">Productos</a>
   <a href="fsmtool.html">FSMTool</a>
   <a href="workflow-builder.html">Workflow Builder</a>
-  <a href="#contacto" class="btn-primary">Agendar demo</a>
+  <a href="#contacto" class="btn-primary" data-es="Agendar demo" data-en="Schedule demo">Agendar demo</a>
 </div>
 
 <!-- ── PAGE HERO ── -->
 <div class="page-hero">
   <div class="container page-hero-inner">
     <nav class="breadcrumb">
-      <a href="index.html">Inicio</a>
+      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
       <span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-cur">Productos</span>
+      <span class="breadcrumb-cur" data-es="Productos" data-en="Products">Productos</span>
     </nav>
-    <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span>Soluciones propias · Desarrolladas por Connexa</span></div>
-    <h1 class="page-hero-h1">Herramientas que potencian<br/>tu plataforma <em>OFSC</em></h1>
-    <p class="page-hero-sub">Apps web nativas construidas sobre Oracle Field Service Cloud para resolver los desafíos operacionales más complejos del Field Service, sin fricciones y sin código adicional.</p>
+    <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span data-es="Soluciones propias · Desarrolladas por Connexa" data-en="Proprietary solutions · Developed by Connexa">Soluciones propias · Desarrolladas por Connexa</span></div>
+    <h1 class="page-hero-h1" data-es="Herramientas que potencian<br/>tu plataforma <em>OFSC</em>" data-en="Tools that empower<br/>your <em>OFSC</em> platform">Herramientas que potencian<br/>tu plataforma <em>OFSC</em></h1>
+    <p class="page-hero-sub" data-es="Apps web nativas construidas sobre Oracle Field Service Cloud para resolver los desafíos operacionales más complejos del Field Service, sin fricciones y sin código adicional." data-en="Native web apps built on Oracle Field Service Cloud to solve the most complex operational challenges of Field Service, without friction and without additional code.">Apps web nativas construidas sobre Oracle Field Service Cloud para resolver los desafíos operacionales más complejos del Field Service, sin fricciones y sin código adicional.</p>
   </div>
 </div>
 
@@ -182,24 +192,24 @@
         </div>
       </div>
       <div class="showcase-text">
-        <div class="showcase-badge fade-up"><div class="showcase-badge-dot"></div><span>Solución propia</span></div>
+        <div class="showcase-badge fade-up"><div class="showcase-badge-dot"></div><span data-es="Solución propia" data-en="Proprietary solution">Solución propia</span></div>
         <h2 class="showcase-name fade-up d1">Workflow Builder</h2>
-        <p class="showcase-tagline fade-up d2">Automatizá tus procesos OFSC sin código</p>
-        <p class="showcase-desc fade-up d2">Workflow Builder es un constructor visual de flujos de trabajo para Oracle Field Service Cloud. Permite diseñar, testear y publicar procesos de campo complejos sin escribir una línea de código.</p>
+        <p class="showcase-tagline fade-up d2" data-es="Automatizá tus procesos OFSC sin código" data-en="Automate your OFSC processes without code">Automatizá tus procesos OFSC sin código</p>
+        <p class="showcase-desc fade-up d2" data-es="Workflow Builder es un constructor visual de flujos de trabajo para Oracle Field Service Cloud. Permite diseñar, testear y publicar procesos de campo complejos sin escribir una línea de código." data-en="Workflow Builder is a visual workflow builder for Oracle Field Service Cloud. It allows designing, testing and publishing complex field processes without writing a single line of code.">Workflow Builder es un constructor visual de flujos de trabajo para Oracle Field Service Cloud. Permite diseñar, testear y publicar procesos de campo complejos sin escribir una línea de código.</p>
         <div class="use-chips fade-up d3">
-          <span class="chip">Flujos de diagnóstico guiado</span>
-          <span class="chip">Checklists de cierre</span>
-          <span class="chip">Escalados automáticos</span>
+          <span class="chip" data-es="Flujos de diagnóstico guiado" data-en="Guided diagnosis flows">Flujos de diagnóstico guiado</span>
+          <span class="chip" data-es="Checklists de cierre" data-en="Closure checklists">Checklists de cierre</span>
+          <span class="chip" data-es="Escalados automáticos" data-en="Automatic escalations">Escalados automáticos</span>
         </div>
         <div class="benefits-list fade-up d3">
-          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="benefit-title">Editor drag &amp; drop</div><div class="benefit-desc">Arrastrá nodos y condiciones para construir cualquier flujo.</div></div></div>
-          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><div class="benefit-title">Integración nativa con OFSC</div><div class="benefit-desc">Acceso directo a todas las APIs de Oracle Field Service.</div></div></div>
-          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><div class="benefit-title">Sandbox de testing</div><div class="benefit-desc">Simulá cada workflow antes de publicarlo en producción.</div></div></div>
-          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div class="benefit-title">Autonomía para el negocio</div><div class="benefit-desc">Los equipos de operaciones modifican procesos sin IT.</div></div></div>
+          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="benefit-title" data-es="Editor drag &amp; drop" data-en="Drag &amp; drop editor">Editor drag &amp; drop</div><div class="benefit-desc" data-es="Arrastrá nodos y condiciones para construir cualquier flujo." data-en="Drag nodes and conditions to build any workflow.">Arrastrá nodos y condiciones para construir cualquier flujo.</div></div></div>
+          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><div class="benefit-title" data-es="Integración nativa con OFSC" data-en="Native integration with OFSC">Integración nativa con OFSC</div><div class="benefit-desc" data-es="Acceso directo a todas las APIs de Oracle Field Service." data-en="Direct access to all Oracle Field Service APIs.">Acceso directo a todas las APIs de Oracle Field Service.</div></div></div>
+          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><div class="benefit-title" data-es="Sandbox de testing" data-en="Testing sandbox">Sandbox de testing</div><div class="benefit-desc" data-es="Simulá cada workflow antes de publicarlo en producción." data-en="Simulate each workflow before publishing to production.">Simulá cada workflow antes de publicarlo en producción.</div></div></div>
+          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div class="benefit-title" data-es="Autonomía para el negocio" data-en="Business autonomy">Autonomía para el negocio</div><div class="benefit-desc" data-es="Los equipos de operaciones modifican procesos sin IT." data-en="Operations teams modify processes without IT.">Los equipos de operaciones modifican procesos sin IT.</div></div></div>
         </div>
         <div class="showcase-ctas fade-up d4">
-          <a href="workflow-builder.html" class="btn-primary">Ver demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></a>
-          <a href="workflow-builder.html#demo" class="btn-secondary">Solicitar acceso</a>
+          <a href="workflow-builder.html" class="btn-primary" data-es="Ver demo" data-en="View demo">Ver demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></a>
+          <a href="workflow-builder.html#demo" class="btn-secondary" data-es="Solicitar acceso" data-en="Request access">Solicitar acceso</a>
         </div>
       </div>
     </div>
@@ -211,24 +221,24 @@
   <div class="container">
     <div class="showcase-grid">
       <div class="showcase-text">
-        <div class="showcase-badge fade-up"><div class="showcase-badge-dot"></div><span>Solución propia</span></div>
+        <div class="showcase-badge fade-up"><div class="showcase-badge-dot"></div><span data-es="Solución propia" data-en="Proprietary solution">Solución propia</span></div>
         <h2 class="showcase-name fade-up d1">FSMTool</h2>
-        <p class="showcase-tagline fade-up d2">Operaciones masivas en OFSC, sin complejidad</p>
-        <p class="showcase-desc fade-up d2">FSMTool es una suite de administración y monitoreo de operaciones construida nativamente sobre Oracle Field Service Cloud. Permite a los equipos de operaciones ejecutar acciones masivas, visualizar el estado en tiempo real y automatizar los procesos del día a día.</p>
+        <p class="showcase-tagline fade-up d2" data-es="Operaciones masivas en OFSC, sin complejidad" data-en="Bulk OFSC operations, without complexity">Operaciones masivas en OFSC, sin complejidad</p>
+        <p class="showcase-desc fade-up d2" data-es="FSMTool es una suite de administración y monitoreo de operaciones construida nativamente sobre Oracle Field Service Cloud. Permite a los equipos de operaciones ejecutar acciones masivas, visualizar el estado en tiempo real y automatizar los procesos del día a día." data-en="FSMTool is an operations administration and monitoring suite built natively on Oracle Field Service Cloud. It allows operations teams to execute bulk actions, visualize status in real time and automate day-to-day processes.">FSMTool es una suite de administración y monitoreo de operaciones construida nativamente sobre Oracle Field Service Cloud. Permite a los equipos de operaciones ejecutar acciones masivas, visualizar el estado en tiempo real y automatizar los procesos del día a día.</p>
         <div class="use-chips fade-up d3">
-          <span class="chip">Reasignación masiva de órdenes</span>
-          <span class="chip">Cierre automático de actividades</span>
-          <span class="chip">Monitoreo de SLA en vivo</span>
+          <span class="chip" data-es="Reasignación masiva de órdenes" data-en="Bulk order reassignment">Reasignación masiva de órdenes</span>
+          <span class="chip" data-es="Cierre automático de actividades" data-en="Automatic activity closure">Cierre automático de actividades</span>
+          <span class="chip" data-es="Monitoreo de SLA en vivo" data-en="Live SLA monitoring">Monitoreo de SLA en vivo</span>
         </div>
         <div class="benefits-list fade-up d3">
-          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div><div><div class="benefit-title">Eficiencia operacional ×3</div><div class="benefit-desc">Ejecutá acciones sobre miles de órdenes en segundos.</div></div></div>
-          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="benefit-title">Visibilidad en tiempo real</div><div class="benefit-desc">Dashboard operacional con KPIs y alertas automáticas.</div></div></div>
-          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="benefit-title">Sin riesgo de errores</div><div class="benefit-desc">Validaciones integradas antes de cada acción masiva.</div></div></div>
-          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div><div class="benefit-title">Reportería exportable</div><div class="benefit-desc">Exportá cualquier vista a Excel o PDF con un clic.</div></div></div>
+          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div><div><div class="benefit-title" data-es="Eficiencia operacional ×3" data-en="Operational efficiency ×3">Eficiencia operacional ×3</div><div class="benefit-desc" data-es="Ejecutá acciones sobre miles de órdenes en segundos." data-en="Execute actions on thousands of orders in seconds.">Ejecutá acciones sobre miles de órdenes en segundos.</div></div></div>
+          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="benefit-title" data-es="Visibilidad en tiempo real" data-en="Real-time visibility">Visibilidad en tiempo real</div><div class="benefit-desc" data-es="Dashboard operacional con KPIs y alertas automáticas." data-en="Operational dashboard with KPIs and automatic alerts.">Dashboard operacional con KPIs y alertas automáticas.</div></div></div>
+          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="benefit-title" data-es="Sin riesgo de errores" data-en="No risk of errors">Sin riesgo de errores</div><div class="benefit-desc" data-es="Validaciones integradas antes de cada acción masiva." data-en="Built-in validations before each bulk action.">Validaciones integradas antes de cada acción masiva.</div></div></div>
+          <div class="benefit-row"><div class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div><div class="benefit-title" data-es="Reportería exportable" data-en="Exportable reporting">Reportería exportable</div><div class="benefit-desc" data-es="Exportá cualquier vista a Excel o PDF con un clic." data-en="Export any view to Excel or PDF with one click.">Exportá cualquier vista a Excel o PDF con un clic.</div></div></div>
         </div>
         <div class="showcase-ctas fade-up d4">
-          <a href="fsmtool.html" class="btn-primary">Ver demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></a>
-          <a href="fsmtool.html#demo" class="btn-secondary">Solicitar acceso</a>
+          <a href="fsmtool.html" class="btn-primary" data-es="Ver demo" data-en="View demo">Ver demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></a>
+          <a href="fsmtool.html#demo" class="btn-secondary" data-es="Solicitar acceso" data-en="Request access">Solicitar acceso</a>
         </div>
       </div>
       <div class="fade-up d2">
@@ -244,12 +254,12 @@
 <!-- ── CTA ── -->
 <section id="contacto" style="background:linear-gradient(135deg,#0f1c42 0%,var(--primary) 60%,#1e3a6e 100%);padding:var(--section-py) 0;text-align:center;position:relative;overflow:hidden;">
   <div class="container" style="position:relative;z-index:2;">
-    <span class="section-label" style="color:var(--accent);">Demo en vivo</span>
-    <h2 class="cta-headline" style="margin-top:0;">¿Querés ver los productos<br/><em>en acción</em>?</h2>
-    <p class="cta-sub">Agendá una demo personalizada con nuestro equipo.</p>
+    <span class="section-label" style="color:var(--accent);" data-es="Demo en vivo" data-en="Live demo">Demo en vivo</span>
+    <h2 class="cta-headline" style="margin-top:0;" data-es="¿Querés ver los productos<br/><em>en acción</em>?" data-en="Want to see the products<br/><em>in action</em>?">¿Querés ver los productos<br/><em>en acción</em>?</h2>
+    <p class="cta-sub" data-es="Agendá una demo personalizada con nuestro equipo." data-en="Schedule a personalized demo with our team.">Agendá una demo personalizada con nuestro equipo.</p>
     <div class="cta-btns">
-      <a href="mailto:contacto@connexaservices.com?subject=Demo%20Productos" class="btn-primary" style="font-size:16px;padding:16px 36px;">Agendar demo</a>
-      <a href="#prod-fsmtool" class="btn-ghost" style="font-size:16px;padding:16px 36px;">Ver productos</a>
+      <a href="mailto:contacto@connexaservices.com?subject=Demo%20Productos" class="btn-primary" style="font-size:16px;padding:16px 36px;" data-es="Agendar demo" data-en="Schedule demo">Agendar demo</a>
+      <a href="#prod-fsmtool" class="btn-ghost" style="font-size:16px;padding:16px 36px;" data-es="Ver productos" data-en="View products">Ver productos</a>
     </div>
   </div>
 </section>
@@ -257,7 +267,7 @@
 <footer style="background:var(--primary);padding:40px 0 24px;border-top:1px solid rgba(255,255,255,0.06);">
   <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
     <img src="assets/connexaAzulP.png" alt="Connexa Services" style="height:36px;" />
-    <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);">© 2026 Connexa Services. Todos los derechos reservados.</span>
+    <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.35);" data-es="© 2026 Connexa Services. Todos los derechos reservados." data-en="© 2026 Connexa Services. All rights reserved.">© 2026 Connexa Services. Todos los derechos reservados.</span>
   </div>
 </footer>
 
@@ -291,8 +301,27 @@
     var target = document.getElementById('contacto');
     if (target) target.scrollIntoView({behavior: 'smooth'});
   });
+
+  // ── LANG SWITCHER ──
+  (function() {
+    var currentLang = localStorage.getItem('lang') || 'es';
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.querySelectorAll('[data-es]').forEach(function(el) {
+        el.innerHTML = el.getAttribute('data-' + lang);
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+    }
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { setLang(btn.getAttribute('data-lang')); });
+    });
+    setLang(currentLang);
+  })();
 </script>
 
-<div class="cta-flotante" id="ctaFlotante"><span>Agendar demo</span></div>
+<div class="cta-flotante" id="ctaFlotante"><span data-es="Agendar demo" data-en="Schedule demo">Agendar demo</span></div>
 </body>
 </html>
