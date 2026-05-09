@@ -1341,26 +1341,23 @@
     if (window.innerWidth <= 768) return;
     var ctx = canvas.getContext('2d');
     var W, H, nodes = [], mouse = {x:-9999,y:-9999};
-    var N = 70, DIST = 150, SPEED = 0.8, COLOR = 'rgba(113,177,54,';
+    var N = 55, DIST = 150, SPEED = 0.8, COLOR = 'rgba(113,177,54,';
     var hero = document.getElementById('hero');
     function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
     function init() {
       nodes = [];
       for (var i=0;i<45;i++) nodes.push({x:Math.random()*(W*0.45)+W*0.55,y:Math.random()*H,vx:(Math.random()-.5)*SPEED,vy:(Math.random()-.5)*SPEED,r:Math.random()*2+2,opacity:0.85});
-      for (var j=0;j<15;j++) nodes.push({x:Math.random()*(W*0.15)+W*0.40,y:Math.random()*H,vx:(Math.random()-.5)*SPEED,vy:(Math.random()-.5)*SPEED,r:Math.random()*2+2,opacity:0.85});
-      for (var k=0;k<10;k++) nodes.push({x:Math.random()*(W*0.20)+W*0.20,y:Math.random()*H,vx:(Math.random()-.5)*SPEED,vy:(Math.random()-.5)*SPEED,r:Math.random()*2+2,opacity:0.85});
+      for (var j=0;j<10;j++) nodes.push({x:Math.random()*(W*0.20)+W*0.40,y:Math.random()*H,vx:(Math.random()-.5)*SPEED,vy:(Math.random()-.5)*SPEED,r:Math.random()*2+2,opacity:0.85});
     }
     function nodeAlpha(x) {
-      if(x<W*0.20) return 0;
-      if(x<W*0.35) return (x-W*0.20)/(W*0.15)*0.15;
-      if(x<W*0.55) return 0.15+(x-W*0.35)/(W*0.20)*0.40;
+      if(x<W*0.40) return 0;
+      if(x<W*0.55) return (x-W*0.40)/(W*0.15)*0.3;
       return 0.85;
     }
     function lineAlpha(x1,x2,df) {
       var ax=(x1+x2)*0.5;
-      if(ax<W*0.20) return 0;
-      if(ax<W*0.35) return 0.05*df;
-      if(ax<W*0.55) return (0.10+(ax-W*0.35)/(W*0.20)*0.10)*df;
+      if(ax<W*0.40) return 0;
+      if(ax<W*0.55) return (ax-W*0.40)/(W*0.15)*0.15*df;
       return 0.35*df;
     }
     function draw() {
@@ -1370,7 +1367,7 @@
         var dx=n.x-mouse.x,dy=n.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
         if(d<100&&d>0){var f=(100-d)/100*0.5;n.vx+=dx/d*f;n.vy+=dy/d*f;}
         n.x+=n.vx; n.y+=n.vy;
-        if(n.x<W*0.20){n.x=W*0.20;n.vx=Math.abs(n.vx);}
+        if(n.x<W*0.40){n.x=W*0.40;n.vx=Math.abs(n.vx);}
         if(n.x>W){n.x=W;n.vx=-Math.abs(n.vx);}
         if(n.y<0||n.y>H) n.vy*=-1;
       }
