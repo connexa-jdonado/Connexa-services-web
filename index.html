@@ -135,7 +135,13 @@
       background-size: 300% 300%; animation: heroGrad 12s ease infinite; z-index: -1;
     }
     @keyframes heroGrad { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; will-change: transform; }
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; will-change: transform; }
+    .hero-aurora { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .aurora-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; }
+    .aurora-blob-1 { width: 600px; height: 600px; background: radial-gradient(circle, #71B136, transparent 70%); top: -200px; left: -100px; animation: auroraMove 18s ease-in-out infinite; }
+    .aurora-blob-2 { width: 500px; height: 500px; background: radial-gradient(circle, #1e40af, transparent 70%); top: 50%; right: -150px; animation: auroraMove 22s ease-in-out infinite reverse; }
+    .aurora-blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #71B136, transparent 70%); bottom: -100px; left: 40%; animation: auroraMove 26s ease-in-out infinite 4s; }
+    @keyframes auroraMove { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(60px,-40px) scale(1.1);} 66%{transform:translate(-40px,60px) scale(0.9);} }
     .hero-inner {
       position: relative; z-index: 4; display: flex; flex-direction: column;
       align-items: flex-start; padding: 80px 40px 100px 80px;
@@ -567,6 +573,11 @@
 
   <!-- HERO -->
   <section id="hero">
+    <div class="hero-aurora">
+      <div class="aurora-blob aurora-blob-1"></div>
+      <div class="aurora-blob aurora-blob-2"></div>
+      <div class="aurora-blob aurora-blob-3"></div>
+    </div>
     <canvas id="hero-canvas"></canvas>
     <div class="hero-inner">
       <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>Field Service Management · Experts certificados</span></div>
@@ -1307,20 +1318,30 @@
   (function() {
     var canvas = document.getElementById('hero-canvas');
     if (!canvas) return;
+    if (window.innerWidth <= 768) return;
     var ctx = canvas.getContext('2d');
-    var W, H, nodes = [];
-    var N = 48, DIST = 160, COLOR = 'rgba(113,177,54,';
+    var W, H, nodes = [], mouse = {x:-9999,y:-9999};
+    var N = 80, DIST = 150, SPEED = 0.8, COLOR = 'rgba(113,177,54,';
+    var hero = document.getElementById('hero');
     function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
-    function init() { nodes = []; for (var i=0;i<N;i++) nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*2+1.5}); }
+    function init() { nodes = []; for (var i=0;i<N;i++) nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*SPEED,vy:(Math.random()-.5)*SPEED,r:Math.random()*2+2}); }
     function draw() {
       ctx.clearRect(0,0,W,H);
-      for (var i=0;i<nodes.length;i++) { nodes[i].x+=nodes[i].vx; nodes[i].y+=nodes[i].vy; if(nodes[i].x<0||nodes[i].x>W) nodes[i].vx*=-1; if(nodes[i].y<0||nodes[i].y>H) nodes[i].vy*=-1; }
-      for (var i=0;i<nodes.length;i++) for (var j=i+1;j<nodes.length;j++) { var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy); if(d<DIST){var a=(1-d/DIST)*0.12; ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=COLOR+a+')';ctx.lineWidth=1;ctx.stroke();} }
-      for (var i=0;i<nodes.length;i++) { ctx.beginPath();ctx.arc(nodes[i].x,nodes[i].y,nodes[i].r,0,Math.PI*2);ctx.fillStyle=COLOR+'0.18)';ctx.fill(); }
+      for (var i=0;i<nodes.length;i++) {
+        var n=nodes[i];
+        var dx=n.x-mouse.x,dy=n.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<100&&d>0){var f=(100-d)/100*0.5;n.vx+=dx/d*f;n.vy+=dy/d*f;}
+        n.x+=n.vx; n.y+=n.vy;
+        if(n.x<0||n.x>W) n.vx*=-1;
+        if(n.y<0||n.y>H) n.vy*=-1;
+      }
+      for (var i=0;i<nodes.length;i++) for (var j=i+1;j<nodes.length;j++) { var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy); if(d<DIST){var a=(1-d/DIST)*0.5; ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=COLOR+a+')';ctx.lineWidth=1;ctx.stroke();} }
+      for (var i=0;i<nodes.length;i++) { ctx.beginPath();ctx.arc(nodes[i].x,nodes[i].y,nodes[i].r,0,Math.PI*2);ctx.fillStyle=COLOR+'0.9)';ctx.fill(); }
       requestAnimationFrame(draw);
     }
+    if (hero) { hero.addEventListener('mousemove',function(e){var r=hero.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;},{passive:true}); hero.addEventListener('mouseleave',function(){mouse.x=-9999;mouse.y=-9999;},{passive:true}); }
     resize(); init(); draw();
-    window.addEventListener('resize', function(){resize();init();},{passive:true});
+    window.addEventListener('resize',function(){resize();init();},{passive:true});
   })();
 
   // ── COUNTER ANIMATION ──
