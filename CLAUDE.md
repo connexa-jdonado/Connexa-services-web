@@ -55,3 +55,24 @@ Si algo sale mal ejecutar:
 Antes de modificar cualquier archivo hacer una copia:
   cp index.html index.html.backup
 Así si algo se rompe se restaura en segundos.
+
+## SISTEMA BILINGÜE — OBLIGATORIO EN TODOS LOS CAMBIOS
+
+El sitio es bilingüe ES/EN. Cada vez que se agregue
+o modifique texto visible en cualquier archivo HTML:
+
+1. Todo elemento de texto DEBE tener data-es y data-en:
+   <span data-es="Texto en español" data-en="English text">
+     Texto en español
+   </span>
+
+2. Nunca agregar texto hardcodeado sin sus dos atributos.
+
+3. El JS de traducción ya está implementado en cada archivo.
+   Solo agregar los atributos data-es y data-en correctamente.
+
+4. Traducciones deben ser profesionales en inglés —
+   no literales, adaptadas al contexto de negocio.
+
+5. Al crear páginas nuevas incluir el selector ES/EN
+   en la navbar y el JS de traducción completo.
