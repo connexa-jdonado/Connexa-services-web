@@ -37,20 +37,20 @@
     .fade-up.d1{transition-delay:.1s} .fade-up.d2{transition-delay:.2s} .fade-up.d3{transition-delay:.3s} .fade-up.d4{transition-delay:.4s} .fade-up.d5{transition-delay:.5s} .fade-up.d6{transition-delay:.6s} .fade-up.d7{transition-delay:.7s} .fade-up.d8{transition-delay:.8s}
 
     /* ── NAVBAR ── */
-    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; display: flex; align-items: center; background: var(--primary); box-shadow: 0 2px 20px rgba(0,0,0,0.3); padding: 0 40px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; display: flex; align-items: center; background: var(--primary); box-shadow: 0 2px 20px rgba(0,0,0,0.3); transition: background 0.3s ease, box-shadow 0.3s ease; padding: 0 40px; }
     @media (max-width: 768px) { #navbar { padding: 0 24px; } }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 100%; }
+    .nav-inner { display: flex; align-items: center; justify-content: flex-start; width: 100%; max-width: 100%; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
     .nav-logo img { height: 44px; width: auto; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; margin-left: 40px; }
     .nav-links a { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.2s ease; white-space: nowrap; }
     .nav-links a:hover { color: #fff; }
     .nav-links a.active { color: var(--accent); font-weight: 600; }
-    .nav-cta { flex-shrink: 0; }
+    .nav-cta { flex-shrink: 0; margin-left: auto; }
     .nav-cta .btn-primary { padding: 12px 28px; font-size: 15px; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
-    @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .nav-hamburger { display: flex; } }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .nav-hamburger { display: flex; margin-left: auto; } }
     .mobile-nav { display: none; position: fixed; top: 80px; left: 0; right: 0; background: var(--primary); padding: 16px 24px 32px; z-index: 999; flex-direction: column; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border-top: 1px solid rgba(255,255,255,0.08); }
     .mobile-nav.open { display: flex; }
     .mobile-nav a { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
@@ -68,7 +68,7 @@
     .page-hero { background: var(--primary); padding: 160px 0 100px; position: relative; overflow: hidden; }
     .page-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px); background-size: 60px 60px; pointer-events: none; }
     .page-hero::after { content: ''; position: absolute; width: 700px; height: 700px; top: -150px; right: -100px; background: radial-gradient(circle,rgba(113,177,54,0.1) 0%,transparent 70%); pointer-events: none; }
-    .page-hero-inner { position: relative; z-index: 2; max-width: 760px; }
+    .page-hero-inner { position: relative; z-index: 2; }
     .hero-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
     .hero-h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 56px; font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 24px; }
     .hero-sub { font-family: 'Inter', sans-serif; font-size: 18px; color: rgba(255,255,255,0.70); line-height: 1.7; max-width: 580px; }
@@ -237,6 +237,13 @@
     .footer-bottom-links { display: flex; gap: 20px; }
     .footer-bottom-links a { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; }
 
+    /* ── HERO GRID ── */
+    .page-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .page-hero-left { display: flex; flex-direction: column; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    @media (max-width: 960px) { .page-hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+    @media (max-width: 960px) { .page-hero-illustration { display: none; } }
+
     /* ── SCROLL TOP ── */
     .scroll-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(113,177,54,0.45); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; z-index: 900; }
     .scroll-top.show { opacity: 1; transform: translateY(0); }
@@ -246,7 +253,7 @@
     .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: #71B136; color: white; padding: 16px 12px; border-radius: 8px 0 0 8px; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 9999; }
     .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
     .cta-flotante:hover { background: #5a9229; transform: translateY(-50%) translateX(-4px); }
-    .lang-switcher { display: flex; align-items: center; gap: 8px; }
+    .lang-switcher { display: flex; align-items: center; gap: 8px; margin-left: 20px; flex-shrink: 0; }
     .lang-btn { font-size: 13px; font-weight: 600; cursor: pointer; color: rgba(255,255,255,0.5); transition: color 200ms; }
     .lang-btn.active { color: #ffffff; }
     .lang-btn:hover { color: #ffffff; }
@@ -271,7 +278,7 @@
     <div class="nav-cta">
       <a class="btn-primary" href="#contacto" data-es="Hablar con un experto" data-en="Talk to an Expert">Hablar con un experto</a>
     </div>
-    <div class="lang-switcher" style="margin-left:20px;flex-shrink:0;">
+    <div class="lang-switcher">
       <span class="lang-btn active" data-lang="es">ES</span>
       <span class="lang-divider">|</span>
       <span class="lang-btn" data-lang="en">EN</span>
@@ -292,14 +299,59 @@
 <section class="page-hero">
   <div class="container">
     <div class="page-hero-inner">
-      <nav class="breadcrumb">
-        <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-        <span class="breadcrumb-sep">/</span>
-        <span class="breadcrumb-cur" data-es="Servicios" data-en="Services">Servicios</span>
-      </nav>
-      <div class="hero-eyebrow" data-es="NUESTROS SERVICIOS" data-en="OUR SERVICES">NUESTROS SERVICIOS</div>
-      <h1 class="hero-h1" data-es="Todo lo que necesitás para<br/>tu Field Service" data-en="Everything you need for<br/>your Field Service">Todo lo que necesitás para<br/>tu Field Service</h1>
-      <p class="hero-sub" data-es="Desde la implementación hasta el soporte continuo, acompañamos cada etapa de tu operación de campo." data-en="From implementation to ongoing support, we accompany every stage of your field operation.">Desde la implementación hasta el soporte continuo, acompañamos cada etapa de tu operación de campo.</p>
+      <div class="page-hero-grid">
+        <div class="page-hero-left">
+          <nav class="breadcrumb">
+            <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-cur" data-es="Servicios" data-en="Services">Servicios</span>
+          </nav>
+          <div class="hero-eyebrow" data-es="NUESTROS SERVICIOS" data-en="OUR SERVICES">NUESTROS SERVICIOS</div>
+          <h1 class="hero-h1" data-es="Todo lo que necesitás para<br/>tu Field Service" data-en="Everything you need for<br/>your Field Service">Todo lo que necesitás para<br/>tu Field Service</h1>
+          <p class="hero-sub" data-es="Desde la implementación hasta el soporte continuo, acompañamos cada etapa de tu operación de campo." data-en="From implementation to ongoing support, we accompany every stage of your field operation.">Desde la implementación hasta el soporte continuo, acompañamos cada etapa de tu operación de campo.</p>
+          <div class="hero-ctas">
+            <a href="#contacto" class="btn-primary" data-es="Hablar con un experto →" data-en="Talk to an Expert →">Hablar con un experto →</a>
+            <a href="#implementacion-ofsc" class="btn-ghost" data-es="Ver servicios" data-en="View Services">Ver servicios</a>
+          </div>
+        </div>
+        <div class="page-hero-right page-hero-illustration">
+          <svg viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:440px;display:block;margin:0 auto;">
+            <circle cx="220" cy="180" r="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <circle cx="220" cy="180" r="110" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="220" y1="180" x2="80" y2="75" stroke="rgba(113,177,54,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <line x1="220" y1="180" x2="360" y2="75" stroke="rgba(113,177,54,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <line x1="220" y1="180" x2="55" y2="195" stroke="rgba(113,177,54,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <line x1="220" y1="180" x2="385" y2="195" stroke="rgba(113,177,54,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <line x1="220" y1="180" x2="115" y2="305" stroke="rgba(113,177,54,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <line x1="220" y1="180" x2="325" y2="305" stroke="rgba(113,177,54,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <circle cx="80" cy="75" r="30" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+            <path d="M68 75h24M80 63v24" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="360" cy="75" r="30" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+            <path d="M348 68l12-5 12 5M348 80l12-5 12 5" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="55" cy="195" r="30" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+            <path d="M43 189a12 12 0 0 1 24 0v12H43v-12z" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="385" cy="195" r="30" fill="rgba(255,255,255,0.05)" stroke="rgba(113,177,54,0.4)" stroke-width="1.5"/>
+            <path d="M373 195h24M385 183v24" stroke="#71B136" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="115" cy="305" r="30" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+            <path d="M103 295l12 22 12-22" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="325" cy="305" r="30" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+            <rect x="313" y="293" width="24" height="24" rx="7" stroke="rgba(255,255,255,0.55)" stroke-width="2" fill="none"/>
+            <circle cx="220" cy="180" r="52" fill="rgba(113,177,54,0.12)" stroke="rgba(113,177,54,0.45)" stroke-width="2"/>
+            <circle cx="220" cy="180" r="36" fill="rgba(113,177,54,0.15)" stroke="rgba(113,177,54,0.5)" stroke-width="1.5"/>
+            <text x="220" y="176" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,0.9)">Connexa</text>
+            <text x="220" y="191" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.55)">Field Service</text>
+            <circle cx="148" cy="127" r="4" fill="#71B136" opacity="0.75"/>
+            <circle cx="292" cy="127" r="3.5" fill="#71B136" opacity="0.55"/>
+            <circle cx="138" cy="187" r="3" fill="#71B136" opacity="0.65"/>
+            <text x="80" y="118" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" data-es="Implementación" data-en="Implementation">Implementación</text>
+            <text x="360" y="118" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" data-es="Consultoría" data-en="Consulting">Consultoría</text>
+            <text x="55" y="238" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" data-es="Soporte" data-en="Support">Soporte</text>
+            <text x="385" y="238" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" data-es="Integraciones" data-en="Integrations">Integraciones</text>
+            <text x="115" y="348" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" data-es="Training" data-en="Training">Training</text>
+            <text x="325" y="348" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)">Zinier</text>
+          </svg>
+        </div>
+      </div>
     </div>
   </div>
 </section>

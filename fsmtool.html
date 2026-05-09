@@ -37,20 +37,20 @@
     .fade-up.d1{transition-delay:.1s} .fade-up.d2{transition-delay:.2s} .fade-up.d3{transition-delay:.3s} .fade-up.d4{transition-delay:.4s}
 
     /* ── NAVBAR ── */
-    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; display: flex; align-items: center; background: var(--primary); box-shadow: 0 2px 20px rgba(0,0,0,0.3); padding: 0 40px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; display: flex; align-items: center; background: var(--primary); box-shadow: 0 2px 20px rgba(0,0,0,0.3); transition: background 0.3s ease, box-shadow 0.3s ease; padding: 0 40px; }
     @media (max-width: 768px) { #navbar { padding: 0 24px; } }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 100%; }
+    .nav-inner { display: flex; align-items: center; justify-content: flex-start; width: 100%; max-width: 100%; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
     .nav-logo img { height: 44px; width: auto; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; margin-left: 40px; }
     .nav-links a { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.2s ease; white-space: nowrap; }
     .nav-links a:hover { color: #fff; }
     .nav-links a.active { color: var(--accent); font-weight: 600; }
-    .nav-cta { flex-shrink: 0; }
+    .nav-cta { flex-shrink: 0; margin-left: auto; }
     .nav-cta .btn-primary { padding: 12px 28px; font-size: 15px; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
-    @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .nav-hamburger { display: flex; } }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .nav-hamburger { display: flex; margin-left: auto; } }
     .mobile-nav { display: none; position: fixed; top: 80px; left: 0; right: 0; background: var(--primary); padding: 16px 24px 32px; z-index: 999; flex-direction: column; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border-top: 1px solid rgba(255,255,255,0.08); }
     .mobile-nav.open { display: flex; }
     .mobile-nav a { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
@@ -190,6 +190,12 @@
     .form-success h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
     .form-success p { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-muted); line-height: 1.6; }
 
+    /* ── HERO GRID ── */
+    .page-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .page-hero-left { display: flex; flex-direction: column; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    @media (max-width: 960px) { .page-hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
     /* ── SCROLL TOP ── */
     .scroll-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(113,177,54,0.45); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; z-index: 900; }
     .scroll-top.show { opacity: 1; transform: translateY(0); }
@@ -197,7 +203,7 @@
   .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: #71B136; color: white; padding: 16px 12px; border-radius: 8px 0 0 8px; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 9999; }
   .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
   .cta-flotante:hover { background: #5a9229; transform: translateY(-50%) translateX(-4px); }
-  .lang-switcher { display: flex; align-items: center; gap: 8px; }
+  .lang-switcher { display: flex; align-items: center; gap: 8px; margin-left: 20px; flex-shrink: 0; }
   .lang-btn { font-size: 13px; font-weight: 600; cursor: pointer; color: rgba(255,255,255,0.5); transition: color 200ms; }
   .lang-btn.active { color: #ffffff; }
   .lang-btn:hover { color: #ffffff; }
@@ -222,7 +228,7 @@
     <div class="nav-cta">
       <a class="btn-primary" href="#demo" data-es="Hablar con un experto" data-en="Talk to an Expert">Hablar con un experto</a>
     </div>
-    <div class="lang-switcher" style="margin-left:20px;flex-shrink:0;">
+    <div class="lang-switcher">
       <span class="lang-btn active" data-lang="es">ES</span>
       <span class="lang-divider">|</span>
       <span class="lang-btn" data-lang="en">EN</span>
@@ -242,23 +248,27 @@
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="container page-hero-inner">
-    <nav class="breadcrumb">
-      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a><span class="breadcrumb-sep">/</span>
-      <a href="productos.html" data-es="Productos" data-en="Products">Productos</a><span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-cur">FSMTool</span>
-    </nav>
-    <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span data-es="Solución propia Connexa · Para Oracle Field Service Cloud" data-en="Connexa Proprietary Solution · For Oracle Field Service Cloud">Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
-    <h1 class="page-hero-h1" data-es="Operaciones masivas en OFSC,<br/><em>sin complejidad</em>" data-en="Bulk OFSC operations,<br/><em>without complexity</em>">Operaciones masivas en OFSC,<br/><em>sin complejidad</em></h1>
-    <p class="page-hero-sub" data-es="FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva." data-en="FSMTool is the web tool that allows managing activities, resources and inventories in Oracle Field Service Cloud in bulk, in an easy and intuitive way.">FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva.</p>
-  </div>
-</div>
-
-<!-- HERO VISUAL -->
-<div style="background:var(--primary);padding:0 0 60px;">
-  <div class="container">
-    <div class="browser-frame" style="max-width:900px;margin:0 auto;box-shadow:0 40px 100px rgba(0,0,0,0.4);">
-      <div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">app.connexaservices.com/fsmtool</div></div>
-      <img src="assets/fsmtool-home.png" style="width:100%;display:block;" alt="FSMTool dashboard" />
+    <div class="page-hero-grid">
+      <div class="page-hero-left">
+        <nav class="breadcrumb">
+          <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a><span class="breadcrumb-sep">/</span>
+          <a href="productos.html" data-es="Productos" data-en="Products">Productos</a><span class="breadcrumb-sep">/</span>
+          <span class="breadcrumb-cur">FSMTool</span>
+        </nav>
+        <div class="page-hero-eyebrow"><div class="page-hero-eyebrow-dot"></div><span data-es="Solución propia Connexa · Para Oracle Field Service Cloud" data-en="Connexa Proprietary Solution · For Oracle Field Service Cloud">Solución propia Connexa · Para Oracle Field Service Cloud</span></div>
+        <h1 class="page-hero-h1" data-es="Operaciones masivas en OFSC,<br/><em>sin complejidad</em>" data-en="Bulk OFSC operations,<br/><em>without complexity</em>">Operaciones masivas en OFSC,<br/><em>sin complejidad</em></h1>
+        <p class="page-hero-sub" data-es="FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva." data-en="FSMTool is the web tool that allows managing activities, resources and inventories in Oracle Field Service Cloud in bulk, in an easy and intuitive way.">FSMTool es la herramienta web que permite gestionar de forma masiva actividades, recursos e inventarios en Oracle Field Service Cloud de manera fácil e intuitiva.</p>
+        <div class="hero-ctas">
+          <a href="#demo" class="btn-primary" data-es="Solicitar demo gratuita →" data-en="Request Free Demo →">Solicitar demo gratuita →</a>
+          <a href="#fsm-tabs" class="btn-ghost" data-es="Ver funcionalidades" data-en="View Features">Ver funcionalidades</a>
+        </div>
+      </div>
+      <div class="page-hero-right">
+        <div class="browser-frame" style="box-shadow:0 40px 100px rgba(0,0,0,0.4);">
+          <div class="browser-toolbar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-address">app.connexaservices.com/fsmtool</div></div>
+          <img src="assets/fsmtool-home.png" style="width:100%;display:block;" alt="FSMTool dashboard" />
+        </div>
+      </div>
     </div>
   </div>
 </div>
