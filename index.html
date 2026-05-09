@@ -142,6 +142,12 @@
     .aurora-blob-2 { width: 500px; height: 500px; background: radial-gradient(circle, #1e40af, transparent 70%); top: 50%; right: -150px; animation: auroraMove 22s ease-in-out infinite reverse; }
     .aurora-blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #71B136, transparent 70%); bottom: -100px; left: 40%; animation: auroraMove 26s ease-in-out infinite 4s; }
     @keyframes auroraMove { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(60px,-40px) scale(1.1);} 66%{transform:translate(-40px,60px) scale(0.9);} }
+    .glitch { position: relative; }
+    .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .glitch::before { color: #71B136; animation: glitch-1 0.3s ease-in-out infinite alternate; clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); transform: translate(-2px, 0); opacity: 0; }
+    .glitch::after { color: #a8ff6a; animation: glitch-2 0.3s ease-in-out infinite alternate; clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); transform: translate(2px, 0); opacity: 0; }
+    @keyframes glitch-1 { 0%, 90% { opacity: 0; transform: translate(-2px, 0); } 91% { opacity: 0.8; transform: translate(-4px, 1px); } 92% { opacity: 0; transform: translate(2px, -1px); } 93% { opacity: 0.6; transform: translate(-2px, 0); } 94%, 100% { opacity: 0; } }
+    @keyframes glitch-2 { 0%, 90% { opacity: 0; transform: translate(2px, 0); } 91% { opacity: 0.8; transform: translate(4px, -1px); } 92% { opacity: 0; transform: translate(-2px, 1px); } 93% { opacity: 0.6; transform: translate(2px, 0); } 94%, 100% { opacity: 0; } }
     .hero-inner {
       position: relative; z-index: 4; display: flex; flex-direction: column;
       align-items: flex-start; padding: 80px 40px 100px 80px;
@@ -583,7 +589,7 @@
       <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>Field Service Management · Experts certificados</span></div>
       <h1 class="hero-headline">
         Transformamos el Field&nbsp;Service<br/>
-        en <em>ventaja competitiva</em>
+        <span class="glitch" data-text="en ventaja competitiva">en <em>ventaja competitiva</em></span>
       </h1>
       <p class="hero-subheadline">Somos expertos en Oracle Field Service Cloud y Zinier.<br/>Implementación, consultoría, soporte y soluciones propias<br/>para optimizar cada operación de campo.</p>
       <div class="hero-ctas">
