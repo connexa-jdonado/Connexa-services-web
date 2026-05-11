@@ -540,6 +540,51 @@
     .pqc-cta { text-align: center; position: relative; z-index: 2; }
     .pqc-cta-text { font-family: 'Inter', sans-serif; font-size: 17px; color: rgba(255,255,255,0.70); margin-bottom: 24px; }
 
+    /* ── EQUIPO Y CASO DE ÉXITO ── */
+    #equipo-caso { background: #172554; padding: 120px 0; position: relative; overflow: hidden; }
+    #equipo-caso::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .ec-header { text-align: center; margin-bottom: 64px; position: relative; z-index: 2; }
+    .ec-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #71B136; margin-bottom: 14px; }
+    .ec-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 16px; }
+    .ec-subtitle { font-family: 'Inter', sans-serif; font-size: 18px; color: rgba(255,255,255,0.40); line-height: 1.65; max-width: 600px; margin: 0 auto; font-style: italic; }
+    .ec-ceos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; position: relative; z-index: 2; }
+    @media (max-width: 768px) { .ec-ceos-grid { grid-template-columns: 1fr; } }
+    .ec-ceo-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 20px; transition: border-color 0.3s ease, transform 0.3s ease; }
+    .ec-ceo-card:hover { border-color: rgba(113,177,54,0.40); transform: translateY(-4px); }
+    .ec-ceo-photo-placeholder { width: 100%; max-width: 280px; height: 320px; background: rgba(255,255,255,0.05); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; margin: 0 auto; }
+    .ec-ceo-photo-placeholder svg { width: 56px; height: 56px; stroke: #71B136; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .ec-ceo-photo-label { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.30); font-style: italic; }
+    .ec-ceo-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.40); font-style: italic; }
+    .ec-ceo-role { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #71B136; }
+    .ec-ceo-desc { font-family: 'Inter', sans-serif; font-size: 15px; color: rgba(255,255,255,0.40); line-height: 1.65; font-style: italic; }
+    .ec-ceo-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ec-ceo-tag { display: inline-flex; align-items: center; background: rgba(113,177,54,0.15); border: 1px solid rgba(113,177,54,0.30); border-radius: 20px; padding: 4px 12px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #71B136; }
+    .ec-ceo-tag.ec-tag-placeholder { color: rgba(113,177,54,0.55); font-style: italic; }
+    .ec-sep { width: 100%; height: 1px; background: rgba(255,255,255,0.10); margin: 64px 0; position: relative; z-index: 2; }
+    .ec-case-eyebrow { display: block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #71B136; margin-bottom: 32px; position: relative; z-index: 2; }
+    .ec-case-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 48px; align-items: start; position: relative; z-index: 2; }
+    @media (max-width: 900px) { .ec-case-layout { grid-template-columns: 1fr; } }
+    .ec-case-location-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(113,177,54,0.15); border-radius: 20px; padding: 6px 14px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #71B136; margin-bottom: 12px; font-style: italic; }
+    .ec-case-location-badge svg { width: 14px; height: 14px; stroke: #71B136; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .ec-case-industry { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.40); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; font-style: italic; }
+    .ec-case-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 700; color: rgba(255,255,255,0.40); line-height: 1.2; margin-bottom: 20px; font-style: italic; }
+    .ec-case-desc { font-family: 'Inter', sans-serif; font-size: 16px; color: rgba(255,255,255,0.40); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+    .ec-case-impl-label { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #71B136; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+    .ec-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.10); }
+    @media (max-width: 600px) { .ec-metrics { grid-template-columns: 1fr; } }
+    .ec-metric { display: flex; flex-direction: column; gap: 6px; }
+    .ec-metric-number { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 36px; font-weight: 700; color: #71B136; line-height: 1; font-style: italic; }
+    .ec-metric-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.40); line-height: 1.4; font-style: italic; }
+    .ec-header-highlight { background: rgba(113,177,54,0.10); border-left: 4px solid #71B136; padding: 16px 24px; border-radius: 8px; max-width: 700px; margin: 24px auto 0; }
+    .ec-header-highlight p { font-family: 'Inter', sans-serif; font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.65; font-style: italic; margin: 0; }
+    .ec-case-lead-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(113,177,54,0.10); border-radius: 20px; padding: 6px 16px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #71B136; margin-bottom: 20px; }
+    .ec-case-lead-badge svg { width: 14px; height: 14px; stroke: #71B136; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .ec-case-closing { font-family: 'Inter', sans-serif; font-size: 16px; color: rgba(255,255,255,0.70); line-height: 1.7; font-style: italic; border-left: 3px solid #71B136; padding-left: 16px; margin-top: 16px; margin-bottom: 16px; }
+    .ec-case-right { display: flex; flex-direction: column; gap: 20px; }
+    .ec-img-placeholder { background: rgba(255,255,255,0.05); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 24px; box-shadow: 0 16px 32px rgba(0,0,0,0.20); aspect-ratio: 4/3; }
+    .ec-img-placeholder svg { width: 40px; height: 40px; stroke: rgba(255,255,255,0.25); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .ec-img-label { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.30); font-style: italic; text-align: center; }
+
     /* ── CTA FLOTANTE ── */
     .cta-flotante { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); background: var(--accent); color: #fff; padding: 16px 12px; border-radius: 8px 0 0 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer; box-shadow: -4px 0 16px rgba(0,0,0,0.2); opacity: 0; transition: opacity 300ms ease, transform 300ms ease; z-index: 9999; border: none; text-decoration: none; }
     .cta-flotante.visible { opacity: 1; transform: translateY(-50%) translateX(0); }
@@ -749,6 +794,117 @@
       </div>
     </div>
   </section>
+
+  <!-- EQUIPO Y CASO DE ÉXITO -->
+  <section id="equipo-caso">
+    <div class="container">
+
+      <!-- Encabezado -->
+      <div class="ec-header">
+        <div class="ec-eyebrow fade-up" data-es="LIDERAZGO Y EXPERIENCIA" data-en="LEADERSHIP &amp; EXPERIENCE">LIDERAZGO Y EXPERIENCIA</div>
+        <h2 class="ec-title fade-up d1" data-es="El equipo detrás de cada implementación" data-en="The team behind every implementation">El equipo detrás de cada implementación</h2>
+        <p class="ec-subtitle fade-up d2" data-es="Más de [X] años de experiencia combinada en Field Service Management a nivel internacional." data-en="Over [X] years of combined experience in Field Service Management at an international level.">Más de [X] años de experiencia combinada en Field Service Management a nivel internacional.</p>
+        <div class="ec-header-highlight fade-up d3">
+          <p data-es="Nuestros CEOs no solo lideran la empresa — están en los detalles de cada proyecto." data-en="Our CEOs don't just lead the company — they are involved in every project detail.">Nuestros CEOs no solo lideran la empresa — están en los detalles de cada proyecto.</p>
+        </div>
+      </div>
+
+      <!-- PARTE 1 — CEOs -->
+      <div class="ec-ceos-grid">
+
+        <!-- CEO 1 -->
+        <div class="ec-ceo-card fade-up d1">
+          <div class="ec-ceo-photo-placeholder">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            <span class="ec-ceo-photo-label" data-es="[ Foto CEO 1 ]" data-en="[ CEO 1 Photo ]">[ Foto CEO 1 ]</span>
+          </div>
+          <div class="ec-ceo-name" data-es="[ Nombre del CEO ]" data-en="[ CEO Name ]">[ Nombre del CEO ]</div>
+          <div class="ec-ceo-role" data-es="Co-founder &amp; CEO" data-en="Co-founder &amp; CEO">Co-founder &amp; CEO</div>
+          <p class="ec-ceo-desc" data-es="[ Breve descripción profesional del CEO. Incluir años de experiencia, especialización en FSM, principales industrias donde trabajó y certificaciones Oracle y Zinier. Máximo 3 líneas. ]" data-en="[ Brief professional description of the CEO. Include years of experience, FSM specialization, main industries and Oracle/Zinier certifications. Max 3 lines. ]">[ Breve descripción profesional del CEO. Incluir años de experiencia, especialización en FSM, principales industrias donde trabajó y certificaciones Oracle y Zinier. Máximo 3 líneas. ]</p>
+          <div class="ec-ceo-tags">
+            <span class="ec-ceo-tag" data-es="Oracle Certified" data-en="Oracle Certified">Oracle Certified</span>
+            <span class="ec-ceo-tag" data-es="Zinier Partner" data-en="Zinier Partner">Zinier Partner</span>
+            <span class="ec-ceo-tag ec-tag-placeholder" data-es="[ Industria principal ]" data-en="[ Main Industry ]">[ Industria principal ]</span>
+            <span class="ec-ceo-tag ec-tag-placeholder" data-es="[ País/Región ]" data-en="[ Country/Region ]">[ País/Región ]</span>
+          </div>
+        </div>
+
+        <!-- CEO 2 -->
+        <div class="ec-ceo-card fade-up d2">
+          <div class="ec-ceo-photo-placeholder">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            <span class="ec-ceo-photo-label" data-es="[ Foto CEO 2 ]" data-en="[ CEO 2 Photo ]">[ Foto CEO 2 ]</span>
+          </div>
+          <div class="ec-ceo-name" data-es="[ Nombre del CEO ]" data-en="[ CEO Name ]">[ Nombre del CEO ]</div>
+          <div class="ec-ceo-role" data-es="Co-founder &amp; CTO" data-en="Co-founder &amp; CTO">Co-founder &amp; CTO</div>
+          <p class="ec-ceo-desc" data-es="[ Breve descripción profesional del CEO. Incluir años de experiencia, especialización en FSM, principales industrias donde trabajó y certificaciones Oracle y Zinier. Máximo 3 líneas. ]" data-en="[ Brief professional description of the CEO. Include years of experience, FSM specialization, main industries and Oracle/Zinier certifications. Max 3 lines. ]">[ Breve descripción profesional del CEO. Incluir años de experiencia, especialización en FSM, principales industrias donde trabajó y certificaciones Oracle y Zinier. Máximo 3 líneas. ]</p>
+          <div class="ec-ceo-tags">
+            <span class="ec-ceo-tag" data-es="Oracle Certified" data-en="Oracle Certified">Oracle Certified</span>
+            <span class="ec-ceo-tag" data-es="Zinier Partner" data-en="Zinier Partner">Zinier Partner</span>
+            <span class="ec-ceo-tag ec-tag-placeholder" data-es="[ Industria principal ]" data-en="[ Main Industry ]">[ Industria principal ]</span>
+            <span class="ec-ceo-tag ec-tag-placeholder" data-es="[ País/Región ]" data-en="[ Country/Region ]">[ País/Región ]</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Separador -->
+      <div class="ec-sep"></div>
+
+      <!-- PARTE 2 — CASO DE ÉXITO -->
+      <div class="ec-case-eyebrow fade-up" data-es="CASO DE ÉXITO INTERNACIONAL" data-en="INTERNATIONAL SUCCESS CASE">CASO DE ÉXITO INTERNACIONAL</div>
+
+      <div class="ec-case-layout">
+
+        <!-- Izquierda -->
+        <div class="ec-case-left fade-up d1">
+          <div class="ec-case-location-badge">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-es="[ País o región del proyecto ]" data-en="[ Country or region of the project ]">[ País o región del proyecto ]</span>
+          </div>
+          <div class="ec-case-industry" data-es="[ INDUSTRIA — EJ: UTILITIES / TELECOMUNICACIONES ]" data-en="[ INDUSTRY — E.G.: UTILITIES / TELECOMMUNICATIONS ]">[ INDUSTRIA — EJ: UTILITIES / TELECOMUNICACIONES ]</div>
+          <h3 class="ec-case-title" data-es="[ Título que describa el proyecto — ej: Transformación digital de la operación de campo para empresa líder de distribución eléctrica ]" data-en="[ Title describing the project — e.g.: Digital transformation of field operations for a leading electricity distribution company ]">[ Título que describa el proyecto — ej: Transformación digital de la operación de campo para empresa líder de distribución eléctrica ]</h3>
+          <div class="ec-case-lead-badge">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <span data-es="Proyecto liderado directamente por los co-fundadores de Connexa Services" data-en="Project directly led by Connexa Services co-founders">Proyecto liderado directamente por los co-fundadores de Connexa Services</span>
+          </div>
+          <p class="ec-case-desc" data-es="[ Describir el desafío inicial del cliente. Qué problema tenían, cuántos técnicos/órdenes manejaban, qué sistema usaban antes o qué proceso manual querían automatizar. ]" data-en="[ Describe the client's initial challenge. What problem they had, how many technicians/orders they managed, what system they used before, or what manual process they wanted to automate. ]">[ Describir el desafío inicial del cliente. Qué problema tenían, cuántos técnicos/órdenes manejaban, qué sistema usaban antes o qué proceso manual querían automatizar. ]</p>
+          <div class="ec-case-impl-label" data-es="SOLUCIÓN IMPLEMENTADA" data-en="IMPLEMENTED SOLUTION">SOLUCIÓN IMPLEMENTADA</div>
+          <p class="ec-case-desc" data-es="[ Describir la solución implementada. Qué módulos de OFSC o Zinier se configuraron, qué integraciones se desarrollaron, cuánto duró el proyecto y cuál fue el rol del equipo. ]" data-en="[ Describe the implemented solution. Which OFSC or Zinier modules were configured, what integrations were developed, how long the project lasted and the team's role. ]">[ Describir la solución implementada. Qué módulos de OFSC o Zinier se configuraron, qué integraciones se desarrollaron, cuánto duró el proyecto y cuál fue el rol del equipo. ]</p>
+          <p class="ec-case-closing" data-es="Este proyecto, como todos los de Connexa, fue liderado directamente por nuestros co-fundadores. Nuestros CEOs no solo lideran la empresa — están en los detalles de cada implementación, desde el relevamiento inicial hasta el go-live y el soporte post-producción." data-en="This project, like all Connexa projects, was directly led by our co-founders. Our CEOs don't just lead the company — they are involved in every detail of each implementation, from initial discovery through go-live and post-production support.">Este proyecto, como todos los de Connexa, fue liderado directamente por nuestros co-fundadores. Nuestros CEOs no solo lideran la empresa — están en los detalles de cada implementación, desde el relevamiento inicial hasta el go-live y el soporte post-producción.</p>
+          <div class="ec-metrics">
+            <div class="ec-metric">
+              <div class="ec-metric-number" data-es="[ N ]" data-en="[ N ]">[ N ]</div>
+              <div class="ec-metric-desc" data-es="[ Descripción resultado 1 ]" data-en="[ Result description 1 ]">[ Descripción resultado 1 ]</div>
+            </div>
+            <div class="ec-metric">
+              <div class="ec-metric-number" data-es="[ N ]" data-en="[ N ]">[ N ]</div>
+              <div class="ec-metric-desc" data-es="[ Descripción resultado 2 ]" data-en="[ Result description 2 ]">[ Descripción resultado 2 ]</div>
+            </div>
+            <div class="ec-metric">
+              <div class="ec-metric-number" data-es="[ N ]" data-en="[ N ]">[ N ]</div>
+              <div class="ec-metric-desc" data-es="[ Descripción resultado 3 ]" data-en="[ Result description 3 ]">[ Descripción resultado 3 ]</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Derecha -->
+        <div class="ec-case-right fade-up d2">
+          <div class="ec-img-placeholder">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ec-img-label" data-es="[ Foto o imagen representativa del proyecto ]" data-en="[ Representative photo or image of the project ]">[ Foto o imagen representativa del proyecto ]</span>
+          </div>
+          <div class="ec-img-placeholder">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="ec-img-label" data-es="[ Foto del equipo liderando el proyecto ]" data-en="[ Photo of the team leading the project ]">[ Foto del equipo liderando el proyecto ]</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- /EQUIPO Y CASO DE ÉXITO -->
 
   <!-- METODOLOGÍA -->
   <section id="metodologia">
